@@ -1,10 +1,36 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MyPassword.Controls"
              x:Class="MyPassword.Controls.PwdConditionView">
-  <ContentView.Content>
-      <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
-      </StackLayout>
-  </ContentView.Content>
+    <ContentView.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
+                <controls:Checkbox/>
+                <Label Text="数字" VerticalOptions="Center"/>
+            </StackLayout>
+            <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                <controls:Checkbox/>
+                <Label Text="小写字母" VerticalOptions="Center"/>
+            </StackLayout>
+            <StackLayout Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
+                <controls:Checkbox/>
+                <Label Text="大写字母" VerticalOptions="Center"/>
+            </StackLayout>
+            <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                <controls:Checkbox/>
+                <Label Text="特殊字符" VerticalOptions="Center"/>
+            </StackLayout>
+            <Slider Grid.Column="0" Grid.ColumnSpan="2" Margin="0,12" Grid.Row="2"/>
+        </Grid>
+    </ContentView.Content>
 </ContentView>

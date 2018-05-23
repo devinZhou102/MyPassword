@@ -19,18 +19,17 @@ namespace MyPassword.Pages
 
         protected override void OnAppear()
         {
-            ToolbarItems.Add(new ToolbarItem
-            {
-                Text = "设置",
-                Command = new Command(() =>
-                {
-                    App.Current.MainPage.Navigation.PushAsync(new SettingPage());
-                })
-            });
         }
 
         protected override void OnFirstAppear()
         {
+            ToolbarItems.Add(new ToolbarItem
+            {
+                Text = "保存",
+                Command = new Command(() =>
+                {
+                })
+            });
         }
         
         
