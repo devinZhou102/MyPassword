@@ -13,6 +13,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <StackLayout Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
                 <controls:Checkbox/>
@@ -30,7 +31,11 @@
                 <controls:Checkbox/>
                 <Label Text="特殊字符" VerticalOptions="Center"/>
             </StackLayout>
-            <Slider Grid.Column="0" Grid.ColumnSpan="2" Margin="0,12" Grid.Row="2"/>
+            <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Orientation="Horizontal">
+                <Label Text="密码长度：" VerticalOptions="Center"/>
+                <Label Text="6" VerticalOptions="Center"/>
+            </StackLayout>
+            <Slider Grid.Column="0" Grid.ColumnSpan="2" Margin="0,12" Grid.Row="3"/>
         </Grid>
     </ContentView.Content>
 </ContentView>
