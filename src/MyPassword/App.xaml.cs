@@ -12,7 +12,7 @@ namespace MyPassword
 		{
 			InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new MyNavigationPage(new MainPage());
         }
 
 		protected override void OnStart ()

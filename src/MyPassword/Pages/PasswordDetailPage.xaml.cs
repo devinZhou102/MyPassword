@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,10 +13,13 @@ namespace MyPassword.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class PasswordDetailPage : BaseContentPage
 	{
+        static int count = 0;
 		public PasswordDetailPage () : base()
         {
             InitializeComponent();
-		}
+            count++;
+
+        }
 
         protected override void OnAppear()
         {
@@ -31,7 +35,11 @@ namespace MyPassword.Pages
                 })
             });
         }
-        
-        
+
+        public override void OnPoppedOut()
+        {
+            count--;
+            Debug.WriteLine(string.Format("{0} is popped out,has {1} instance", this.GetType().Name,count));
+        }
     }
 }

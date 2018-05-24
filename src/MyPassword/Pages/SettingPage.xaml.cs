@@ -14,11 +14,12 @@ namespace MyPassword.Pages
 	{
 		public SettingPage () : base()
         {
+            InitializeComponent();
 		}
         
         private void Button_Clicked(object sender, EventArgs e)
         {
-            App.Current.MainPage = new NavigationPage(new MainPage());
+            App.Current.MainPage = new MyNavigationPage(new MainPage());
         }
 
         protected override void OnFirstAppear()
