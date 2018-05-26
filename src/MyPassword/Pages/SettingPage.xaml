@@ -4,11 +4,14 @@
              xmlns:local="clr-namespace:MyPassword.Pages"
              x:Class="MyPassword.Pages.SettingPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="Center" 
-                HorizontalOptions="CenterAndExpand" />
-            <Button Text="GoMain" Clicked="Button_Clicked"/>
-        </StackLayout>
+        <ListView Margin="0,24">
+            <ListView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>加密密钥</x:String>
+                    <x:String>手势密码</x:String>
+                    <x:String>密码备份</x:String>
+                </x:Array>
+            </ListView.ItemsSource>
+        </ListView>
     </ContentPage.Content>
 </local:BaseContentPage >

@@ -13,15 +13,15 @@ namespace MyPassword.ViewModels
         
         #region 属性
 
-        private List<TabContentPage> _TabPageList;
+        private List<BaseContentPage> _TabPageList;
 
-        public List<TabContentPage> TabPageList
+        public List<BaseContentPage> TabPageList
         {
             get
             {
                 if (_TabPageList == null)
                 {
-                    _TabPageList = new List<TabContentPage>();
+                    _TabPageList = new List<BaseContentPage>();
                 }
                 return _TabPageList;
             }
@@ -44,8 +44,8 @@ namespace MyPassword.ViewModels
 
         private void InitData()
         {
-            TabPageList.Add(new TabContentPage() { Title = "密码", Icon = IconHelper.GetIcon("IconKey"), TabType = TabContentPage.TAB_PWD });
-            TabPageList.Add(new TabContentPage() { Title = "设置", Icon = IconHelper.GetIcon("IconSetting"), TabType = TabContentPage.TAB_SET });
+            TabPageList.Add(new PasswordListPage() { Title = "密码", Icon = IconHelper.GetIcon("IconKey") });
+            TabPageList.Add(new SettingPage() { Title = "设置", Icon = IconHelper.GetIcon("IconSetting") });
         }
 
 

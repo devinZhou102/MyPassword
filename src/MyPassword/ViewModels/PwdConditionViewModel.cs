@@ -89,6 +89,7 @@ namespace MyPassword.ViewModels
             CheckedLowerCase = true;
             CheckedUpperCase = true;
             CheckedNumber = true;
+            Length = 10;
         }
 
         public PwdGeneratorParams BuildParams()

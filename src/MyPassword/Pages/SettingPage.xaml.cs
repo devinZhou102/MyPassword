@@ -19,7 +19,6 @@ namespace MyPassword.Pages
         
         private void Button_Clicked(object sender, EventArgs e)
         {
-            App.Current.MainPage = new MyNavigationPage(new MainPage());
         }
 
         protected override void OnFirstAppear()
