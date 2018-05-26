@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MyPassword.ViewModels
 {
-    public class PwdConditinoViewModel:ViewModelBase
+    public class PwdConditionViewModel:ViewModelBase
     {
 
         private bool _CheckedNumber;
@@ -80,6 +80,15 @@ namespace MyPassword.ViewModels
                 _Length = value;
                 RaisePropertyChanged(nameof(Length));
             }
+        }
+
+
+        public PwdConditionViewModel()
+        {
+            CheckedCharactor = true;
+            CheckedLowerCase = true;
+            CheckedUpperCase = true;
+            CheckedNumber = true;
         }
 
         public PwdGeneratorParams BuildParams()

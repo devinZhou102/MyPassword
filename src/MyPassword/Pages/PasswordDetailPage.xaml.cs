@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyPassword.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -13,11 +14,12 @@ namespace MyPassword.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class PasswordDetailPage : BaseContentPage
 	{
-        static int count = 0;
+        PasswordDetailViewModel viewModel;
 		public PasswordDetailPage () : base()
         {
             InitializeComponent();
-            count++;
+            viewModel = new PasswordDetailViewModel();
+            BindingContext = viewModel;
 
         }
 
@@ -38,8 +40,7 @@ namespace MyPassword.Pages
 
         public override void OnPoppedOut()
         {
-            count--;
-            Debug.WriteLine(string.Format("{0} is popped out,has {1} instance", this.GetType().Name,count));
+            Debug.WriteLine(string.Format("{0} is popped out", this.GetType().Name));
         }
     }
 }

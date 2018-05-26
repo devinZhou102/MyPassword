@@ -13,16 +13,10 @@ namespace MyPassword.Controls
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class PwdConditionView : ContentView
 	{
-
-
-
-
-        PwdConditinoViewModel ViewModel;
+       
 		public PwdConditionView ()
 		{
 			InitializeComponent ();
-            ViewModel = new PwdConditinoViewModel();
-            BindingContext = ViewModel;
 		}
 	}
 }
