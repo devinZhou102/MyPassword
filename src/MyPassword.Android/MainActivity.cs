@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using MyPassword.Droid.Helper;
 
 namespace MyPassword.Droid
 {
@@ -18,7 +19,7 @@ namespace MyPassword.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
-
+            BottomBarHelper.SetupBottomTabs(this);
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
         }
