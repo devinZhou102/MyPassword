@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyPassword.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,14 @@ namespace MyPassword.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SettingPage : BaseContentPage
 	{
+        SettingViewModel viewModel;
 		public SettingPage () : base()
         {
             InitializeComponent();
-		}
+            viewModel = new SettingViewModel();
+            BindingContext = viewModel;
+
+        }
         
         private void Button_Clicked(object sender, EventArgs e)
         {
@@ -23,7 +28,6 @@ namespace MyPassword.Pages
 
         protected override void OnFirstAppear()
         {
-            ToolbarItems.Add(new ToolbarItem { Text = "收藏" });
         }
 
         protected override void OnAppear()
