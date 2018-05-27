@@ -4,26 +4,37 @@
              xmlns:local="clr-namespace:MyPassword.Pages"
              x:Class="MyPassword.Pages.SettingPage">
     <ContentPage.Content>
-        <ListView Margin="0,24" ItemsSource="{Binding SettingItemList}" RowHeight="60">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid VerticalOptions="Center" Margin="12,3">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="{Binding Icon}" WidthRequest="30" Margin="0,0,12,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" VerticalOptions="Start"/>
-                            <Label Text="{Binding Title}" FontSize="Medium" Grid.Row="0" Grid.Column="1"/>
-                            <Label Text="{Binding Description}" FontSize="Small" Grid.Row="1" Grid.Column="1"/>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout HeightRequest="0.3" Margin="0,24,0,-6" Grid.Row="0" BackgroundColor="LightGray"/>
+            <ListView Grid.Row="1"  ItemsSource="{Binding SettingItemList}" 
+                  ItemTapped="ListView_ItemTapped" 
+                  SeparatorVisibility="Default"
+                  SeparatorColor="LightGray"
+                  RowHeight="60">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid VerticalOptions="Center" Margin="12,3">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding Icon}" WidthRequest="30" Margin="0,0,12,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" VerticalOptions="Start"/>
+                                <Label Text="{Binding Title}" FontSize="Medium" Grid.Row="0" Grid.Column="1"/>
+                                <Label Text="{Binding Description}" FontSize="Small" Grid.Row="1" Grid.Column="1"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </ContentPage.Content>
 </local:BaseContentPage >

@@ -33,5 +33,13 @@ namespace MyPassword.Pages
         protected override void OnAppear()
         {
         }
+
+        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (e.Item == null)
+                return;
+
+            ((ListView)sender).SelectedItem = null;
+        }
     }
 }
