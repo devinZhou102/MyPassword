@@ -10,11 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace MyPassword.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class GuestureLockPage : BaseContentPage
+	public partial class BackUpPage : BaseContentPage
 	{
-		public GuestureLockPage ()
+		public BackUpPage ()
 		{
-            InitializeComponent();
+			InitializeComponent ();
 		}
 
         protected override void OnAppear()

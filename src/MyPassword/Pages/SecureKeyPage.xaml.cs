@@ -10,11 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace MyPassword.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class GuestureLockPage : BaseContentPage
+	public partial class SecureKeyPage : BaseContentPage
 	{
-		public GuestureLockPage ()
+		public SecureKeyPage ()
 		{
-            InitializeComponent();
+			InitializeComponent ();
 		}
 
         protected override void OnAppear()
@@ -23,6 +23,13 @@ namespace MyPassword.Pages
 
         protected override void OnFirstAppear()
         {
+            ToolbarItems.Add(new ToolbarItem
+            {
+                Text = "保存",
+                Command = new Command(() =>
+                {
+                })
+            });
         }
     }
 }

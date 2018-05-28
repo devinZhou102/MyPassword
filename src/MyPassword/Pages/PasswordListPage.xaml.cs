@@ -1,4 +1,5 @@
 ﻿using MyPassword.Helpers;
+using MyPassword.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,15 @@ namespace MyPassword.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class PasswordListPage : BaseContentPage
 	{
+
+        PasswordListViewModel viewModel;
 		public PasswordListPage ()
 		{
 			InitializeComponent ();
-		}
+            viewModel = new PasswordListViewModel();
+            BindingContext = viewModel;
+
+        }
 
         protected override void OnAppear()
         {
@@ -32,6 +38,14 @@ namespace MyPassword.Pages
                     Navigation.PushAsync(new PasswordDetailPage());
                 })
             });
+        }
+
+        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (e.Item == null)
+                return;
+
+           ((ListView)sender).SelectedItem = null;
         }
     }
 }

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MyPassword.Pages"
+             Title="设置加密密钥"
+             x:Class="MyPassword.Pages.SecureKeyPage">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Margin="12">
+            <Entry Placeholder="您的密钥" PlaceholderColor="DarkGray" Keyboard="Numeric" MaxLength="8"/>
+            <Label Text="设置您的加密密钥（8位），它将用于加密的数据，这很重要，请妥善保存!" />
+        </StackLayout>
+    </ContentPage.Content>
+</local:BaseContentPage>
