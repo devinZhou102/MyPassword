@@ -8,22 +8,25 @@
                   ItemTapped="ListView_ItemTapped" 
                   SeparatorVisibility="Default"
                   SeparatorColor="LightGray"
+                  BackgroundColor="WhiteSmoke"
                   RowHeight="60">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid VerticalOptions="Center" Margin="12,3">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="{Binding Icon}" WidthRequest="30" Margin="0,0,12,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" VerticalOptions="Start"/>
-                            <Label Text="{Binding Title}" FontSize="Small" TextColor="Gray" Grid.Row="0" Grid.Column="1"/>
-                            <Label Text="{Binding Description}" FontSize="Small" TextColor="DarkGray" Grid.Row="1" Grid.Column="1"/>
+                        <Grid BackgroundColor="White">
+                            <Grid VerticalOptions="Center" Margin="12,3">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding Icon}" WidthRequest="30" Margin="0,0,12,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" VerticalOptions="Start"/>
+                                <Label Text="{Binding Title}" FontSize="Small" TextColor="Gray" Grid.Row="0" Grid.Column="1"/>
+                                <Label Text="{Binding Description}" FontSize="Small" TextColor="DarkGray" Grid.Row="1" Grid.Column="1"/>
+                            </Grid>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

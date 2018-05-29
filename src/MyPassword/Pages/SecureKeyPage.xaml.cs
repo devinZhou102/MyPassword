@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyPassword.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,14 @@ namespace MyPassword.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SecureKeyPage : BaseContentPage
 	{
+        SecureKeyViewModel viewModel;
 		public SecureKeyPage ()
 		{
 			InitializeComponent ();
-		}
+            viewModel = new SecureKeyViewModel();
+            BindingContext = viewModel;
+
+        }
 
         protected override void OnAppear()
         {
@@ -26,9 +31,7 @@ namespace MyPassword.Pages
             ToolbarItems.Add(new ToolbarItem
             {
                 Text = "保存",
-                Command = new Command(() =>
-                {
-                })
+                Command = viewModel?.SaveCommand
             });
         }
     }

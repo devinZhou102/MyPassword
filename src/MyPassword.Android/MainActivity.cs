@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using MyPassword.Droid.Helper;
+using Plugin.SecureStorage;
 
 namespace MyPassword.Droid
 {
@@ -20,6 +21,7 @@ namespace MyPassword.Droid
 
             base.OnCreate(bundle);
             BottomBarHelper.SetupBottomTabs(this);
+            SecureStorageImplementation.StorageType = StorageTypes.AndroidKeyStore;
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
         }
