@@ -30,8 +30,26 @@ namespace MyPassword.ViewModels
             }
         }
 
+        private bool _HideSecureKey;
+
+        public bool HideSecureKey
+        {
+            get
+            {
+                return _HideSecureKey;
+            }
+            set
+            {
+                _HideSecureKey = value;
+                RaisePropertyChanged(nameof(HideSecureKey));
+            }
+        }
+
+
+
         public SecureKeyViewModel()
         {
+            HideSecureKey = true;
             SecureKey = SecureKeyManager.Instance.SecureKey;
             SaveCommand = new RelayCommand(()=>SaveExcute());
         }
