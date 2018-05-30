@@ -2,12 +2,11 @@
 <local:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MyPassword.Pages"
+             xmlns:controls="clr-namespace:Plugin.GuestureLock.Control;assembly=Plugin.GuestureLock"
              x:Class="MyPassword.Pages.GuestureLockPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to GuestureLockPage!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <controls:GuestureLockView WidthRequest="320" HeightRequest="320" VerticalOptions="Center" BackgroundColor="Transparent" HorizontalOptions="Center"/>
+        </Grid>
     </ContentPage.Content>
 </local:BaseContentPage>
