@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyPassword.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,14 @@ namespace MyPassword.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class GuestureLockPage : BaseContentPage
 	{
-		public GuestureLockPage ()
+        GusetureLockViewModel viewModel;
+        public GuestureLockPage ()
 		{
             InitializeComponent();
-		}
+            viewModel = new GusetureLockViewModel();
+            BindingContext = viewModel;
+
+        }
 
         protected override void OnAppear()
         {
