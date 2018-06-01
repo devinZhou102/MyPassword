@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using MyPassword.Pages;
 using MyPassword.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ namespace MobilePlatformApp.Helper
             tabbedPage = page;
             mainTabViewModel = viewModel;
             InitData();
+
+            tabbedPage.Navigation.PushModalAsync(new GuestureVerifyPage(()=> { }));
             tabbedPage.Appearing += TabbedPage_Appearing;
             tabbedPage.Disappearing += TabbedPage_Disappearing;
             tabbedPage.CurrentPageChanged += TabbedPage_CurrentPageChanged;
@@ -46,6 +49,7 @@ namespace MobilePlatformApp.Helper
         private void TabbedPage_Appearing(object sender, EventArgs e)
         {
             UpdateNavigationBar();
+
         }
     }
 }

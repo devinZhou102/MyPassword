@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace MyPassword.Manager
@@ -35,6 +36,7 @@ namespace MyPassword.Manager
         {
             if(null == indexList || indexList.Count < 4)
             {
+                
                 return false;
             }
             return true;
@@ -56,7 +58,17 @@ namespace MyPassword.Manager
                     pwd += GesturePwdData.ElementAt(index);
                 }
             }
+            pwd = GetMD5String(pwd);
             return pwd;
+        }
+
+        public  string GetMD5String(string value)
+        {
+            var md5 = MD5.Create();
+            byte[] bytResult = md5.ComputeHash(Encoding.UTF8.GetBytes(value));
+            string strResult = BitConverter.ToString(bytResult);
+            strResult = strResult.Replace("-", "");
+            return strResult;
         }
 
         private void Read()
