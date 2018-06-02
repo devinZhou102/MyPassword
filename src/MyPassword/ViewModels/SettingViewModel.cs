@@ -43,18 +43,21 @@ namespace MyPassword.ViewModels
                 Icon = IconHelper.GetIcon("IconSecret"),
                 Title = "加密密钥",
                 Description = "用于数据加密",
+                SecureProtect = true,
                 PageType = typeof(SecureKeyPage)
             });
             SettingItemList.Add(new SettingItemModel
             {
                 Icon = IconHelper.GetIcon("IconLock"),
                 Title = "手势密码",
+                SecureProtect = true,
                 Description = "用于保护APP的使用权",
                 PageType = typeof(GuestureLockPage)
             });
             SettingItemList.Add(new SettingItemModel
             {
                 Icon = IconHelper.GetIcon("IconBackup"),
+                SecureProtect = true,
                 Title = "数据备份",
                 Description = "备份您的数据",
                 PageType = typeof(BackUpPage)
@@ -64,6 +67,7 @@ namespace MyPassword.ViewModels
             {
                 Icon = IconHelper.GetIcon("IconAbout"),
                 Title = "关于",
+                SecureProtect = false,
                 Description = "APP相关信息",
                 PageType = typeof(AboutPage)
             });

@@ -43,17 +43,31 @@ namespace MyPassword.Pages
             if(e.Item is SettingItemModel)
             {
                 var item = e.Item as SettingItemModel;
-                var paramTpyes = new Type[0];
-                var constructor = item.PageType.GetConstructor(paramTpyes);
-                if (constructor != null)
+                if(item.SecureProtect)
                 {
-                    var page = constructor.Invoke(null) as Page;
-                    Navigation.PushAsync(page);
+                    Navigation.PushModalAsync(new GuestureVerifyPage(() => {
+                        PushPage(item);
+                    }));
+                }
+                else
+                {
+                    PushPage(item);
                 }
                 
             }
             
             ((ListView)sender).SelectedItem = null;
+        }
+
+        private void PushPage(SettingItemModel item)
+        {
+            var paramTpyes = new Type[0];
+            var constructor = item.PageType.GetConstructor(paramTpyes);
+            if (constructor != null)
+            {
+                var page = constructor.Invoke(null) as Page;
+                Navigation.PushAsync(page);
+            }
         }
     }
 }
