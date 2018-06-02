@@ -1,10 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
 using MyPassword.Helpers;
+using MyPassword.Manager;
 using MyPassword.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MyPassword.ViewModels
 {
@@ -32,9 +34,22 @@ namespace MyPassword.ViewModels
 
         public PasswordListViewModel()
         {
-            TestData();
+            //TestData();
+            LoadData();
         }
 
+        private void LoadData()
+        {
+                var datas = DataBaseHelper.Instance.Database.SecureGetAll<DataItemModel>(SecureKeyManager.Instance.SecureKey);
+                if (null != datas)
+                {
+                    foreach (var item in datas)
+                    {
+                        PasswordList.Add(item);
+                    }
+                }
+
+        }
 
         private void TestData()
         {

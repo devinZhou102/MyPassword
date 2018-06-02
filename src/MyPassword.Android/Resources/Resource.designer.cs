@@ -65,6 +65,8 @@ namespace MyPassword.Droid
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::MyPassword.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
 			global::PCLCrypto.Resource.String.ApplicationName = global::MyPassword.Droid.Resource.String.ApplicationName;
 			global::PCLCrypto.Resource.String.Hello = global::MyPassword.Droid.Resource.String.Hello;
+			global::Plugin.NetStandardStorage.Resource.String.ApplicationName = global::MyPassword.Droid.Resource.String.ApplicationName;
+			global::Plugin.NetStandardStorage.Resource.String.Hello = global::MyPassword.Droid.Resource.String.Hello;
 			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::MyPassword.Droid.Resource.String.ApplicationName;
 			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::MyPassword.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::MyPassword.Droid.Resource.Attribute.actionBarSize;

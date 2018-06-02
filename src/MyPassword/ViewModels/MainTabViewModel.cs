@@ -37,6 +37,7 @@ namespace MyPassword.ViewModels
 
         public MainTabViewModel()
         {
+            DataBaseHelper.Instance.ConnectDataBase("mypassword");
             InitData();
         }
         

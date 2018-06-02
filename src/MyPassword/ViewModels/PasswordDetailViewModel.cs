@@ -1,5 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MyPassword.Helpers;
+using MyPassword.Manager;
+using MyPassword.Models;
 using MyPassword.Utils;
 using System;
 using System.Collections.Generic;
@@ -89,11 +92,29 @@ namespace MyPassword.ViewModels
         public PasswordDetailViewModel()
         {
             GenerateCommand = new RelayCommand(()=>GenerateExcute());
+            SaveCommand = new RelayCommand(()=>SaveExcute());
         }
 
 
 
+        public ICommand SaveCommand { get; private set; }
+
         public ICommand GenerateCommand { get; private set; }
+
+
+        private void SaveExcute()
+        {
+            var item = new DataItemModel
+            {
+                Icon = "",
+                Description = "",
+                Account = Account,
+                Password = Password,
+                Name = Title
+
+            };
+           int result =  DataBaseHelper.Instance.Database.SecureInsert<DataItemModel>(item,SecureKeyManager.Instance.SecureKey);
+        }
 
         private void GenerateExcute()
         {

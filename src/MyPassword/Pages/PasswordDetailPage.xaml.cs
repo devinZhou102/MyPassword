@@ -32,9 +32,7 @@ namespace MyPassword.Pages
             ToolbarItems.Add(new ToolbarItem
             {
                 Text = "保存",
-                Command = new Command(() =>
-                {
-                })
+                Command = viewModel?.SaveCommand
             });
         }
 
