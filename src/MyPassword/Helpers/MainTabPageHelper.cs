@@ -3,6 +3,7 @@ using MyPassword.Pages;
 using MyPassword.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using Xamarin.Forms;
 
@@ -18,7 +19,9 @@ namespace MobilePlatformApp.Helper
             mainTabViewModel = viewModel;
             InitData();
 
-            tabbedPage.Navigation.PushModalAsync(new GuestureVerifyPage(()=> { }));
+            tabbedPage.Navigation.PushModalAsync(new GuestureVerifyPage(()=> {
+                Debug.WriteLine("");
+            }));
             tabbedPage.Appearing += TabbedPage_Appearing;
             tabbedPage.Disappearing += TabbedPage_Disappearing;
             tabbedPage.CurrentPageChanged += TabbedPage_CurrentPageChanged;

@@ -14,8 +14,8 @@ namespace MyPassword.ViewModels
     {
         private readonly string[] MonthArray = { "Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec." };
 
-        private readonly string ColorRed = "#f72b03";
-        private readonly string ColorBlue = "#6fa8dc";
+        protected readonly string ColorRed = "#f72b03";
+        protected readonly string ColorBlue = "#6fa8dc";
 
         private string _TodayDate;
 
@@ -125,6 +125,7 @@ namespace MyPassword.ViewModels
                 }
                 else
                 {
+                    Message = "";
                     string myLock = LockManager.Instance.GeneratePassword(datas);
                     CreateGuestureLockSuccess(myLock);
                 }
@@ -132,7 +133,6 @@ namespace MyPassword.ViewModels
         }
 
         protected abstract void CreateGuestureLockSuccess(string strLock);
-
-        //protected abstract void ShowErrorTips();
+        
     }
 }

@@ -17,6 +17,8 @@ namespace MyPassword.Pages
         public GuestureLockPage ()
 		{
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
+            NavigationPage.SetHasBackButton(this, false);
             viewModel = new GusetureLockViewModel();
             BindingContext = viewModel;
 

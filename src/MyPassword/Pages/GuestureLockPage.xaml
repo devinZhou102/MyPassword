@@ -12,6 +12,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <StackLayout Grid.Row="0" Orientation="Horizontal">
                 <Label Text="{Binding TodayDate}" Margin="24,24,0,0" FontFamily="bold" TextColor="Black" FontSize="30" />
@@ -28,6 +29,11 @@
             </Image>
             <Label Grid.Row="3" Text="{Binding Message}" HorizontalOptions="Center" FontSize="16" TextColor="{Binding MessageColor}"/>
             <controls:GuestureLockView Grid.Row="4" WidthRequest="320" HeightRequest="320" CheckCompleteCommand="{Binding CompleteCommand}" BackgroundColor="Transparent" HorizontalOptions="Center"/>
+            <Label Text="重新绘制手势" Grid.Row="5" TextColor="#2196F3" FontSize="14" HorizontalOptions="Center" VerticalOptions="End" Margin="24">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ResetLockCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
         </Grid>
     </ContentPage.Content>
 </local:BaseContentPage>

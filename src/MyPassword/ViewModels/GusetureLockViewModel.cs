@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MyPassword.Manager;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,12 +13,49 @@ namespace MyPassword.ViewModels
     public class GusetureLockViewModel:BaseGuestureLockViewModel
     {
 
+        private int Count;
+
+        private string CacheLock = "";
+
         public GusetureLockViewModel()
         {
+            ResetLockExcute();
+            ResetLockCommand = new RelayCommand(()=>ResetLockExcute());
         }
 
         protected override void CreateGuestureLockSuccess(string strLock)
         {
+            Count--;
+            if(1 == Count)
+            {
+                CacheLock = strLock;
+                Message = "再次绘制解锁图案";
+                MessageColor = ColorBlue;
+            }
+            else if(0 == Count)
+            {
+                if(CacheLock.Equals(strLock))
+                {
+                    Message = "";
+                    LockManager.Instance.Save(strLock);
+                }
+                else
+                {
+                    Message = "与首次绘制不一致，请再次绘制";
+                    MessageColor = ColorRed;
+                }
+            }
+        }
+
+
+        public ICommand ResetLockCommand { get; private set; }
+
+        private void ResetLockExcute()
+        {
+            Count = 2;
+            CacheLock = "";
+            Message = "为了安全，请设置手势密码";
+            MessageColor = ColorBlue;
         }
 
     }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
 using static MyPassword.Pages.GuestureVerifyPage;
 
 namespace MyPassword.ViewModels
@@ -24,6 +25,12 @@ namespace MyPassword.ViewModels
             {
                 SuccessedEvent?.Invoke();
             }
+            else
+            {
+                Message = "手势密码错误";
+            }
         }
+
+
     }
 }
