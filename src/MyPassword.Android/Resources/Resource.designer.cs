@@ -63,6 +63,10 @@ namespace MyPassword.Droid
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahText = global::MyPassword.Droid.Resource.Styleable.ProgressWheel_ahText;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::MyPassword.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::MyPassword.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
+			global::PCLCrypto.Resource.String.ApplicationName = global::MyPassword.Droid.Resource.String.ApplicationName;
+			global::PCLCrypto.Resource.String.Hello = global::MyPassword.Droid.Resource.String.Hello;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::MyPassword.Droid.Resource.String.ApplicationName;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::MyPassword.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::MyPassword.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -4101,6 +4105,12 @@ namespace MyPassword.Droid
 		public partial class String
 		{
 			
+			// aapt resource value: 0x7f0a003d
+			public const int ApplicationName = 2131361853;
+			
+			// aapt resource value: 0x7f0a003c
+			public const int Hello = 2131361852;
+			
 			// aapt resource value: 0x7f0a0015
 			public const int abc_action_bar_home_description = 2131361813;
 			
@@ -4197,8 +4207,8 @@ namespace MyPassword.Droid
 			// aapt resource value: 0x7f0a0035
 			public const int character_counter_pattern = 2131361845;
 			
-			// aapt resource value: 0x7f0a003c
-			public const int library_name = 2131361852;
+			// aapt resource value: 0x7f0a003e
+			public const int library_name = 2131361854;
 			
 			// aapt resource value: 0x7f0a0000
 			public const int mr_button_content_description = 2131361792;

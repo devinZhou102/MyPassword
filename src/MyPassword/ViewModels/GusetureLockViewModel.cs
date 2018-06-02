@@ -25,14 +25,14 @@ namespace MyPassword.ViewModels
 
         protected override void CreateGuestureLockSuccess(string strLock)
         {
-            Count--;
             if(1 == Count)
             {
+                Count++;
                 CacheLock = strLock;
                 Message = "再次绘制解锁图案";
                 MessageColor = ColorBlue;
             }
-            else if(0 == Count)
+            else if(2 == Count)
             {
                 if(CacheLock.Equals(strLock))
                 {
@@ -52,7 +52,7 @@ namespace MyPassword.ViewModels
 
         private void ResetLockExcute()
         {
-            Count = 2;
+            Count = 1;
             CacheLock = "";
             Message = "为了安全，请设置手势密码";
             MessageColor = ColorBlue;
