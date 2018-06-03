@@ -13,7 +13,7 @@ namespace MyPassword.Converters
         {
             if(value == null || string.IsNullOrEmpty(value as string))
             {
-                return IconHelper.GetIcon("IconSecret");
+                return IconHelper.GetIcon("IconLockBlueBg");
             }
             return value;
         }

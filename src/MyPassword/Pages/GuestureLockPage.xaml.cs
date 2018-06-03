@@ -14,10 +14,12 @@ namespace MyPassword.Pages
 	public partial class GuestureLockPage : BaseContentPage
 	{
         GusetureLockViewModel viewModel;
-        public GuestureLockPage ()
-		{
+        public GuestureLockPage()
+        {
             InitializeComponent();
-            InitViewModel(null);
+            InitViewModel(()=> {
+                Navigation.PopAsync();
+            });
         }
 
         public GuestureLockPage(Action ActionSetLockFinish)

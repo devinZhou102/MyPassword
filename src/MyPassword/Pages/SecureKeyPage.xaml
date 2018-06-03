@@ -5,13 +5,23 @@
              Title="设置加密密钥"
              x:Class="MyPassword.Pages.SecureKeyPage">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" Margin="12">
-            <Entry Placeholder="您的密钥" Text="{Binding SecureKey}" IsPassword="{Binding HideSecureKey}" PlaceholderColor="DarkGray" Keyboard="Numeric" MaxLength="8"/>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" Margin="12,0">
-                <Switch IsToggled="{Binding HideSecureKey}" VerticalOptions="Center"/>
-                <Label Text="隐藏密钥" VerticalOptions="Center" />
+        <Grid>
+            <StackLayout Orientation="Vertical" Margin="12">
+                <Entry Placeholder="您的密钥" Text="{Binding SecureKey}" IsPassword="{Binding HideSecureKey}" PlaceholderColor="DarkGray" Keyboard="Numeric" MaxLength="8"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" Margin="12,0">
+                    <Switch IsToggled="{Binding HideSecureKey}" VerticalOptions="Center"/>
+                    <Label Text="隐藏密钥" VerticalOptions="Center" />
+                </StackLayout>
+                <Label Text="设置您的加密密钥（8位），它将用于加密的数据，这很重要，请妥善保存!" />
             </StackLayout>
-            <Label Text="设置您的加密密钥（8位），它将用于加密的数据，这很重要，请妥善保存!" />
-        </StackLayout>
+            <Image Margin="-24,-6,0,0" Grid.RowSpan="2" WidthRequest="200" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="End">
+                <Image.Source>
+                    <OnPlatform x:TypeArguments="ImageSource">
+                        <On Platform="Android,iOS">ImagePanda.png</On>
+                        <On Platform="UWP">Assets/ImagePanda.png</On>
+                    </OnPlatform>
+                </Image.Source>
+            </Image>
+        </Grid>
     </ContentPage.Content>
 </local:BaseContentPage>

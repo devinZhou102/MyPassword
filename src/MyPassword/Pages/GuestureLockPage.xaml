@@ -5,7 +5,7 @@
              xmlns:controls="clr-namespace:MyPassword.Controls"
              x:Class="MyPassword.Pages.GuestureLockPage">
     <ContentPage.Content>
-        <Grid BackgroundColor="White">
+        <Grid BackgroundColor="White" HorizontalOptions="Fill">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
@@ -16,6 +16,14 @@
                     <TapGestureRecognizer Command="{Binding ResetLockCommand}"/>
                 </Label.GestureRecognizers>
             </Label>
+            <Image Margin="-24,-6,0,0" Grid.RowSpan="2" WidthRequest="200" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="End">
+                <Image.Source>
+                    <OnPlatform x:TypeArguments="ImageSource">
+                        <On Platform="Android,iOS">ImageDeer.png</On>
+                        <On Platform="UWP">Assets/ImageDeer.png</On>
+                    </OnPlatform>
+                </Image.Source>
+            </Image>
         </Grid>
     </ContentPage.Content>
 </local:BaseContentPage>

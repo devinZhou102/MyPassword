@@ -4,7 +4,7 @@
              xmlns:controls="clr-namespace:Plugin.GuestureLock.Control;assembly=Plugin.GuestureLock"
              x:Class="MyPassword.Controls.GuestureView">
   <ContentView.Content>
-        <Grid  BackgroundColor="White">
+        <Grid  BackgroundColor="Transparent">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -26,7 +26,7 @@
                 </Image.Source>
             </Image>-->
             <Label Grid.Row="3" Text="{Binding Message}" HorizontalOptions="Center" FontSize="14" TextColor="{Binding MessageColor}"/>
-            <controls:GuestureLockView Grid.Row="4" WidthRequest="320" HeightRequest="320" CheckCompleteCommand="{Binding CompleteCommand}" BackgroundColor="Transparent" HorizontalOptions="Center"/>
+            <controls:GuestureLockView Grid.Row="4" WidthRequest="320" HeightRequest="320" CheckCompleteCommand="{Binding CompleteCommand}" BackgroundColor="Transparent" Margin="0,24,0,0" HorizontalOptions="Center"/>
             
         </Grid>
     </ContentView.Content>
