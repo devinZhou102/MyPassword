@@ -15,10 +15,10 @@ namespace MyPassword.Pages
 	public partial class PasswordDetailPage : BaseContentPage
 	{
         PasswordDetailViewModel viewModel;
-		public PasswordDetailPage () : base()
+		public PasswordDetailPage (Action ActionDone) 
         {
             InitializeComponent();
-            viewModel = new PasswordDetailViewModel();
+            viewModel = new PasswordDetailViewModel(ActionDone);
             BindingContext = viewModel;
 
         }

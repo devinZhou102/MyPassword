@@ -35,16 +35,19 @@ namespace MyPassword.Pages
                 Icon =IconHelper.GetIcon("IconBarAdd"),
                 Command = new Command(() =>
                 {
-                    Navigation.PushAsync(new PasswordDetailPage());
+                    Navigation.PushAsync(new PasswordDetailPage(()=> {
+                        viewModel.LoadData();
+                        Navigation.PopAsync();
+                    }));
                 })
             });
         }
 
-        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async Task ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item == null)
                 return;
-
+            await Task.Delay(1000);
            ((ListView)sender).SelectedItem = null;
         }
     }

@@ -87,10 +87,11 @@ namespace MyPassword.ViewModels
             }
         }
 
+        Action ActionDone;
 
-
-        public PasswordDetailViewModel()
+        public PasswordDetailViewModel(Action actionDone)
         {
+            ActionDone = actionDone;
             GenerateCommand = new RelayCommand(()=>GenerateExcute());
             SaveCommand = new RelayCommand(()=>SaveExcute());
         }
@@ -113,7 +114,11 @@ namespace MyPassword.ViewModels
                 Name = Title
 
             };
-            DataBaseHelper.Instance.Database?.SecureInsert<DataItemModel>(item,SecureKeyManager.Instance.SecureKey);
+            int result = DataBaseHelper.Instance.Database.SecureInsert<DataItemModel>(item,SecureKeyManager.Instance.SecureKey);
+            if(result == 1)
+            {
+                ActionDone?.Invoke();
+            }
         }
 
         private void GenerateExcute()

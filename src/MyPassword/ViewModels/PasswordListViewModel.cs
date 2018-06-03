@@ -37,16 +37,17 @@ namespace MyPassword.ViewModels
             LoadData();
         }
 
-        private void LoadData()
+        public void LoadData()
         {
-                var datas = DataBaseHelper.Instance.Database?.SecureGetAll<DataItemModel>(SecureKeyManager.Instance.SecureKey);
-                if (null != datas)
+            var datas = DataBaseHelper.Instance.Database?.SecureGetAll<DataItemModel>(SecureKeyManager.Instance.SecureKey);
+            PasswordList.Clear();
+            if (null != datas)
+            {
+                foreach (var item in datas)
                 {
-                    foreach (var item in datas)
-                    {
-                        PasswordList.Add(item);
-                    }
+                    PasswordList.Add(item);
                 }
+            }
 
         }
         
