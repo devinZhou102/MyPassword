@@ -68,7 +68,13 @@ namespace MyPassword
                 }
                 else
                 {
-                    tcs.SetResult(true);
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        MainPage = new MyNavigationPage(new GuestureVerifyPage(() =>
+                        {
+                            tcs.SetResult(true);
+                        }));
+                    });
                 }
             });
             return tcs.Task;
