@@ -17,11 +17,22 @@ namespace MyPassword.Pages
         public GuestureLockPage ()
 		{
             InitializeComponent();
+            InitViewModel(null);
+        }
+
+        public GuestureLockPage(Action ActionSetLockFinish)
+        {
+            InitializeComponent();
+            InitViewModel(ActionSetLockFinish);
+        }
+
+        private void InitViewModel(Action ActionSetLockFinish)
+        {
+
             NavigationPage.SetHasNavigationBar(this, false);
             NavigationPage.SetHasBackButton(this, false);
-            viewModel = new GusetureLockViewModel();
+            viewModel = new GusetureLockViewModel(ActionSetLockFinish);
             BindingContext = viewModel;
-
         }
 
         protected override void OnAppear()

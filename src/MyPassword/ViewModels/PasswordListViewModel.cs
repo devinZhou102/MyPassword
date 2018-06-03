@@ -34,13 +34,12 @@ namespace MyPassword.ViewModels
 
         public PasswordListViewModel()
         {
-            //TestData();
             LoadData();
         }
 
         private void LoadData()
         {
-                var datas = DataBaseHelper.Instance.Database.SecureGetAll<DataItemModel>(SecureKeyManager.Instance.SecureKey);
+                var datas = DataBaseHelper.Instance.Database?.SecureGetAll<DataItemModel>(SecureKeyManager.Instance.SecureKey);
                 if (null != datas)
                 {
                     foreach (var item in datas)
@@ -50,34 +49,6 @@ namespace MyPassword.ViewModels
                 }
 
         }
-
-        private void TestData()
-        {
-            PasswordList.Add(new DataItemModel
-            {
-                Icon = IconHelper.GetIcon("IconSecret"),
-                Name = "淘宝",
-                Account = "717391514@qq.com",
-                Description = "这是我的账号",
-                Password ="12345678"
-            });
-            PasswordList.Add(new DataItemModel
-            {
-                Icon = IconHelper.GetIcon("IconSecret"),
-                Name = "淘宝",
-                Account = "717391514@qq.com",
-                Description = "这是我的账号",
-                Password = "12345678"
-            });
-            PasswordList.Add(new DataItemModel
-            {
-                Icon = IconHelper.GetIcon("IconSecret"),
-                Name = "京东",
-                Account = "717391514@qq.com",
-                Description = "这是我的账号",
-                Password = "12345678"
-            });
-        }
-
+        
     }
 }

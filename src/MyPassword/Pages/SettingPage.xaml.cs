@@ -47,6 +47,7 @@ namespace MyPassword.Pages
                 {
                     Navigation.PushModalAsync(new GuestureVerifyPage(() => {
                         PushPage(item);
+                        Navigation.PopModalAsync();
                     }));
                 }
                 else

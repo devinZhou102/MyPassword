@@ -4,6 +4,7 @@ using MyPassword.Manager;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MyPassword.ViewModels
@@ -45,10 +46,10 @@ namespace MyPassword.ViewModels
             }
         }
 
-
-
-        public SecureKeyViewModel()
+        readonly Action ActionSave;
+        public SecureKeyViewModel(Action actionSave)
         {
+            ActionSave = actionSave;
             HideSecureKey = true;
             SecureKey = SecureKeyManager.Instance.SecureKey;
             SaveCommand = new RelayCommand(()=>SaveExcute());
@@ -62,6 +63,7 @@ namespace MyPassword.ViewModels
             if(!string.IsNullOrEmpty(SecureKey) && !oldKey.Equals(SecureKey))
             {
                 SecureKeyManager.Instance.Save(SecureKey);
+                ActionSave?.Invoke();
             }
         }
 

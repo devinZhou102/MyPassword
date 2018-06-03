@@ -10,12 +10,10 @@ namespace MyPassword.ViewModels
     public class GuestureVerifyViewModel:BaseGuestureLockViewModel
     {
 
-        public delegate void GuestureVerifySuccessedEvent();
-
-        readonly GuestureVerifySuccessedEvent SuccessedEvent;
-        public GuestureVerifyViewModel(GuestureVerifySuccessedEvent successedEvent)
+        Action VerifySuccess;
+        public GuestureVerifyViewModel(Action verifySuccess)
         {
-            SuccessedEvent = successedEvent;
+            VerifySuccess = verifySuccess;
         }
 
         protected override void CreateGuestureLockSuccess(string strLock)
@@ -23,11 +21,12 @@ namespace MyPassword.ViewModels
             var cachelock = LockManager.Instance.GuestureLock;
             if(cachelock.Equals(strLock))
             {
-                SuccessedEvent?.Invoke();
+                VerifySuccess?.Invoke();
             }
             else
             {
                 Message = "手势密码错误";
+                MessageColor = ColorRed;
             }
         }
 

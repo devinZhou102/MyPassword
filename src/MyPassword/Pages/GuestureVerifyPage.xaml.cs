@@ -14,10 +14,8 @@ namespace MyPassword.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class GuestureVerifyPage : BaseContentPage
 	{
-
-        GuestureVerifySuccessedEvent SuccessEvent;
-
-        public GuestureVerifyPage(GuestureVerifySuccessedEvent successedEvent)
+        
+        public GuestureVerifyPage(Action successedEvent)
 		{
 			InitializeComponent ();
             NavigationPage.SetHasNavigationBar(this, false);

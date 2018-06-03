@@ -5,7 +5,7 @@
              xmlns:controls="clr-namespace:MyPassword.Controls"
              x:Class="MyPassword.Pages.GuestureLockPage">
     <ContentPage.Content>
-        <Grid>
+        <Grid BackgroundColor="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>

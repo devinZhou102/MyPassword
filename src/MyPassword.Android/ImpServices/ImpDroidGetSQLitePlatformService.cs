@@ -20,7 +20,14 @@ namespace MyPassword.Droid.ImpServices
     {
         public ISQLitePlatform GetSQLitePlatform()
         {
-            return new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroid();
+            if(Build.VERSION.SdkInt >= Build.VERSION_CODES.N)
+            {
+                return new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroidN();
+            }
+            else
+            {
+                return new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroid();
+            }
         }
     }
 }

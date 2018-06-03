@@ -17,8 +17,11 @@ namespace MyPassword.ViewModels
 
         private string CacheLock = "";
 
-        public GusetureLockViewModel()
+        Action ActionSetLockFinish;
+
+        public GusetureLockViewModel(Action actionSetLockFinish)
         {
+            ActionSetLockFinish = actionSetLockFinish;
             ResetLockExcute();
             ResetLockCommand = new RelayCommand(()=>ResetLockExcute());
         }
@@ -38,6 +41,7 @@ namespace MyPassword.ViewModels
                 {
                     Message = "";
                     LockManager.Instance.Save(strLock);
+                    ActionSetLockFinish?.Invoke();
                 }
                 else
                 {

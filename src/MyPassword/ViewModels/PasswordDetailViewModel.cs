@@ -113,7 +113,7 @@ namespace MyPassword.ViewModels
                 Name = Title
 
             };
-           int result =  DataBaseHelper.Instance.Database.SecureInsert<DataItemModel>(item,SecureKeyManager.Instance.SecureKey);
+            DataBaseHelper.Instance.Database?.SecureInsert<DataItemModel>(item,SecureKeyManager.Instance.SecureKey);
         }
 
         private void GenerateExcute()

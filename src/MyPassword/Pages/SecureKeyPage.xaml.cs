@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static MyPassword.ViewModels.SecureKeyViewModel;
 
 namespace MyPassword.Pages
 {
@@ -14,12 +15,23 @@ namespace MyPassword.Pages
 	public partial class SecureKeyPage : BaseContentPage
 	{
         SecureKeyViewModel viewModel;
-		public SecureKeyPage ()
+		public SecureKeyPage (Action KeySaveEvent)
 		{
 			InitializeComponent ();
-            viewModel = new SecureKeyViewModel();
-            BindingContext = viewModel;
+            NavigationPage.SetHasBackButton(this, false);
+            InitViewModel(KeySaveEvent);
+        }
 
+        public SecureKeyPage()
+        {
+            InitializeComponent();
+            InitViewModel(null);
+        }
+
+        private void InitViewModel(Action KeySaveEvent)
+        {
+            viewModel = new SecureKeyViewModel(KeySaveEvent);
+            BindingContext = viewModel;
         }
 
         protected override void OnAppear()

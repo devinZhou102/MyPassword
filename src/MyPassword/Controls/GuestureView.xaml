@@ -4,7 +4,7 @@
              xmlns:controls="clr-namespace:Plugin.GuestureLock.Control;assembly=Plugin.GuestureLock"
              x:Class="MyPassword.Controls.GuestureView">
   <ContentView.Content>
-        <Grid>
+        <Grid  BackgroundColor="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>

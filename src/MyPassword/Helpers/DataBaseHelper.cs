@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MyPassword.Helpers
@@ -47,22 +48,38 @@ namespace MyPassword.Helpers
             }
         }
 
-        public void ConnectDataBase(string secureKey)
+        public Task<bool> ConnectDataBase(string secureKey)
         {
             SecureKey = secureKey;
-            CryptoService service = new CryptoService(SecureKey);
-            try
+
+            var tcs = new TaskCompletionSource<bool>();
+            Task.Factory.StartNew(()=>
             {
-                var platformService = DependencyService.Get<IGetSQLitePlatformService>();
-                if(platformService != null)
+                CryptoService service = new CryptoService(SecureKey);
+                try
                 {
-                    Database = new PwdDataBase(platformService.GetSQLitePlatform(), GetDBPath(), service);
+                    var platformService = DependencyService.Get<IGetSQLitePlatformService>();
+                    if (platformService != null)
+                    {
+                        Database = new PwdDataBase(platformService.GetSQLitePlatform(), GetDBPath(), service);
+                    }
+
                 }
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(" Exception  ==== " + e.StackTrace);
-            }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(" Exception  ==== " + e.StackTrace);
+                }
+
+                if (Database != null)
+                {
+                    tcs.SetResult(true);
+                }
+                else
+                {
+                    tcs.SetResult(false);
+                }
+            });
+            return tcs.Task;
         }
 
         private string GetDBPath()
