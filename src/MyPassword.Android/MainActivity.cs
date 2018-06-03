@@ -11,7 +11,7 @@ using Plugin.SecureStorage;
 
 namespace MyPassword.Droid
 {
-    [Activity(Label = "MyPassword", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "MyPassword", Icon = "@mipmap/icon", Theme = "@style/MainTheme",ScreenOrientation =ScreenOrientation.Portrait, MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)

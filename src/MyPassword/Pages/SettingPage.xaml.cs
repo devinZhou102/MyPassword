@@ -36,7 +36,7 @@ namespace MyPassword.Pages
         {
         }
 
-        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item == null)
                 return;
@@ -45,7 +45,8 @@ namespace MyPassword.Pages
                 var item = e.Item as SettingItemModel;
                 if(item.SecureProtect)
                 {
-                    Navigation.PushModalAsync(new GuestureVerifyPage(() => {
+                    await Navigation.PushModalAsync(new GuestureVerifyPage(() =>
+                    {
                         PushPage(item);
                         Navigation.PopModalAsync();
                     }));
@@ -56,7 +57,7 @@ namespace MyPassword.Pages
                 }
                 
             }
-            
+            await Task.Delay(1000);
             ((ListView)sender).SelectedItem = null;
         }
 

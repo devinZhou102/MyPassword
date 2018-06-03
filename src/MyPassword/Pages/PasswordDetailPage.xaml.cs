@@ -1,4 +1,5 @@
-﻿using MyPassword.ViewModels;
+﻿using MyPassword.Models;
+using MyPassword.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,9 +19,21 @@ namespace MyPassword.Pages
 		public PasswordDetailPage (Action ActionDone) 
         {
             InitializeComponent();
-            viewModel = new PasswordDetailViewModel(ActionDone);
-            BindingContext = viewModel;
+            InitViewModel(null, ActionDone);
+            Title = "添加";
+        }
 
+        public PasswordDetailPage(DataItemModel dataItem,Action ActionDone)
+        {
+            Title = "详情";
+            InitializeComponent();
+            InitViewModel(dataItem,ActionDone);
+        }
+
+        private void InitViewModel(DataItemModel dataItem, Action ActionDone)
+        {
+            viewModel = new PasswordDetailViewModel(dataItem, ActionDone);
+            BindingContext = viewModel;
         }
 
         protected override void OnAppear()

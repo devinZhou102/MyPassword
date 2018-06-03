@@ -87,13 +87,43 @@ namespace MyPassword.ViewModels
             }
         }
 
-        Action ActionDone;
+        private string _Description;
 
-        public PasswordDetailViewModel(Action actionDone)
+        public string Description
         {
+            get
+            {
+                if(_Description == null)
+                {
+                    _Description = "";
+                }
+                return _Description;
+            }
+            set
+            {
+                _Description = value;
+                RaisePropertyChanged(nameof(Description));
+            }
+        }
+
+
+        readonly Action ActionDone;
+
+        DataItemModel DataItem;
+
+        public PasswordDetailViewModel(DataItemModel dataITem, Action actionDone)
+        {
+            DataItem = dataITem;
             ActionDone = actionDone;
             GenerateCommand = new RelayCommand(()=>GenerateExcute());
             SaveCommand = new RelayCommand(()=>SaveExcute());
+            if(DataItem != null)
+            {
+                Account = DataItem.Account;
+                Title = DataItem.Name;
+                Password = DataItem.Password;
+                Description = DataItem.Description;
+            }
         }
 
 
@@ -108,14 +138,22 @@ namespace MyPassword.ViewModels
             var item = new DataItemModel
             {
                 Icon = "",
-                Description = "",
                 Account = Account,
                 Password = Password,
-                Name = Title
-
+                Name = Title,
+                Description = Description
             };
-            int result = DataBaseHelper.Instance.Database.SecureInsert<DataItemModel>(item,SecureKeyManager.Instance.SecureKey);
-            if(result == 1)
+            int result = 0;
+            if(DataItem != null)
+            {
+                item.Id = DataItem.Id;
+                result = DataBaseHelper.Instance.Database.SecureUpdate<DataItemModel>(item, SecureKeyManager.Instance.SecureKey);
+            }
+            else
+            {
+                result = DataBaseHelper.Instance.Database.SecureInsert<DataItemModel>(item, SecureKeyManager.Instance.SecureKey);
+            }
+            if (result == 1)
             {
                 ActionDone?.Invoke();
             }
