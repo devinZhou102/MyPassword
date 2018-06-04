@@ -40,8 +40,15 @@ namespace MyPassword.ViewModels
                 if(CacheLock.Equals(strLock))
                 {
                     Message = "";
-                    LockManager.Instance.Save(strLock);
-                    ActionSetLockFinish?.Invoke();
+                    if(LockManager.Instance.Save(strLock))
+                    {
+                        ActionSetLockFinish?.Invoke();
+                    }
+                    else
+                    {
+                        Message = "保存解锁图案失败...";
+                        MessageColor = ColorRed;
+                    }
                 }
                 else
                 {

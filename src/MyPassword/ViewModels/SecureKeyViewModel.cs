@@ -62,8 +62,14 @@ namespace MyPassword.ViewModels
             var oldKey = SecureKeyManager.Instance.SecureKey;
             if(!string.IsNullOrEmpty(SecureKey) && !oldKey.Equals(SecureKey))
             {
-                SecureKeyManager.Instance.Save(SecureKey);
-                ActionSave?.Invoke();
+                if(SecureKeyManager.Instance.Save(SecureKey))
+                {
+                    ActionSave?.Invoke();
+                }
+                else
+                {
+                    App.Current.MainPage.DisplayAlert("设置密钥","设置密钥失败...","取消");
+                }
             }
         }
 

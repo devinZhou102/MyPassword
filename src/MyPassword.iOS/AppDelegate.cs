@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using Plugin.SecureStorage;
 using UIKit;
 
 namespace MyPassword.iOS
@@ -24,7 +25,7 @@ namespace MyPassword.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
-
+            SecureStorageImplementation.DefaultAccessible = Security.SecAccessible.AlwaysThisDeviceOnly;
             return base.FinishedLaunching(app, options);
         }
     }
