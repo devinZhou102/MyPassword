@@ -25,7 +25,7 @@ namespace MyPassword.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
-            SecureStorageImplementation.DefaultAccessible = Security.SecAccessible.AlwaysThisDeviceOnly;
+            SecureStorageImplementation.DefaultAccessible = Security.SecAccessible.Invalid;
             return base.FinishedLaunching(app, options);
         }
     }
