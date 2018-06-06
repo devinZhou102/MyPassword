@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyPassword.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,14 @@ namespace MyPassword.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class BackUpPage : BaseContentPage
 	{
-		public BackUpPage ()
+
+        BackUpViewModel viewModel;
+        public BackUpPage ()
 		{
 			InitializeComponent ();
-		}
+            viewModel = new BackUpViewModel();
+            BindingContext = viewModel;
+        }
 
         protected override void OnAppear()
         {
@@ -23,6 +28,7 @@ namespace MyPassword.Pages
 
         protected override void OnFirstAppear()
         {
+            
         }
     }
 }

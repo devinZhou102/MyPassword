@@ -2,12 +2,12 @@
 <local:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MyPassword.Pages"
+             Title="数据备份"
              x:Class="MyPassword.Pages.BackUpPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to BackUpPage!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout VerticalOptions="Start" Margin="12">
+            <Button Text="导出数据" TextColor="White" Command="{Binding ExportDataCommand}" CornerRadius="5" BackgroundColor="#2196F3"/>
+            <Button Text="导入数据" TextColor="White" Command="{Binding InportDataCommand}" CornerRadius="5" BackgroundColor="#2196F3" Margin="0,12"/>
         </StackLayout>
     </ContentPage.Content>
 </local:BaseContentPage>
