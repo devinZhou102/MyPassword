@@ -1,6 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MyPassword.Helpers;
 using MyPassword.Manager;
+using MyPassword.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -62,14 +64,48 @@ namespace MyPassword.ViewModels
             var oldKey = SecureKeyManager.Instance.SecureKey;
             if(!string.IsNullOrEmpty(SecureKey) && !oldKey.Equals(SecureKey))
             {
-                if(SecureKeyManager.Instance.Save(SecureKey))
+                if (ActionSave != null)//初始化设置
                 {
-                    ActionSave?.Invoke();
+                    SaveSecureKey();
                 }
                 else
                 {
-                    App.Current.MainPage.DisplayAlert("设置密钥","设置密钥失败...","取消");
+                    ChangeSecureKey();
                 }
+            }
+        }
+
+        private Task<bool> ChangeSecureKey()
+        {
+            var tcs = new TaskCompletionSource<bool>();
+            Task.Factory.StartNew(() =>
+            {
+                var datas = DataBaseHelper.Instance.Database.SecureGetAll<DataItemModel>(SecureKeyManager.Instance.SecureKey);
+                DataBaseHelper.Instance.Database.DeleteTables();
+                DataBaseHelper.Instance.ConnectDataBase("mypassword");
+                if (datas != null)
+                {
+                    foreach (var item in datas)
+                    {
+                        DataBaseHelper.Instance.Database.SecureInsert(item, SecureKey);
+                    }
+                }
+                SaveSecureKey();
+                tcs.SetResult(true);
+            });
+            return tcs.Task;
+        }
+
+        private void SaveSecureKey()
+        {
+
+            if (SecureKeyManager.Instance.Save(SecureKey))
+            {
+                ActionSave?.Invoke();
+            }
+            else
+            {
+                App.Current.MainPage.DisplayAlert("设置密钥", "设置密钥失败...", "取消");
             }
         }
 

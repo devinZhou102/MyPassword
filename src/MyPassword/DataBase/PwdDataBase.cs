@@ -9,7 +9,7 @@ using System.Text;
 
 namespace MyPassword.DataBase
 {
-    public class PwdDataBase : SecureDatabase
+    public class PwdDataBase : SecureDatabase,IPasswordDataBase
     {
 
         public PwdDataBase(ISQLitePlatform platform, string dbfile, CryptoService salt) : base(platform, dbfile, salt)
@@ -26,6 +26,11 @@ namespace MyPassword.DataBase
         public void DeleteTables()
         {
             DropTable(typeof(DataItemModel));
+        }
+
+        public void DeleteTable(Type type)
+        {
+            DropTable(type);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace MyPassword.Helpers
 {
     public class DataBaseHelper
     {
-        public ISecureDatabase Database { get; private set; }
+        public IPasswordDataBase Database { get; private set; }
 
         private string SecureKey;
 
