@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<localPage:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:localPage="clr-namespace:MyPassword.Pages"
+             x:Class="MyPassword.Pages.ChangeSecureKeyPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Vertical" Margin="12">
+                <Label Text="原密钥："/>
+                <Entry Placeholder="您的密钥" Text="{Binding OldSecureKey}" IsPassword="{Binding HideSecureKey}" PlaceholderColor="DarkGray" Keyboard="Numeric" MaxLength="8"/>
+                <Label Text="新密钥："/>
+                <Entry Placeholder="您的密钥" Text="{Binding SecureKey}" IsPassword="{Binding HideSecureKey}" PlaceholderColor="DarkGray" Keyboard="Numeric" MaxLength="8"/>
+                <Label Text="再次输入密钥："/>
+                <Entry Placeholder="您的密钥" Text="{Binding ConfirmSecureKey}" IsPassword="{Binding HideSecureKey}" PlaceholderColor="DarkGray" Keyboard="Numeric" MaxLength="8"/>
+                <Label Text="{Binding ErrorMsg}" TextColor="Red"/>
+                <Label Text="设置您的加密密钥（8位），它将用于加密的数据，这很重要，请妥善保存!" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</localPage:BaseContentPage>

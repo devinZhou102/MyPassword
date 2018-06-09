@@ -64,37 +64,10 @@ namespace MyPassword.ViewModels
             var oldKey = SecureKeyManager.Instance.SecureKey;
             if(!string.IsNullOrEmpty(SecureKey) && !oldKey.Equals(SecureKey))
             {
-                if (ActionSave != null)//初始化设置
-                {
-                    SaveSecureKey();
-                }
-                else
-                {
-                    ChangeSecureKey();
-                }
+                SaveSecureKey();
             }
         }
 
-        private Task<bool> ChangeSecureKey()
-        {
-            var tcs = new TaskCompletionSource<bool>();
-            Task.Factory.StartNew(() =>
-            {
-                var datas = DataBaseHelper.Instance.Database.SecureGetAll<DataItemModel>(SecureKeyManager.Instance.SecureKey);
-                DataBaseHelper.Instance.Database.DeleteTables();
-                DataBaseHelper.Instance.ConnectDataBase("mypassword");
-                if (datas != null)
-                {
-                    foreach (var item in datas)
-                    {
-                        DataBaseHelper.Instance.Database.SecureInsert(item, SecureKey);
-                    }
-                }
-                SaveSecureKey();
-                tcs.SetResult(true);
-            });
-            return tcs.Task;
-        }
 
         private void SaveSecureKey()
         {

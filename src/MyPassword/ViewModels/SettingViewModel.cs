@@ -44,7 +44,7 @@ namespace MyPassword.ViewModels
                 Title = "加密密钥",
                 Description = "用于数据加密",
                 SecureProtect = true,
-                PageType = typeof(SecureKeyPage)
+                PageType = typeof(ChangeSecureKeyPage)
             });
             SettingItemList.Add(new SettingItemModel
             {

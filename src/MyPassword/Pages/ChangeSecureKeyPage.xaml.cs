@@ -7,27 +7,20 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using static MyPassword.ViewModels.SecureKeyViewModel;
 
 namespace MyPassword.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class SecureKeyPage : BaseContentPage
+	public partial class ChangeSecureKeyPage : BaseContentPage
 	{
-        SecureKeyViewModel viewModel;
-		public SecureKeyPage (Action KeySaveEvent)
+        ChangeSecureKeyViewModel viewModel;
+
+		public ChangeSecureKeyPage ()
 		{
 			InitializeComponent ();
-            NavigationPage.SetHasBackButton(this, false);
-            InitViewModel(KeySaveEvent);
-        }
-        
-
-        private void InitViewModel(Action KeySaveEvent)
-        {
-            viewModel = new SecureKeyViewModel(KeySaveEvent);
+            viewModel = new ChangeSecureKeyViewModel();
             BindingContext = viewModel;
-        }
+		}
 
         protected override void OnAppear()
         {
