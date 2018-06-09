@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using Acr.UserDialogs;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MyPassword.Helpers;
 using MyPassword.Manager;
@@ -7,6 +8,7 @@ using MyPassword.Utils;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MyPassword.ViewModels
@@ -116,7 +118,7 @@ namespace MyPassword.ViewModels
             DataItem = dataITem;
             ActionDone = actionDone;
             GenerateCommand = new RelayCommand(()=>GenerateExcute());
-            SaveCommand = new RelayCommand(()=>SaveExcute());
+            SaveCommand = new RelayCommand(()=>SaveExcuteAsync());
             if(DataItem != null)
             {
                 Account = DataItem.Account;
@@ -133,30 +135,48 @@ namespace MyPassword.ViewModels
         public ICommand GenerateCommand { get; private set; }
 
 
-        private void SaveExcute()
+        private async void SaveExcuteAsync()
         {
-            var item = new DataItemModel
+            var dialog = UserDialogs.Instance.Loading("数据保存中...");
+            var success = await SavePassword();
+            dialog.Hide();
+            if (success)
             {
-                Icon = "",
-                Account = Account,
-                Password = Password,
-                Name = Title,
-                Description = Description
-            };
-            int result = 0;
-            if(DataItem != null)
-            {
-                item.Id = DataItem.Id;
-                result = DataBaseHelper.Instance.Database.SecureUpdate<DataItemModel>(item, SecureKeyManager.Instance.SecureKey);
+                UserDialogs.Instance.Toast("保存数据成功");
+                ActionDone?.Invoke();
             }
             else
             {
-                result = DataBaseHelper.Instance.Database.SecureInsert<DataItemModel>(item, SecureKeyManager.Instance.SecureKey);
+                UserDialogs.Instance.Toast("保存数据失败");
             }
-            if (result == 1)
+        }
+
+        private Task<bool> SavePassword()
+        {
+            var tcs = new TaskCompletionSource<bool>();
+            Task.Factory.StartNew(() =>
             {
-                ActionDone?.Invoke();
-            }
+                var item = new DataItemModel
+                {
+                    Icon = "",
+                    Account = Account,
+                    Password = Password,
+                    Name = Title,
+                    Description = Description
+                };
+                int result = 0;
+                if (DataItem != null)
+                {
+                    item.Id = DataItem.Id;
+                    result = DataBaseHelper.Instance.Database.SecureUpdate<DataItemModel>(item, SecureKeyManager.Instance.SecureKey);
+                }
+                else
+                {
+                    result = DataBaseHelper.Instance.Database.SecureInsert<DataItemModel>(item, SecureKeyManager.Instance.SecureKey);
+                }
+                tcs.SetResult(result == 1);
+            });
+            return tcs.Task;
         }
 
         private void GenerateExcute()
