@@ -90,10 +90,27 @@ namespace MyPassword.ViewModels
             }
         }
 
+        private bool _HideSecureKey;
+
+        public bool HideSecureKey
+        {
+            get
+            {
+                return _HideSecureKey;
+            }
+            set
+            {
+                _HideSecureKey = value;
+                RaisePropertyChanged(nameof(HideSecureKey));
+            }
+        }
+
+
         private List<DataItemModel> DataList;
 
         public ChangeSecureKeyViewModel()
         {
+            HideSecureKey = true;
             SaveCommand = new RelayCommand(()=>SaveExcuteAsync());
             CurrentKey = SecureKeyManager.Instance.SecureKey;
             DataList = DataBaseHelper.Instance.Database.SecureGetAll<DataItemModel>(CurrentKey);
