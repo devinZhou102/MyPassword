@@ -28,26 +28,26 @@ namespace MyPassword.ViewModels
             }
             set
             {
-                _OldSecureKey = value;
+                _OldSecureKey = value.Trim();
                 RaisePropertyChanged(nameof(OldSecureKey));
             }
         }
 
-        private string _SecureKey;
-        public string SecureKey
+        private string _NewSecureKey;
+        public string NewSecureKey
         {
             get
             {
-                if(_SecureKey == null)
+                if(_NewSecureKey == null)
                 {
-                    _SecureKey = "";
+                    _NewSecureKey = "";
                 }
-                return _SecureKey;
+                return _NewSecureKey;
             }
             set
             {
-                _SecureKey = value.Trim();
-                RaisePropertyChanged(nameof(SecureKey));
+                _NewSecureKey = value.Trim();
+                RaisePropertyChanged(nameof(NewSecureKey));
             }
         }
 
@@ -64,7 +64,7 @@ namespace MyPassword.ViewModels
             }
             set
             {
-                _ConfirmSecureKey = value;
+                _ConfirmSecureKey = value.Trim();
                 RaisePropertyChanged(nameof(ConfirmSecureKey));
             }
         }
@@ -99,7 +99,7 @@ namespace MyPassword.ViewModels
             DataList = DataBaseHelper.Instance.Database.SecureGetAll<DataItemModel>(CurrentKey);
         }
 
-        private Task<bool> ChangeSecureKey()
+        private Task<bool> UpdateDatabase(string secureKey)
         {
             var tcs = new TaskCompletionSource<bool>();
             Task.Factory.StartNew(() =>
@@ -112,7 +112,7 @@ namespace MyPassword.ViewModels
                     {
                         foreach (var item in DataList)
                         {
-                            DataBaseHelper.Instance.Database.SecureInsert(item, SecureKey);
+                            DataBaseHelper.Instance.Database.SecureInsert(item, secureKey);
                         }
                     }
                     bool success = SaveSecureKey();
@@ -128,7 +128,7 @@ namespace MyPassword.ViewModels
 
         private bool SaveSecureKey()
         {
-            return SecureKeyManager.Instance.Save(SecureKey);
+            return SecureKeyManager.Instance.Save(NewSecureKey);
         }
 
 
@@ -139,18 +139,34 @@ namespace MyPassword.ViewModels
             if(CheckSecureKey())
             {
                 var dialogProgress = UserDialogs.Instance.Loading("数据处理中...");
-                bool success = await ChangeSecureKey();
+                bool success = await UpdateDatabase(NewSecureKey);
                 dialogProgress.Hide();
                 if (!success)
                 {
+                    UserDialogs.Instance.Toast("修改密钥失败");
                     RevertData();
+                }
+                else
+                {
+                    UserDialogs.Instance.Toast("修改密钥成功");
+                    NavigationService.PopAsync();
                 }
             }
         }
 
-        private void RevertData()
+        private async void RevertData()
         {
-            
+            var dialogProgress = UserDialogs.Instance.Loading("正在还原数据...");
+            bool success = await UpdateDatabase(CurrentKey);
+            dialogProgress.Hide();
+            if(success)
+            {
+                UserDialogs.Instance.Toast("还原数据成功");
+            }
+            else
+            {
+                UserDialogs.Instance.Toast("还原数据失败，请从备份中还原数据");
+            }
         }
 
         private bool CheckSecureKey()
@@ -160,14 +176,19 @@ namespace MyPassword.ViewModels
                 ErrorMsg = "原密钥不正确,请重新输入";
                 return false;
             }
-            else if(SecureKey.Length < 8)
+            else if(NewSecureKey.Length < 8)
             {
                 ErrorMsg = "请输入不少于8位的密钥";
                 return false;
             }
-            else if(!SecureKey.Equals(ConfirmSecureKey))
+            else if(!NewSecureKey.Equals(ConfirmSecureKey))
             {
                 ErrorMsg = "两次密钥输入不一样";
+                return false;
+            }
+            else if(NewSecureKey.Equals(CurrentKey))
+            {
+                ErrorMsg = "新密钥不能与旧密钥一致";
                 return false;
             }
             return true;
