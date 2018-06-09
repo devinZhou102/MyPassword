@@ -36,10 +36,7 @@ namespace MyPassword.Pages
                 Icon =IconHelper.GetIcon("IconBarAdd"),
                 Command = new Command(() =>
                 {
-                    Navigation.PushAsync(new PasswordDetailPage(()=> {
-                        viewModel.LoadData();
-                        Navigation.PopAsync();
-                    }));
+                    Navigation.PushAsync(new PasswordEditPage());
                 })
             });
         }
@@ -50,13 +47,16 @@ namespace MyPassword.Pages
                 return;
             if(e.Item is DataItemModel)
             {
-               await Navigation.PushAsync(new PasswordDetailPage((e.Item as DataItemModel),() => {
-                    viewModel.LoadData();
-                    Navigation.PopAsync();
-                }));
+                await Navigation.PushAsync(new PasswordDetailPage((e.Item as DataItemModel)));
             }
             await Task.Delay(1000);
            ((ListView)sender).SelectedItem = null;
+        }
+
+        public override void OnPoppedOut()
+        {
+            base.OnPoppedOut();
+            viewModel?.Cleanup();
         }
     }
 }

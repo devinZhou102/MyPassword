@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MyPassword.Const;
 using MyPassword.Helpers;
 using MyPassword.Manager;
 using MyPassword.Models;
@@ -168,6 +169,7 @@ namespace MyPassword.ViewModels
                     UserDialogs.Instance.Toast("修改密钥成功");
                     NavigationService.PopAsync();
                 }
+                MessengerInstance.Send<int>(TokenConst.TokenUpdateList);
             }
         }
 

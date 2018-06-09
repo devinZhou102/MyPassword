@@ -2,12 +2,19 @@
 <local:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MyPassword.Pages"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              Title="数据备份"
              x:Class="MyPassword.Pages.BackUpPage">
     <ContentPage.Content>
         <StackLayout VerticalOptions="Start" Margin="12">
-            <Button Text="导出数据" TextColor="White" Command="{Binding ExportDataCommand}" CornerRadius="5" BackgroundColor="#2196F3"/>
-            <Button Text="导入数据" TextColor="White" Command="{Binding InportDataCommand}" CornerRadius="5" BackgroundColor="#2196F3" Margin="0,12"/>
+            <Button Text="导出数据" TextColor="White" Command="{Binding ExportDataCommand}" 
+                    CornerRadius="5" BackgroundColor="#2196F3"
+                    android:Button.UseDefaultShadow="True"
+                    android:Button.UseDefaultPadding="True"/>
+            <Button Text="导入数据" TextColor="White" Command="{Binding InportDataCommand}" 
+                    CornerRadius="5" BackgroundColor="#2196F3" 
+                    Margin="0,12" android:Button.UseDefaultShadow="True"
+                    android:Button.UseDefaultPadding="True"/>
         </StackLayout>
     </ContentPage.Content>
 </local:BaseContentPage>

@@ -1,39 +1,17 @@
-﻿using Acr.UserDialogs;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MyPassword.Helpers;
-using MyPassword.Manager;
 using MyPassword.Models;
-using MyPassword.Utils;
+using MyPassword.Pages;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MyPassword.ViewModels
 {
     public class PasswordDetailViewModel:ViewModelBase
     {
-
-        private PwdConditionViewModel _ConditionViewModel;
-
-        public PwdConditionViewModel ConditionViewModel
-        {
-            get
-            {
-                if (null == _ConditionViewModel)
-                {
-                    _ConditionViewModel = new PwdConditionViewModel();
-                }
-                return _ConditionViewModel;
-            }
-            set
-            {
-                _ConditionViewModel = value;
-                RaisePropertyChanged(nameof(ConditionViewModel));
-            }
-        }
+        private const string PasswordMask = "******";
 
         private string _Password;
 
@@ -41,7 +19,7 @@ namespace MyPassword.ViewModels
         {
             get
             {
-                if(null == _Password)
+                if (null == _Password)
                 {
                     _Password = "";
                 }
@@ -59,7 +37,7 @@ namespace MyPassword.ViewModels
         {
             get
             {
-                if(null == _Title)
+                if (null == _Title)
                 {
                     _Title = "";
                 }
@@ -95,7 +73,7 @@ namespace MyPassword.ViewModels
         {
             get
             {
-                if(_Description == null)
+                if (_Description == null)
                 {
                     _Description = "";
                 }
@@ -108,84 +86,70 @@ namespace MyPassword.ViewModels
             }
         }
 
+        private bool _HideSecureKey;
 
-        readonly Action ActionDone;
-
-        DataItemModel DataItem;
-
-        public PasswordDetailViewModel(DataItemModel dataITem, Action actionDone)
+        public bool HideSecureKey
         {
-            DataItem = dataITem;
-            ActionDone = actionDone;
-            GenerateCommand = new RelayCommand(()=>GenerateExcute());
-            SaveCommand = new RelayCommand(()=>SaveExcuteAsync());
-            if(DataItem != null)
+            get
             {
-                Account = DataItem.Account;
-                Title = DataItem.Name;
-                Password = DataItem.Password;
-                Description = DataItem.Description;
+                return _HideSecureKey;
+            }
+            set
+            {
+                _HideSecureKey = value;
+                UpdatePassword();
+                RaisePropertyChanged(nameof(HideSecureKey));
             }
         }
 
+        private DataItemModel DataItem;
 
-
-        public ICommand SaveCommand { get; private set; }
-
-        public ICommand GenerateCommand { get; private set; }
-
-
-        private async void SaveExcuteAsync()
+        public PasswordDetailViewModel(DataItemModel data)
         {
-            var dialog = UserDialogs.Instance.Loading("数据保存中...");
-            var success = await SavePassword();
-            dialog.Hide();
-            if (success)
+            Update(data);
+            HideSecureKey = true;
+            EditCommand = new RelayCommand(()=> EditExcute());
+            MessengerInstance.Register<DataItemModel>(this, (value) => 
             {
-                UserDialogs.Instance.Toast("保存数据成功");
-                ActionDone?.Invoke();
+                if(value!=null)
+                {
+                    Update(value);
+                }
+            });
+        }
+
+        private void UpdatePassword()
+        {
+            if(HideSecureKey)
+            {
+                Password = PasswordMask;
             }
             else
             {
-                UserDialogs.Instance.Toast("保存数据失败");
+                Password = DataItem.Password;
             }
         }
 
-        private Task<bool> SavePassword()
+        public ICommand EditCommand { get; private set; }
+
+        private void EditExcute()
         {
-            var tcs = new TaskCompletionSource<bool>();
-            Task.Factory.StartNew(() =>
-            {
-                var item = new DataItemModel
-                {
-                    Icon = "",
-                    Account = Account,
-                    Password = Password,
-                    Name = Title,
-                    Description = Description
-                };
-                int result = 0;
-                if (DataItem != null)
-                {
-                    item.Id = DataItem.Id;
-                    result = DataBaseHelper.Instance.Database.SecureUpdate<DataItemModel>(item, SecureKeyManager.Instance.SecureKey);
-                }
-                else
-                {
-                    result = DataBaseHelper.Instance.Database.SecureInsert<DataItemModel>(item, SecureKeyManager.Instance.SecureKey);
-                }
-                tcs.SetResult(result == 1);
-            });
-            return tcs.Task;
+           NavigationService.Navigation.PushAsync(new PasswordEditPage(DataItem));
         }
 
-        private void GenerateExcute()
+
+        private void Update(DataItemModel data)
         {
-            var param = ConditionViewModel.BuildParams();
-            if(param.IsOk())
-            {
-                Password = PwdGenerator.GetInstance().Generate(param);
-            }
+            DataItem = data;
+            Title = DataItem?.Name;
+            Account = DataItem?.Account;
+            Description = DataItem?.Description;
+        }
+
+        public override void Cleanup()
+        {
+            base.Cleanup();
+            MessengerInstance.Unregister<DataItemModel>(this);
         }
     }
 }

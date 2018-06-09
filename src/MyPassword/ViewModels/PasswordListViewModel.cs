@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using MyPassword.Helpers;
 using MyPassword.Manager;
 using MyPassword.Models;
@@ -7,6 +8,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
+using MyPassword.Const;
 
 namespace MyPassword.ViewModels
 {
@@ -35,6 +38,7 @@ namespace MyPassword.ViewModels
         public PasswordListViewModel()
         {
             LoadData();
+            RegisterMessager();
         }
 
         public void LoadData()
@@ -49,6 +53,41 @@ namespace MyPassword.ViewModels
                 }
             }
 
+        }
+
+        private void RegisterMessager()
+        {
+            MessengerInstance.Register<DataItemModel>(this,(data) => 
+            {
+                if(data != null)
+                {
+                  var item = PasswordList.Where((v) => v.Id == data.Id);
+                  if(item != null && item.Count() > 0)
+                  {
+                       int index = PasswordList.IndexOf(item.First());
+                       PasswordList.RemoveAt(index);
+                       PasswordList.Insert(index,data);
+                  }
+                  else
+                  {
+                      PasswordList.Add(data);
+                  }
+                }
+            });
+
+            MessengerInstance.Register<int>(this,(value)=> 
+            {
+                if(value == TokenConst.TokenUpdateList)
+                {
+                    LoadData();
+                }
+            });
+        }
+        
+
+        public override void Cleanup()
+        {
+            Messenger.Default.Unregister(this);
         }
         
     }
