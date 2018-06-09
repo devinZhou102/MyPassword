@@ -9,6 +9,7 @@ using Android.OS;
 using MyPassword.Droid.Helper;
 using Plugin.SecureStorage;
 using Acr.UserDialogs;
+using Plugin.VersionTracking;
 
 namespace MyPassword.Droid
 {
@@ -23,6 +24,7 @@ namespace MyPassword.Droid
             base.OnCreate(bundle);
             BottomBarHelper.SetupBottomTabs(this);
             UserDialogs.Init(this);
+            CrossVersionTracking.Current.Track();
             SecureStorageImplementation.StorageType = StorageTypes.AndroidKeyStore;
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Acr.UserDialogs;
 using Foundation;
 using Plugin.SecureStorage;
+using Plugin.VersionTracking;
 using UIKit;
 
 namespace MyPassword.iOS
@@ -25,6 +26,7 @@ namespace MyPassword.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
+            CrossVersionTracking.Current.Track();
             SecureStorageImplementation.DefaultAccessible = Security.SecAccessible.Invalid;
             return base.FinishedLaunching(app, options);
         }

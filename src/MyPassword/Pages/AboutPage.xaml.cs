@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyPassword.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,12 @@ namespace MyPassword.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AboutPage : BaseContentPage
 	{
+        AboutViewModel viewModel;
 		public AboutPage ()
 		{
 			InitializeComponent ();
+            viewModel = new AboutViewModel();
+            BindingContext = viewModel;
 		}
 
         protected override void OnAppear()
