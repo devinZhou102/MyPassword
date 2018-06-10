@@ -23,6 +23,7 @@ namespace MyPassword.Models
 
         [Secure]
         public string Description { get; set; }
+
         string IModel.Id
         {
             get

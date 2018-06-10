@@ -29,6 +29,11 @@ namespace MyPassword.Pages
 
         protected override void OnFirstAppear()
         {
+            ToolbarItems.Add(new ToolbarItem
+            {
+                Text = "删除",
+                Command = viewModel?.DeleteCommand
+            });
         }
 
         public override void OnPoppedOut()

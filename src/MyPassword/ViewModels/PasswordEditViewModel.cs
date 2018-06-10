@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using MyPassword.Const;
 using MyPassword.Helpers;
 using MyPassword.Manager;
 using MyPassword.Models;
@@ -154,7 +155,7 @@ namespace MyPassword.ViewModels
             if (success != null)
             {
                 UserDialogs.Instance.Toast("保存数据成功");
-                Messenger.Default.Send<DataItemModel>(GetDataItemModel(success.Id));
+                Messenger.Default.Send(GetDataItemModel(success.Id),TokenConst.TokenUpdate);
                 NavigationService.PopAsync();
             }
             else

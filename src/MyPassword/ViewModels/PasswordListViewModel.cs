@@ -57,7 +57,7 @@ namespace MyPassword.ViewModels
 
         private void RegisterMessager()
         {
-            MessengerInstance.Register<DataItemModel>(this,(data) => 
+            MessengerInstance.Register<DataItemModel>(this,TokenConst.TokenUpdate,(data) => 
             {
                 if(data != null)
                 {
@@ -80,6 +80,16 @@ namespace MyPassword.ViewModels
                 if(value == TokenConst.TokenUpdateList)
                 {
                     LoadData();
+                }
+            });
+
+            MessengerInstance.Register<DataItemModel>(this, TokenConst.TokenDelete, (value)=> 
+            {
+                var item = PasswordList.Where((v) => v.Id == value.Id);
+                if (item != null && item.Count() > 0)
+                {
+                    int index = PasswordList.IndexOf(item.First());
+                    PasswordList.RemoveAt(index);
                 }
             });
         }

@@ -7,7 +7,19 @@ namespace MyPassword.Const
     public class TokenConst
     {
 
-        public const int TokenUpdateList = 10000;
+        private const int Token = 10000;
+        /// <summary>
+        /// Update List
+        /// </summary>
+        public const int TokenUpdateList = Token + 1;
+        /// <summary>
+        /// Delete Item
+        /// </summary>
+        public const int TokenDelete = Token + 2;
+        /// <summary>
+        /// Add or Update Item
+        /// </summary>
+        public const int TokenUpdate = Token + 3;
 
     }
 }

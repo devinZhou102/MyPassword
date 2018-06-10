@@ -1,10 +1,15 @@
-﻿using GalaSoft.MvvmLight;
+﻿using Acr.UserDialogs;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MyPassword.Const;
+using MyPassword.Helpers;
 using MyPassword.Models;
 using MyPassword.Pages;
+using SQLite.Net.Cipher.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MyPassword.ViewModels
@@ -108,8 +113,9 @@ namespace MyPassword.ViewModels
         {
             Update(data);
             HideSecureKey = true;
-            EditCommand = new RelayCommand(()=> EditExcute());
-            MessengerInstance.Register<DataItemModel>(this, (value) => 
+            EditCommand = new RelayCommand(() => EditExcute());
+            DeleteCommand = new RelayCommand(() => DeleteExcuteAsync());
+            MessengerInstance.Register<DataItemModel>(this,TokenConst.TokenUpdate, (value) => 
             {
                 if(value!=null)
                 {
@@ -132,11 +138,36 @@ namespace MyPassword.ViewModels
 
         public ICommand EditCommand { get; private set; }
 
+        public ICommand DeleteCommand { get; private set; }
+
         private void EditExcute()
         {
            NavigationService.Navigation.PushAsync(new PasswordEditPage(DataItem));
         }
 
+        private async void DeleteExcuteAsync()
+        {
+            var action = await App.Current.MainPage.DisplayAlert("删除","确认要删除数据吗?","确认","取消");
+            if(action)
+            {
+                var dialog = UserDialogs.Instance.Loading("删除数据中...");
+                bool f = await DeleteItemAsync();
+                dialog.Hide();
+                MessengerInstance.Send(DataItem, TokenConst.TokenDelete);
+                NavigationService.PopAsync();
+            }
+        }
+
+        private Task<bool> DeleteItemAsync()
+        {
+            var tcs = new TaskCompletionSource<bool>();
+            Task.Factory.StartNew(() =>
+            {
+                int row = DataBaseHelper.Instance.Database.SecureDelete<DataItemModel>((DataItem as IModel).Id);
+                tcs.SetResult(true);
+            });
+            return tcs.Task;
+        }
 
         private void Update(DataItemModel data)
         {
