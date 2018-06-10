@@ -19,7 +19,6 @@ namespace MyPassword.ViewModels
         private const string PasswordMask = "******";
 
         private string _Password;
-
         public string Password
         {
             get
@@ -54,6 +53,7 @@ namespace MyPassword.ViewModels
                 RaisePropertyChanged(nameof(Title));
             }
         }
+
         private string _Account;
         public string Account
         {
@@ -73,7 +73,6 @@ namespace MyPassword.ViewModels
         }
 
         private string _Description;
-
         public string Description
         {
             get
@@ -91,8 +90,25 @@ namespace MyPassword.ViewModels
             }
         }
 
-        private bool _HideSecureKey;
+        private string _Icon;
+        public string Icon
+        {
+            get
+            {
+                if (null == _Icon)
+                {
+                    _Icon = "";
+                }
+                return _Icon;
+            }
+            set
+            {
+                _Icon = value;
+                RaisePropertyChanged(nameof(Icon));
+            }
+        }
 
+        private bool _HideSecureKey;
         public bool HideSecureKey
         {
             get
@@ -173,6 +189,7 @@ namespace MyPassword.ViewModels
         {
             DataItem = data;
             Title = DataItem?.Name;
+            Icon = DataItem?.Icon;
             Account = DataItem?.Account;
             Description = DataItem?.Description;
         }

@@ -6,6 +6,7 @@ using MyPassword.Const;
 using MyPassword.Helpers;
 using MyPassword.Manager;
 using MyPassword.Models;
+using MyPassword.Pages;
 using MyPassword.Utils;
 using System;
 using System.Collections.Generic;
@@ -73,6 +74,7 @@ namespace MyPassword.ViewModels
                 RaisePropertyChanged(nameof(Title));
             }
         }
+
         private string _Account;
         public string Account
         {
@@ -92,7 +94,6 @@ namespace MyPassword.ViewModels
         }
 
         private string _Description;
-
         public string Description
         {
             get
@@ -111,7 +112,6 @@ namespace MyPassword.ViewModels
         }
         
         private bool _HideSecureKey;
-
         public bool HideSecureKey
         {
             get
@@ -125,15 +125,36 @@ namespace MyPassword.ViewModels
             }
         }
 
+        private string _Icon;
+        public string Icon
+        {
+            get
+            {
+                if(null == _Icon)
+                {
+                    _Icon = "";
+                }
+                return _Icon;
+            }
+            set
+            {
+                _Icon = value;
+                RaisePropertyChanged(nameof(Icon));
+            }
+        }
+
+
         DataItemModel DataItem;
 
         public PasswordEditViewModel(DataItemModel dataItem)
         {
             DataItem = dataItem;
-            GenerateCommand = new RelayCommand(()=>GenerateExcute());
-            SaveCommand = new RelayCommand(()=>SaveExcuteAsync());
-            if(DataItem != null)
+            GenerateCommand = new RelayCommand(() => GenerateExcute());
+            SaveCommand = new RelayCommand(() => SaveExcuteAsync());
+            ImageTapCommand = new RelayCommand(() => ImageTapExcute());
+            if (DataItem != null)
             {
+                Icon = DataItem.Icon;
                 Account = DataItem.Account;
                 Title = DataItem.Name;
                 Password = DataItem.Password;
@@ -147,6 +168,7 @@ namespace MyPassword.ViewModels
 
         public ICommand GenerateCommand { get; private set; }
 
+        public ICommand ImageTapCommand { get; private set; }
 
         private async void SaveExcuteAsync()
         {
@@ -214,6 +236,11 @@ namespace MyPassword.ViewModels
             {
                 Password = PwdGenerator.GetInstance().Generate(param);
             }
+        }
+
+        private void ImageTapExcute()
+        {
+            //NavigationService.Navigation.PushAsync(new IconSelectPage());
         }
     }
 }

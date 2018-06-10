@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             xmlns:controls="clr-namespace:Plugin.GridViewControl.Common;assembly=Plugin.GridViewControl"
+             HasSystemPadding="False"
+             Padding="48"
+             x:Class="MyPassword.Pages.IconSelectPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="IconCell">
+                <controls:GridViewXamlCell>
+                    <Grid BackgroundColor="WhiteSmoke" HeightRequest="100" WidthRequest="100" Padding="1">
+                        <Grid BackgroundColor="White" Padding="1" HorizontalOptions="Fill" VerticalOptions="Fill">
+                            <StackLayout  VerticalOptions="Center" HorizontalOptions="Center" Orientation="Vertical" >
+                                <Image Source="{Binding .}" Aspect="AspectFit" WidthRequest="40" HeightRequest="40"/>
+                            </StackLayout>
+                        </Grid>
+                    </Grid>
+                </controls:GridViewXamlCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <!--<ListView
+                ItemsSource="{Binding IconList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Image Source="{Binding .}"/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>-->
+            <Grid>
+                <controls:GridView/>
+            </Grid>
+            <!--<controls:GridView 
+                BackgroundColor="White"
+                IsGroupingEnabled="false"
+                ItemsSource="{Binding IconList}"
+                RowHeight="102"
+                ItemTemplate="{StaticResource IconCell}"
+			    MinItemWidth="100"
+                IsPullToRefreshEnabled="False"
+                TappedCommand="{Binding TappedCommand}">
+            </controls:GridView>-->
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PopupPage>
