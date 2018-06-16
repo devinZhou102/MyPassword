@@ -10,6 +10,7 @@ using MyPassword.Pages;
 using MyPassword.Utils;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -192,7 +193,7 @@ namespace MyPassword.ViewModels
             var item = new DataItemModel
             {
                 Id = id,
-                Icon = "",
+                Icon = Icon,
                 Account = Account,
                 Password = Password,
                 Name = Title,
@@ -208,7 +209,7 @@ namespace MyPassword.ViewModels
             {
                 var item = new DataItemModel
                 {
-                    Icon = "",
+                    Icon = Icon,
                     Account = Account,
                     Password = Password,
                     Name = Title,
@@ -240,7 +241,18 @@ namespace MyPassword.ViewModels
 
         private void ImageTapExcute()
         {
-            //NavigationService.Navigation.PushAsync(new IconSelectPage());
+            try
+            {
+                //NavigationService.Navigation.PushAsync(new IconSelectPage());
+                NavigationService.Navigation.PushModalAsync(new IconGridPage((data) => 
+                {
+                    Icon = data;
+                }));
+            }
+            catch(Exception e)
+            {
+                Debug.WriteLine(e.Message);
+            }
         }
     }
 }

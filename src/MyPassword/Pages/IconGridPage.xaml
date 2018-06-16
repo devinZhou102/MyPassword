@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Plugin.GridViewControl.Common;assembly=Plugin.GridViewControl"
+             x:Class="MyPassword.Pages.IconGridPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="IconCell">
+                <controls:GridViewXamlCell>
+                    <Grid BackgroundColor="WhiteSmoke" MinimumWidthRequest="100" HeightRequest="50" WidthRequest="50" Padding="1">
+                        <Grid BackgroundColor="White" Padding="1" HorizontalOptions="Center" VerticalOptions="Center">
+                            <StackLayout  VerticalOptions="Center" HorizontalOptions="Center" Orientation="Vertical" >
+                                <Image Source="{Binding .}" Aspect="AspectFit" WidthRequest="40" HeightRequest="40"/>
+                            </StackLayout>
+                        </Grid>
+                    </Grid>
+                </controls:GridViewXamlCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <controls:GridView 
+                BackgroundColor="Transparent"
+                IsGroupingEnabled="false"
+                ItemsSource="{Binding IconList}"
+                RowHeight="102"
+                ItemTemplate="{StaticResource IconCell}"
+                MinItemWidth="100"
+                IsPullToRefreshEnabled="False"
+                TappedCommand="{Binding TappedCommand}">
+            </controls:GridView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -10,14 +10,14 @@ using System.Windows.Input;
 
 namespace MyPassword.ViewModels
 {
-    public class IconSelectViewModel:ViewModelBase
+    public class IconSelectViewModel : ViewModelBase
     {
         private ObservableCollection<string> _IconList;
         public ObservableCollection<string> IconList
         {
             get
             {
-                if(_IconList == null)
+                if (_IconList == null)
                 {
                     _IconList = new ObservableCollection<string>();
                 }
@@ -30,15 +30,18 @@ namespace MyPassword.ViewModels
             }
         }
 
-        public IconSelectViewModel()
+        readonly Action<string> SelectIconComplete;
+
+        public IconSelectViewModel(Action<string> selectIconComplete)
         {
+            SelectIconComplete = selectIconComplete;
             InitIconList();
-            TappedCommand = new RelayCommand(()=> TappedExcute());
+            TappedCommand = new RelayCommand<string>((param) => TappedExcute(param));
         }
 
         private void InitIconList()
         {
-            foreach(var icon in IconConst.IconDatas)
+            foreach (var icon in IconConst.IconDatas)
             {
                 IconList.Add(IconHelper.GetIcon(icon));
             }
@@ -47,9 +50,10 @@ namespace MyPassword.ViewModels
 
         public ICommand TappedCommand { get; private set; }
 
-        private void TappedExcute()
+        private void TappedExcute(string item)
         {
-
+            NavigationService.Navigation.PopModalAsync();
+            SelectIconComplete?.Invoke(item);
         }
     }
 }

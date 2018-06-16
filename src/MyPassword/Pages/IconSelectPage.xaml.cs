@@ -1,4 +1,5 @@
 ﻿using MyPassword.ViewModels;
+using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,26 @@ namespace MyPassword.Pages
     {
         IconSelectViewModel viewModel;
 
-		public IconSelectPage ()
+		public IconSelectPage (Action<string> complete)
 		{
 			InitializeComponent ();
             NavigationPage.SetHasBackButton(this,false);
             NavigationPage.SetHasNavigationBar(this,false);
-            viewModel = new IconSelectViewModel();
+            viewModel = new IconSelectViewModel(complete);
             BindingContext = viewModel;
         }
-	}
+        
+
+        protected override bool OnBackgroundClicked()
+        {
+            CloseAllPopup();
+            return false;
+        }
+
+
+        private async void CloseAllPopup()
+        {
+            await Navigation.PopAllPopupAsync();
+        }
+    }
 }
