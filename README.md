@@ -1,6 +1,9 @@
 # MyPassword
 A Xamarin.Forms Project to manage passwords
 
+1. use SQLite.Net.Cipher to save and protect datas
+2. use guesture lock to protect datas from unkown
+3. easily backup datas
 
 <div>
 <img src="/Images/Screenshot_20180604-000458.png" width=200/>
