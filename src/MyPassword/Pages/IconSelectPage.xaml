@@ -10,7 +10,9 @@
         <ResourceDictionary>
             <DataTemplate x:Key="IconCell">
                 <controls:GridViewXamlCell>
-                    <Image Source="{Binding .}" Aspect="AspectFit" WidthRequest="40" HeightRequest="40"/>
+                    <Grid WidthRequest="50" HeightRequest="50">
+                        <Image Source="{Binding Icon}" VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFit" WidthRequest="40" HeightRequest="40"/>
+                    </Grid>
                 </controls:GridViewXamlCell>
             </DataTemplate>
         </ResourceDictionary>
@@ -21,7 +23,7 @@
             PositionOut="Center"
             ScaleIn="1"
             ScaleOut="0.7"
-            DurationIn="700"
+            DurationIn="300"
             EasingIn="BounceOut"/>
     </pages:PopupPage.Animation>
     <Grid>
@@ -32,9 +34,9 @@
             ItemsSource="{Binding IconList}"
             RowHeight="100"
             ItemTemplate="{StaticResource IconCell}"
-            MinItemWidth="100"
+            MinItemWidth="50"
             IsPullToRefreshEnabled="False"
-            WidthRequest="100"
+            WidthRequest="50"
             TappedCommand="{Binding TappedCommand}">
         </controls:GridView>
     </Grid>

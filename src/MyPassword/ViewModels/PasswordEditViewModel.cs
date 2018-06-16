@@ -243,8 +243,11 @@ namespace MyPassword.ViewModels
         {
             try
             {
-                //NavigationService.Navigation.PushAsync(new IconSelectPage());
-                NavigationService.Navigation.PushModalAsync(new IconGridPage((data) => 
+                //NavigationService.Navigation.PushAsync(new IconSelectPage((data) =>
+                //{
+                //    Icon = data;
+                //}));
+                NavigationService.Navigation.PushModalAsync(new IconGridPage((data) =>
                 {
                     Icon = data;
                 }));

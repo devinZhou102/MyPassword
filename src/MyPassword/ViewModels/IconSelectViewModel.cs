@@ -6,20 +6,21 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MyPassword.ViewModels
 {
     public class IconSelectViewModel : ViewModelBase
     {
-        private ObservableCollection<string> _IconList;
-        public ObservableCollection<string> IconList
+        private ObservableCollection<IconModel> _IconList;
+        public ObservableCollection<IconModel> IconList
         {
             get
             {
                 if (_IconList == null)
                 {
-                    _IconList = new ObservableCollection<string>();
+                    _IconList = new ObservableCollection<IconModel>();
                 }
                 return _IconList;
             }
@@ -35,25 +36,37 @@ namespace MyPassword.ViewModels
         public IconSelectViewModel(Action<string> selectIconComplete)
         {
             SelectIconComplete = selectIconComplete;
-            InitIconList();
-            TappedCommand = new RelayCommand<string>((param) => TappedExcute(param));
+            InitIconListAsync();
+            TappedCommand = new RelayCommand<IconModel>((param) => TappedExcute(param));
         }
 
-        private void InitIconList()
+        private async void InitIconListAsync()
         {
+            await Task.Delay(350);
             foreach (var icon in IconConst.IconDatas)
             {
-                IconList.Add(IconHelper.GetIcon(icon));
+                IconList.Add(
+                    new IconModel{
+                        GroupId = 0,
+                        Icon =IconHelper.GetIcon(icon)
+                    });
             }
         }
 
 
         public ICommand TappedCommand { get; private set; }
 
-        private void TappedExcute(string item)
+        private void TappedExcute(IconModel item)
         {
             NavigationService.Navigation.PopModalAsync();
-            SelectIconComplete?.Invoke(item);
+            //NavigationService.PopAsync();
+            SelectIconComplete?.Invoke(item.Icon);
         }
+    }
+
+    public class IconModel
+    {
+        public int GroupId { get; set; }
+        public string Icon { get; set; }
     }
 }

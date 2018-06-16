@@ -2,34 +2,30 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:Plugin.GridViewControl.Common;assembly=Plugin.GridViewControl"
-             x:Class="MyPassword.Pages.IconGridPage">
+             x:Class="MyPassword.Pages.IconGridPage"
+             BackgroundColor="#50000000">
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="IconCell">
                 <controls:GridViewXamlCell>
-                    <Grid BackgroundColor="WhiteSmoke" MinimumWidthRequest="100" HeightRequest="50" WidthRequest="50" Padding="1">
-                        <Grid BackgroundColor="White" Padding="1" HorizontalOptions="Center" VerticalOptions="Center">
-                            <StackLayout  VerticalOptions="Center" HorizontalOptions="Center" Orientation="Vertical" >
-                                <Image Source="{Binding .}" Aspect="AspectFit" WidthRequest="40" HeightRequest="40"/>
-                            </StackLayout>
-                        </Grid>
+                    <Grid WidthRequest="50" HeightRequest="50" Padding="8">
+                        <Image Source="{Binding Icon}" VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFit" WidthRequest="40" HeightRequest="40"/>
                     </Grid>
                 </controls:GridViewXamlCell>
             </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ContentPage.Content>
-        <Grid>
-            <controls:GridView 
+
+    <Grid>
+        <controls:GridView Margin="48" 
                 BackgroundColor="Transparent"
                 IsGroupingEnabled="false"
                 ItemsSource="{Binding IconList}"
-                RowHeight="102"
+                RowHeight="60"
                 ItemTemplate="{StaticResource IconCell}"
-                MinItemWidth="100"
+                MinItemWidth="60"
                 IsPullToRefreshEnabled="False"
                 TappedCommand="{Binding TappedCommand}">
-            </controls:GridView>
-        </Grid>
-    </ContentPage.Content>
+        </controls:GridView>
+    </Grid>
 </ContentPage>
