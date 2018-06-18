@@ -40,23 +40,57 @@ namespace MyPassword.Utils
             {
                 length = 6;
             }
+
+            if (param.HasCharactor) password.Append(GetPwdCharactor(typeCharactor));
+            if (param.HasLetterLowerCase) password.Append(GetPwdCharactor(typeLetterLowerCase));
+            if (param.HasLetterUpperCase) password.Append(GetPwdCharactor(typeLetterUpperCase));
+            if (param.HasNumber) password.Append(GetPwdCharactor(typeNumber));
+
             string seed = GeneratePwdSeed(param);
-            for (int index = 0; index < length; index++)
+            var len = length - password.Length;
+            for (int index = 0; index < len; index++)
             {
                 password.Append(GetPwdCharactor(seed));
             }
+            password = GetDisorderlyOrder(password.ToString());
             return password.ToString();
+        }
+
+        /// <summary>
+        /// 乱序
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private StringBuilder GetDisorderlyOrder(string value)
+        {
+            StringBuilder result = new StringBuilder();
+            List<int> list = new List<int>();
+            for (var index = 0; index < value.Length; index++) list.Add(index);
+            //随机排序
+            for(var c = 0; c < value.Length/2;c++)
+                list.Sort(delegate (int a, int b) { return (GetRandom()).Next(-1, 1); });
+            foreach (var index in list)
+            {
+                result.Append(value.ElementAt(index));
+            }
+            return result;
+        }
+
+        private Random GetRandom()
+        {
+            if (null == rand)
+            {
+                long tick = DateTime.Now.Ticks;
+                rand = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));
+            }
+            return rand;
         }
 
         Random rand;
         private string GetPwdCharactor(string seed)
         { 
             int length = seed.Length;
-            if (null == rand)
-            {
-                long tick = DateTime.Now.Ticks;
-                rand = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));
-            }
+            var rand = GetRandom();
             int index = rand.Next() % length;
             return seed.Substring(index,1);
         }
