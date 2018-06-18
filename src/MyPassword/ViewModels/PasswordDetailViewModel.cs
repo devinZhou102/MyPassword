@@ -192,6 +192,7 @@ namespace MyPassword.ViewModels
             Icon = DataItem?.Icon;
             Account = DataItem?.Account;
             Description = DataItem?.Description;
+            Password = DataItem?.Password;
         }
 
         public override void Cleanup()
