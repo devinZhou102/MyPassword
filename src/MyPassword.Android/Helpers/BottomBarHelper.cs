@@ -33,7 +33,8 @@ namespace MyPassword.Droid.Helper
                     Color.White //Normal
 	            });
 
-            BottomTabbedRenderer.BackgroundColor = new Color(25, 118, 210);
+            BottomTabbedRenderer.BackgroundColor = new Color(56, 39, 79);
+            //BottomTabbedRenderer.BackgroundColor = Color.Black;
             BottomTabbedRenderer.FontSize = 10f;
             BottomTabbedRenderer.IconSize = 24;
             BottomTabbedRenderer.ItemTextColor = stateList;
