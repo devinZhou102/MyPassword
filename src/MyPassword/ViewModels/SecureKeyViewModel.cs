@@ -64,21 +64,21 @@ namespace MyPassword.ViewModels
             var oldKey = SecureKeyManager.Instance.SecureKey;
             if(!string.IsNullOrEmpty(SecureKey) && !oldKey.Equals(SecureKey))
             {
-                SaveSecureKey();
+                SaveSecureKeyAsync();
             }
         }
 
 
-        private void SaveSecureKey()
+        private async void SaveSecureKeyAsync()
         {
-
-            if (SecureKeyManager.Instance.Save(SecureKey))
+            var result = await SecureKeyManager.Instance.SaveAsync(SecureKey);
+            if (result)
             {
                 ActionSave?.Invoke();
             }
             else
             {
-                App.Current.MainPage.DisplayAlert("设置密钥", "设置密钥失败...", "取消");
+                await App.Current.MainPage.DisplayAlert("设置密钥", "设置密钥失败...", "取消");
             }
         }
 

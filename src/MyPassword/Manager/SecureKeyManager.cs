@@ -1,7 +1,6 @@
-﻿using Plugin.SecureStorage;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace MyPassword.Manager
 {
@@ -18,22 +17,25 @@ namespace MyPassword.Manager
 
         private SecureKeyManager()
         {
-            Read();
+            ReadAsync();
         }
 
-        private void Read()
+        private async void ReadAsync()
         {
-            SecureKey = CrossSecureStorage.Current.GetValue(KEY_SECURE_KEY, "");
+            SecureKey = await SecureStorage.GetAsync(KEY_SECURE_KEY);
+            if (SecureKey == null) SecureKey = "";
         }
 
-        public bool Save(string value)
+        public async Task<bool> SaveAsync(string value)
         {
-            if(CrossSecureStorage.Current.SetValue(KEY_SECURE_KEY, value))
+            await SecureStorage.SetAsync(KEY_SECURE_KEY, value);
+            var result = await SecureStorage.GetAsync(KEY_SECURE_KEY);
+            if (result != null && result.Equals(value))
             {
                 SecureKey = value;
                 return true;
             }
-           return false;
+            return false;
         }
 
     }

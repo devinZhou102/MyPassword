@@ -1,10 +1,10 @@
-﻿using Plugin.VersionTracking;
-using System;
+﻿using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Xamarin.Essentials;
 
 namespace MyPassword.UWP
 {
@@ -44,8 +44,8 @@ namespace MyPassword.UWP
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 Xamarin.Forms.Forms.Init(e);
-
-                CrossVersionTracking.Current.Track();
+                Rg.Plugins.Popup.Popup.Init();
+                VersionTracking.Track();
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {

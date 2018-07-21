@@ -1,8 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
-using Plugin.VersionTracking;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Xamarin.Essentials;
 
 namespace MyPassword.ViewModels
 {
@@ -38,9 +35,10 @@ namespace MyPassword.ViewModels
 
         public AboutViewModel()
         {
-            var vt = CrossVersionTracking.Current;
-            AppVersion = vt.CurrentVersion;
-            
+            var currentVersion = VersionTracking.CurrentVersion;
+            AppVersion = currentVersion;
+            //var vt = CrossVersionTracking.Current;
+            //AppVersion = vt.CurrentVersion;
         }
 
     }

@@ -1,9 +1,9 @@
-﻿using Plugin.SecureStorage;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using Xamarin.Essentials;
 
 namespace MyPassword.Manager
 {
@@ -19,7 +19,7 @@ namespace MyPassword.Manager
         
         private LockManager()
         {
-            Read();
+            ReadAsync();
         }
 
         /// <summary>
@@ -71,19 +71,23 @@ namespace MyPassword.Manager
             return strResult;
         }
 
-        private void Read()
+        private async void ReadAsync()
         {
-            GuestureLock = CrossSecureStorage.Current.GetValue(KEY_GUESTURE_LOCK, "");
+            GuestureLock = await SecureStorage.GetAsync(KEY_GUESTURE_LOCK);
+            if (GuestureLock == null) GuestureLock = "";
+           // GuestureLock = CrossSecureStorage.Current.GetValue(KEY_GUESTURE_LOCK, "");
         }
 
         public bool Save(string value)
         {
-            if (CrossSecureStorage.Current.SetValue(KEY_GUESTURE_LOCK, value))
-            {
-                GuestureLock = value;
-                return true;
-            }
-            return false;
+            GuestureLock = value;
+            SecureStorage.SetAsync(KEY_GUESTURE_LOCK, value);
+            //if (CrossSecureStorage.Current.SetValue(KEY_GUESTURE_LOCK, value))
+            //{
+            //    GuestureLock = value;
+            //    return true;
+            //}
+            return true;
         }
     }
 }

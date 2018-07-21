@@ -4,33 +4,37 @@
              xmlns:local="clr-namespace:MyPassword.Pages"
              x:Class="MyPassword.Pages.SettingPage">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding SettingItemList}" 
+        <Grid BackgroundColor="#38274F">
+            <ListView ItemsSource="{Binding SettingItemList}" 
                   ItemTapped="ListView_ItemTapped" 
-                  SeparatorVisibility="Default"
-                  SeparatorColor="LightGray"
-                  BackgroundColor="WhiteSmoke"
-                  RowHeight="60">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid BackgroundColor="White">
-                            <Grid VerticalOptions="Center" Margin="12,3">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"/>
-                                    <RowDefinition Height="auto"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Source="{Binding Icon}" WidthRequest="30" Margin="0,0,12,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" VerticalOptions="Start"/>
-                                <Label Text="{Binding Title}" FontSize="16" TextColor="Gray" Grid.Row="0" Grid.Column="1"/>
-                                <Label Text="{Binding Description}" FontSize="14" TextColor="DarkGray" Grid.Row="1" Grid.Column="1"/>
+                  SeparatorVisibility="None"
+                  SeparatorColor="Transparent"
+                  Margin="12"
+                  BackgroundColor="Transparent"
+                  RowHeight="72">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid BackgroundColor="White" Margin="3">
+                                <Grid VerticalOptions="Center" Margin="12,3">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="{Binding Icon}" WidthRequest="30" Margin="0,0,12,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" VerticalOptions="Start"/>
+                                    <Label Text="{Binding Title}" FontSize="16" TextColor="Gray" Grid.Row="0" Grid.Column="1"/>
+                                    <Label Text="{Binding Description}" FontSize="14" TextColor="DarkGray" Grid.Row="1" Grid.Column="1"/>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+       
     </ContentPage.Content>
 </local:BaseContentPage >

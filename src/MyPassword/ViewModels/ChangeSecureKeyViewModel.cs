@@ -120,12 +120,12 @@ namespace MyPassword.ViewModels
         private Task<bool> UpdateDatabase(string secureKey)
         {
             var tcs = new TaskCompletionSource<bool>();
-            Task.Factory.StartNew(() =>
+            Task.Factory.StartNew(async () =>
             {
                 try
                 {
                     DataBaseHelper.Instance.Database.DeleteTables();
-                    DataBaseHelper.Instance.ConnectDataBase("mypassword");
+                    await DataBaseHelper.Instance.ConnectDataBase("mypassword");
                     if (DataList != null)
                     {
                         foreach (var item in DataList)
@@ -133,8 +133,8 @@ namespace MyPassword.ViewModels
                             DataBaseHelper.Instance.Database.SecureInsert(item, secureKey);
                         }
                     }
-                    bool success = SaveSecureKey();
-                    tcs.SetResult(success);
+                    var result = await SaveSecureKeyAsync();
+                    tcs.SetResult(result);
                 }
                 catch(Exception e)
                 {
@@ -144,9 +144,9 @@ namespace MyPassword.ViewModels
             return tcs.Task;
         }
 
-        private bool SaveSecureKey()
+        private async Task<bool> SaveSecureKeyAsync()
         {
-            return SecureKeyManager.Instance.Save(NewSecureKey);
+           return await SecureKeyManager.Instance.SaveAsync(NewSecureKey);
         }
 
 
