@@ -34,10 +34,7 @@ namespace MyPassword.Pages
             ToolbarItems.Add(new ToolbarItem {
                 Text = "添加" ,
                 Icon =IconHelper.GetIcon("IconBarAdd"),
-                Command = new Command(() =>
-                {
-                    Navigation.PushAsync(new PasswordEditPage());
-                })
+                Command = viewModel?.AddDataCommand
             });
         }
 

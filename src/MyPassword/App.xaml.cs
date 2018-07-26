@@ -38,7 +38,6 @@ namespace MyPassword
                     {
                         MainPage = new MyNavigationPage(new SecureKeyPage(() => {
                             tcs.SetResult(true);
-                            
                         }));
                     });
                 }

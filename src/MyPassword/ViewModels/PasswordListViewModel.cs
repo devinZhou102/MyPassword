@@ -10,6 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using MyPassword.Const;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
+using MyPassword.Pages;
 
 namespace MyPassword.ViewModels
 {
@@ -35,10 +38,23 @@ namespace MyPassword.ViewModels
             }
         }
 
+        private bool _EmptyTipsVisible;
+        public bool EmptyTipsVisible
+        {
+            get => _EmptyTipsVisible;
+            set
+            {
+                _EmptyTipsVisible = value;
+                RaisePropertyChanged(nameof(EmptyTipsVisible));
+            }
+        }
+        
+
         public PasswordListViewModel()
         {
             LoadData();
             RegisterMessager();
+            AddDataCommand = new RelayCommand(() => AddDataExcute());
         }
 
         public void LoadData()
@@ -52,7 +68,12 @@ namespace MyPassword.ViewModels
                     PasswordList.Add(item);
                 }
             }
+            UpdateEmptyTipsVisible();
+        }
 
+        private void UpdateEmptyTipsVisible()
+        {
+            EmptyTipsVisible = PasswordList == null || PasswordList.Count == 0;
         }
 
         private void RegisterMessager()
@@ -73,6 +94,7 @@ namespace MyPassword.ViewModels
                       PasswordList.Add(data);
                   }
                 }
+                UpdateEmptyTipsVisible();
             });
 
             MessengerInstance.Register<int>(this,(value)=> 
@@ -91,9 +113,16 @@ namespace MyPassword.ViewModels
                     int index = PasswordList.IndexOf(item.First());
                     PasswordList.RemoveAt(index);
                 }
+                UpdateEmptyTipsVisible();
             });
         }
         
+        public ICommand AddDataCommand { get; private set; }
+
+        private void AddDataExcute()
+        {
+            NavigationService.PushAsync(new PasswordEditPage());
+        }
 
         public override void Cleanup()
         {
