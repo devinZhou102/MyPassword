@@ -83,7 +83,7 @@ namespace MyPassword
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                MainPage = new MyNavigationPage(new MainTabbedDroidPage());
+                MainPage = new MyNavigationPage(new MainTabbedPage());
             });
         }
 

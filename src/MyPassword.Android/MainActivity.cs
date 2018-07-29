@@ -5,7 +5,6 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using MyPassword.Droid.Helper;
 using System;
 using Xamarin.Essentials;
 
@@ -21,7 +20,6 @@ namespace MyPassword.Droid
 
             base.OnCreate(bundle);
             Rg.Plugins.Popup.Popup.Init(this,bundle);
-            BottomBarHelper.SetupBottomTabs(this);
             UserDialogs.Init(this);
             VersionTracking.Track();
             //SecureStorageImplementation.StorageType = StorageTypes.AndroidKeyStore;
