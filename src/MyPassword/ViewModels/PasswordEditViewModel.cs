@@ -173,6 +173,8 @@ namespace MyPassword.ViewModels
 
         private async void SaveExcuteAsync()
         {
+
+            if (!IsValid()) return;
             var dialog = UserDialogs.Instance.Loading("数据保存中...");
             var success = await SavePassword();
             if (success != null)
@@ -200,6 +202,20 @@ namespace MyPassword.ViewModels
                 Description = Description
             };
             return item;
+        }
+
+        private bool IsValid()
+        {
+            bool isValid = true;
+            if (string.IsNullOrEmpty(Account.Trim())) isValid = false;
+            else if (string.IsNullOrEmpty(Password.Trim())) isValid = false;
+            else if (string.IsNullOrEmpty(Title.Trim())) isValid = false;
+            else if (string.IsNullOrEmpty(Description.Trim())) isValid = false;
+            if(!isValid)
+            {
+                App.Current.MainPage.DisplayAlert("保存","请输入有效数据...","确定");
+            }
+            return isValid;
         }
 
         private Task<DataItemModel> SavePassword()
@@ -243,10 +259,6 @@ namespace MyPassword.ViewModels
         {
             try
             {
-                //NavigationService.Navigation.PushAsync(new IconSelectPage((data) =>
-                //{
-                //    Icon = data;
-                //}));
                 NavigationService.Navigation.PushModalAsync(new IconGridPage((data) =>
                 {
                     Icon = data;
