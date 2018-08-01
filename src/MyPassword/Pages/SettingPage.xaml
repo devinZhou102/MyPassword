@@ -9,7 +9,7 @@
                   ItemTapped="ListView_ItemTapped" 
                   SeparatorVisibility="None"
                   SeparatorColor="Transparent"
-                  Margin="12"
+                  Margin="12" SelectionMode="None"
                   BackgroundColor="Transparent"
                   RowHeight="72">
                 <ListView.ItemTemplate>
