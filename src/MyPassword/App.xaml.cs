@@ -1,3 +1,4 @@
+using Microsoft.Identity.Client;
 using MyPassword.Helpers;
 using MyPassword.Manager;
 using MyPassword.Pages;
@@ -11,12 +12,18 @@ namespace MyPassword
 {
 	public partial class App : Application
 	{
-		public App ()
+
+        public static PublicClientApplication IdentityClientApp = null;
+        public static string ClientID = "1352d1c0-42ff-4a1e-90b0-c74e691bde2e";
+        public static string[] Scopes = { "User.Read", "User.ReadBasic.All", "Files.Read", "Files.Read.All", "Files.ReadWrite", "Files.ReadWrite.All" };
+        public static UIParent UiParent = null;
+
+        public App ()
 		{
 			InitializeComponent();
             DataBaseHelper.Instance.ConnectDataBase("mypassword");
             MainPage = new ContentPage();
-
+            IdentityClientApp = new PublicClientApplication(ClientID);
             MainNavi();
         }
 
