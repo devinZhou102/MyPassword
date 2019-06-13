@@ -33,20 +33,22 @@ namespace MyPassword.Pages
         {
             ToolbarItems.Add(new ToolbarItem {
                 Text = "添加" ,
-                Icon =IconHelper.GetIcon("IconBarAdd"),
+                IconImageSource = IconHelper.GetIcon("IconBarAdd"),
                 Command = viewModel?.AddDataCommand
             });
         }
 
-        private async Task ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item == null)
                 return;
             if(e.Item is DataItemModel)
             {
-                await Navigation.PushAsync(new PasswordDetailPage((e.Item as DataItemModel)));
+                Device.BeginInvokeOnMainThread(async ()=> {
+                    await Navigation.PushAsync(new PasswordDetailPage((e.Item as DataItemModel)));
+                });
             }
-            await Task.Delay(1000);
+            //await Task.Delay(1000);
            ((ListView)sender).SelectedItem = null;
         }
 

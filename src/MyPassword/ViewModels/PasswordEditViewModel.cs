@@ -174,7 +174,11 @@ namespace MyPassword.ViewModels
         private async void SaveExcuteAsync()
         {
 
-            if (!IsValid()) return;
+            if (!IsValid())
+            {
+                return;
+            }
+
             var dialog = UserDialogs.Instance.Loading("数据保存中...");
             var success = await SavePassword();
             if (success != null)

@@ -1,22 +1,20 @@
 using MyPassword.Helpers;
 using MyPassword.Manager;
 using MyPassword.Pages;
-using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-[assembly: XamlCompilation (XamlCompilationOptions.Compile)]
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace MyPassword
 {
-	public partial class App : Application
+    public partial class App : Application
 	{
-		public App ()
+        public App ()
 		{
 			InitializeComponent();
             DataBaseHelper.Instance.ConnectDataBase("mypassword");
             MainPage = new ContentPage();
-
             MainNavi();
         }
 
