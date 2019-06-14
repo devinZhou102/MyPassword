@@ -20,17 +20,18 @@ namespace MyPassword.Pages
             InitViewModel(()=> {
                 Navigation.PopAsync();
             });
+            Title = "重设手势密码";
         }
 
         public GuestureLockPage(Action ActionSetLockFinish)
         {
             InitializeComponent();
             InitViewModel(ActionSetLockFinish);
+            Title = "手势密码";
         }
 
         private void InitViewModel(Action ActionSetLockFinish)
         {
-
             NavigationPage.SetHasNavigationBar(this, false);
             NavigationPage.SetHasBackButton(this, false);
             viewModel = new GusetureLockViewModel(ActionSetLockFinish);

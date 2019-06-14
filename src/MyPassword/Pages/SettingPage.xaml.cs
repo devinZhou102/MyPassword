@@ -49,7 +49,7 @@ namespace MyPassword.Pages
                     {
                         PushPage(item);
                         Navigation.PopModalAsync();
-                    }));
+                    },true),true);
                 }
                 else
                 {

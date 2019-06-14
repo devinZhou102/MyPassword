@@ -6,12 +6,12 @@
        xmlns:pages="clr-namespace:MyPassword.Pages"
        mc:Ignorable="d"
        x:Class="MyPassword.AppMainShell">
-    <TabBar>
-        <Tab Title="Browse" Icon="IconKey.png">
-            <ShellContent ContentTemplate="{DataTemplate pages:PasswordListPage}" />
-        </Tab>
-        <Tab Title="About" Icon="IconSetting.png">
-            <ShellContent ContentTemplate="{DataTemplate pages:SettingPage}" />
-        </Tab>
+       <TabBar>
+           <Tab Title="密钥" Icon="IconKey.png">
+               <ShellContent ContentTemplate="{DataTemplate pages:PasswordListPage}" />
+           </Tab>
+           <Tab Title="设置" Icon="IconSetting.png">
+               <ShellContent ContentTemplate="{DataTemplate pages:SettingPage}" />
+           </Tab>
     </TabBar>
 </Shell>

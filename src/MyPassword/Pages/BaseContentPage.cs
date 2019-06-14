@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace MyPassword.Pages
 {
@@ -18,6 +20,7 @@ namespace MyPassword.Pages
             IsFirstAppear = true;
             this.Appearing += BaseContentPage_Appearing;
             SetTabBarVisible(false);
+            On<iOS>().SetUseSafeArea(true);
         }
 
         public void SetTabBarVisible(bool visible)

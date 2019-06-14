@@ -19,6 +19,15 @@
                     </OnPlatform>
                 </Image.Source>
             </Image>
+            <ImageButton x:Name="ButtonClose" Clicked="ButtonClose_Clicked" Margin="12"
+                         VerticalOptions="Start" HorizontalOptions="End" BackgroundColor="Transparent">
+                <ImageButton.Source>
+                    <OnPlatform x:TypeArguments="ImageSource">
+                        <On Platform="Android,iOS">IconClose.png</On>
+                        <On Platform="UWP">Assets/IconClose.png</On>
+                    </OnPlatform>
+                </ImageButton.Source>
+            </ImageButton>
         </Grid>
     </ContentPage.Content>
 </local:BaseContentPage>
