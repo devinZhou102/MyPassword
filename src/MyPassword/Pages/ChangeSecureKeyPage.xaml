@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<localPage:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:localPage="clr-namespace:MyPassword.Pages"
-             xmlns:converter="clr-namespace:MyPassword.Converters"
-             Title="修改密钥"
-             x:Class="MyPassword.Pages.ChangeSecureKeyPage">
+<localPage:BaseContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:localPage="clr-namespace:MyPassword.Pages"
+    xmlns:converter="clr-namespace:MyPassword.Converters"
+    Title="修改密钥"
+    x:Class="MyPassword.Pages.ChangeSecureKeyPage">
     <ContentPage.Resources>
         <converter:TipVisibleConverter x:Key="TipConverter"/>
     </ContentPage.Resources>

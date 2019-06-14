@@ -19,7 +19,7 @@ namespace MyPassword.Pages
 			InitializeComponent ();
             viewModel = new AboutViewModel();
             BindingContext = viewModel;
-		}
+        }
 
         protected override void OnAppear()
         {

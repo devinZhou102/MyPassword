@@ -21,7 +21,7 @@ namespace MyPassword.Pages
             InitializeComponent();
             viewModel = new SettingViewModel();
             BindingContext = viewModel;
-
+            SetTabBarVisible(true);
         }
         
         private void Button_Clicked(object sender, EventArgs e)

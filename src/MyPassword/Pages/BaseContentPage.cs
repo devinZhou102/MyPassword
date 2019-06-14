@@ -17,8 +17,20 @@ namespace MyPassword.Pages
         {
             IsFirstAppear = true;
             this.Appearing += BaseContentPage_Appearing;
+            SetTabBarVisible(false);
         }
 
+        public void SetTabBarVisible(bool visible)
+        {
+            switch (Device.RuntimePlatform)
+            {
+                case Device.Android:
+                case Device.iOS:
+                    Shell.SetTabBarIsVisible(this, visible);
+                    break;
+            }
+
+        }
 
         private void BaseContentPage_Appearing(object sender, EventArgs e)
         {

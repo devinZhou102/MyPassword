@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<local:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:MyPassword.Pages"
-             xmlns:controls="clr-namespace:MyPassword.Controls"
-             x:Class="MyPassword.Pages.GuestureVerifyPage">
+<local:BaseContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MyPassword.Pages"
+    xmlns:controls="clr-namespace:MyPassword.Controls"
+    x:Class="MyPassword.Pages.GuestureVerifyPage">
     <ContentPage.Content>
         <Grid  BackgroundColor="White" HorizontalOptions="Fill">
             <Grid.RowDefinitions>

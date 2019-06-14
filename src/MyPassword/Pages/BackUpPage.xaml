@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<local:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:MyPassword.Pages"
-             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-             Title="数据备份"
-             x:Class="MyPassword.Pages.BackUpPage">
+<local:BaseContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MyPassword.Pages"
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    Title="数据备份"
+    x:Class="MyPassword.Pages.BackUpPage">
     <ContentPage.Content>
         <StackLayout VerticalOptions="Start" Margin="12">
             <Button Text="导出数据" TextColor="White" Command="{Binding ExportDataCommand}" 

@@ -66,6 +66,10 @@ namespace MyPassword.ViewModels
             {
                 SaveSecureKeyAsync();
             }
+            else
+            {
+                //todo show key error
+            }
         }
 
 

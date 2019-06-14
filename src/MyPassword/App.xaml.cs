@@ -14,7 +14,7 @@ namespace MyPassword
 		{
 			InitializeComponent();
             DataBaseHelper.Instance.ConnectDataBase("mypassword");
-            MainPage = new ContentPage();
+            MainPage = new InitalPage();
             MainNavi();
         }
 
@@ -28,8 +28,9 @@ namespace MyPassword
         private Task<bool> CheckSecureKeyAsync()
         {
             var tcs = new TaskCompletionSource<bool>();
-            Task.Factory.StartNew(() =>
+            Task.Factory.StartNew(async () =>
             {
+                await SecureKeyManager.Instance.InitAsync();
                 if (string.IsNullOrEmpty(SecureKeyManager.Instance.SecureKey))
                 {
                     Device.BeginInvokeOnMainThread(() =>
@@ -81,7 +82,16 @@ namespace MyPassword
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                MainPage = new MyNavigationPage(new MainTabbedPage());
+                switch(Device.RuntimePlatform)
+                {
+                    case Device.Android:
+                    case Device.iOS:
+                        MainPage = new AppMainShell();
+                        break;
+                    case Device.UWP:
+                        MainPage = new MyNavigationPage(new MainTabbedPage());
+                        break;
+                }
             });
         }
 
