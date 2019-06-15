@@ -6,7 +6,7 @@
     Title="设置"
     x:Class="MyPassword.Pages.SettingPage">
     <ContentPage.Content>
-        <Grid BackgroundColor="#38274F">
+        <Grid BackgroundColor="WhiteSmoke">
             <ListView ItemsSource="{Binding SettingItemList}" 
                   ItemTapped="ListView_ItemTapped" 
                   SeparatorVisibility="None"
