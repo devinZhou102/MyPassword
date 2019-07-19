@@ -32,8 +32,6 @@ namespace MyPassword.Pages
 
         private void InitViewModel(Action ActionSetLockFinish)
         {
-            NavigationPage.SetHasNavigationBar(this, false);
-            NavigationPage.SetHasBackButton(this, false);
             viewModel = new GusetureLockViewModel(ActionSetLockFinish);
             BindingContext = viewModel;
         }

@@ -63,13 +63,15 @@ namespace MyPassword.Pages
 
         private void PushPage(SettingItemModel item)
         {
-            var paramTpyes = new Type[0];
-            var constructor = item.PageType.GetConstructor(paramTpyes);
-            if (constructor != null)
-            {
-                var page = constructor.Invoke(null) as Page;
-                Navigation.PushAsync(page);
-            }
+            Device.BeginInvokeOnMainThread(()=> {
+                var paramTpyes = new Type[0];
+                var constructor = item.PageType.GetConstructor(paramTpyes);
+                if (constructor != null)
+                {
+                    var page = constructor.Invoke(null) as Page;
+                    Navigation.PushAsync(page);
+                }
+            });
         }
     }
 }
