@@ -15,6 +15,7 @@ namespace MyPassword
         public AppMainShell()
         {
             InitializeComponent();
+            this.FlyoutBehavior = FlyoutBehavior.Disabled;
         }
     }
 }
