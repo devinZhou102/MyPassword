@@ -1,4 +1,5 @@
-﻿using MyPassword.ViewModels;
+﻿using MyPassword.Localization;
+using MyPassword.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +14,10 @@ namespace MyPassword.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AboutPage : BaseContentPage
 	{
-        AboutViewModel viewModel;
-		public AboutPage ()
+        public AboutPage ()
 		{
 			InitializeComponent ();
-            viewModel = new AboutViewModel();
-            BindingContext = viewModel;
+            BindingContext = App.Locator.GetViewModel<AboutViewModel>();
         }
 
         protected override void OnAppear()

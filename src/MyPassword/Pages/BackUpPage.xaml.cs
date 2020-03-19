@@ -13,13 +13,10 @@ namespace MyPassword.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class BackUpPage : BaseContentPage
 	{
-
-        BackUpViewModel viewModel;
         public BackUpPage ()
 		{
 			InitializeComponent ();
-            viewModel = new BackUpViewModel();
-            BindingContext = viewModel;
+            BindingContext = App.Locator.GetViewModel<BackUpViewModel>();
         }
 
         protected override void OnAppear()

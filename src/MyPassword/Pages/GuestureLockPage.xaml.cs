@@ -13,7 +13,7 @@ namespace MyPassword.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class GuestureLockPage : BaseContentPage
 	{
-        GusetureLockViewModel viewModel;
+        GuestureLockViewModel viewModel;
         public GuestureLockPage()
         {
             InitializeComponent();
@@ -30,9 +30,10 @@ namespace MyPassword.Pages
             Title = "手势密码";
         }
 
-        private void InitViewModel(Action ActionSetLockFinish)
+        private void InitViewModel(Action actionSetLockFinish)
         {
-            viewModel = new GusetureLockViewModel(ActionSetLockFinish);
+            viewModel = App.Locator.GetViewModel<GuestureLockViewModel>();
+            viewModel.ActionSetLockFinish = actionSetLockFinish;
             BindingContext = viewModel;
         }
 

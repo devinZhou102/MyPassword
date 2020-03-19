@@ -15,15 +15,14 @@ namespace MyPassword.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class IconSelectPage : PopupPage
     {
-        IconSelectViewModel viewModel;
-
 		public IconSelectPage (Action<string> complete)
 		{
 			InitializeComponent ();
             NavigationPage.SetHasBackButton(this,false);
             NavigationPage.SetHasNavigationBar(this,false);
-            viewModel = new IconSelectViewModel(complete);
-            BindingContext = viewModel;
+            var vm = App.Locator.GetViewModel<IconSelectViewModel>();
+            vm.SelectIconComplete = complete;
+            BindingContext = vm;
         }
         
 
@@ -36,7 +35,7 @@ namespace MyPassword.Pages
 
         private async void CloseAllPopup()
         {
-            await Navigation.PopAllPopupAsync();
+            await NavigationService.PopPopupAsync();
         }
     }
 }

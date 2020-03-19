@@ -1,6 +1,7 @@
 using MyPassword.Helpers;
 using MyPassword.Manager;
 using MyPassword.Pages;
+using MyPassword.ViewModels;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -10,6 +11,7 @@ namespace MyPassword
 {
     public partial class App : Application
 	{
+
         public App ()
 		{
 			InitializeComponent();
@@ -17,6 +19,13 @@ namespace MyPassword
             MainPage = new InitalPage();
             MainNavi();
         }
+
+        private static ViewModelLocator _locator = new ViewModelLocator();
+        public static ViewModelLocator Locator
+        {
+            get { return _locator; }
+        }
+
 
         private async void MainNavi()
         {

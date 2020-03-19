@@ -14,13 +14,15 @@ namespace MyPassword.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class GuestureVerifyPage : BaseContentPage
 	{
-        
+        GuestureVerifyViewModel ViewModel;
         public GuestureVerifyPage(Action successedEvent,bool closeButtonVisible = false)
 		{
 			InitializeComponent ();
             NavigationPage.SetHasNavigationBar(this, false);
             NavigationPage.SetHasBackButton(this,false);
-            BindingContext = new GuestureVerifyViewModel(successedEvent);
+            ViewModel = App.Locator.GetViewModel<GuestureVerifyViewModel>();
+            ViewModel.VerifySuccess = successedEvent;
+            BindingContext = ViewModel;
             ButtonClose.IsVisible = closeButtonVisible; 
         }
 

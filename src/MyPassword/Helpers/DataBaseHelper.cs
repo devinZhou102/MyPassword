@@ -1,16 +1,11 @@
 ﻿using MyPassword.DataBase;
-using MyPassword.IServices;
-using MyPassword.Models;
+using MyPassword.Dependencys;
 using Plugin.NetStandardStorage;
 using Plugin.NetStandardStorage.Abstractions.Types;
-using Plugin.NetStandardStorage.Implementations;
-using SQLite.Net.Cipher.Interfaces;
 using SQLite.Net.Cipher.Security;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 

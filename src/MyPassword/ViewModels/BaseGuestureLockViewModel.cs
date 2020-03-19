@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace MyPassword.ViewModels
 {
-    public abstract class BaseGuestureLockViewModel:ViewModelBase
+    public abstract class BaseGuestureLockViewModel:BaseViewModel
     {
         private readonly string[] MonthArray = {
             "January.", "February.", "March.", "April.",

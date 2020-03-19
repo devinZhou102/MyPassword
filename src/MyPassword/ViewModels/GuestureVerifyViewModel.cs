@@ -10,10 +10,9 @@ namespace MyPassword.ViewModels
     public class GuestureVerifyViewModel:BaseGuestureLockViewModel
     {
 
-        Action VerifySuccess;
-        public GuestureVerifyViewModel(Action verifySuccess)
+        public Action VerifySuccess { get; set; }
+        public GuestureVerifyViewModel()
         {
-            VerifySuccess = verifySuccess;
         }
 
         protected override void CreateGuestureLockSuccess(string strLock)
