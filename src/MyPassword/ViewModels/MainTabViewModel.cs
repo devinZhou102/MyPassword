@@ -43,6 +43,7 @@ namespace MyPassword.ViewModels
 
         public void InitData()
         {
+            TabPageList.Add(new CategoryListPage() { Title = "分类", Icon = IconHelper.GetIcon("IconKey") });
             TabPageList.Add(new PasswordListPage() { Title = "密钥", Icon = IconHelper.GetIcon("IconKey") });
             TabPageList.Add(new SettingPage() { Title = "设置", Icon = IconHelper.GetIcon("IconSetting") });
         }

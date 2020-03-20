@@ -77,5 +77,14 @@ namespace MyPassword.Localization {
                 return ResourceManager.GetString("AppVersion", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [{&quot;name&quot;:&quot;游戏&quot;,&quot;icon&quot;:&quot;IconGame&quot;,&quot;key&quot;:&quot;game&quot;},{&quot;name&quot;:&quot;银行&quot;,&quot;icon&quot;:&quot;IconBank&quot;,&quot;key&quot;:&quot;bank&quot;},{&quot;name&quot;:&quot;社交&quot;,&quot;icon&quot;:&quot;IconChat&quot;,&quot;key&quot;:&quot;social&quot;},{&quot;name&quot;:&quot;邮箱&quot;,&quot;icon&quot;:&quot;IconEmail&quot;,&quot;key&quot;:&quot;email&quot;},{&quot;name&quot;:&quot;购物&quot;,&quot;icon&quot;:&quot;IconShop&quot;,&quot;key&quot;:&quot;shop&quot;},{&quot;name&quot;:&quot;视频&quot;,&quot;icon&quot;:&quot;IconVideo&quot;,&quot;key&quot;:&quot;video&quot;},{&quot;name&quot;:&quot;音乐&quot;,&quot;icon&quot;:&quot;IconMusic&quot;,&quot;key&quot;:&quot;music&quot;},{&quot;name&quot;:&quot;网站&quot;,&quot;icon&quot;:&quot;IconWeb&quot;,&quot;key&quot;:&quot;web&quot;},{&quot;name&quot;:&quot;其他&quot;,&quot;icon&quot;:&quot;IconAccount&quot;,&quot;key&quot;:&quot;others&quot;}].
+        /// </summary>
+        internal static string Category {
+            get {
+                return ResourceManager.GetString("Category", resourceCulture);
+            }
+        }
     }
 }

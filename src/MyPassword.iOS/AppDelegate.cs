@@ -24,6 +24,7 @@ namespace MyPassword.iOS
             Rg.Plugins.Popup.Popup.Init();
             var x = typeof(Plugin.GridViewControl.iOS.Renderers.GridViewRenderer);
             VersionTracking.Track();
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             //SecureStorageImplementation.DefaultAccessible = Security.SecAccessible.Invalid;
             return base.FinishedLaunching(app, options);
         }

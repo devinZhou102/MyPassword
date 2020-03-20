@@ -1,10 +1,12 @@
 ﻿using Acr.UserDialogs;
 using GalaSoft.MvvmLight;
 using MyPassword.Manager;
+using MyPassword.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -179,8 +181,8 @@ namespace MyPassword.ViewModels
             }
         }
 
-
-        public BaseGuestureLockViewModel()
+        protected IGuestureLockService guetureLockSerivce;
+        public BaseGuestureLockViewModel(IGuestureLockService guetureLockSerivce)
         {
             int day = DateTime.Now.Day;
             TodayDate = day.ToString();
@@ -188,6 +190,7 @@ namespace MyPassword.ViewModels
             Month = GetMonthInEnglish(month);
             Phrase = GetPhrase(month,day);
             CompleteCommand = new Command((arg) => CompleteExcute(arg));
+            this.guetureLockSerivce = guetureLockSerivce;
         }
 
 
@@ -223,7 +226,7 @@ namespace MyPassword.ViewModels
             if (checkList is List<int>)
             {
                 var datas = checkList as List<int>;
-                if (!LockManager.Instance.IsLockValid(datas))
+                if (!guetureLockSerivce.IsLockValid(datas))
                 {
                     Message = "至少连续绘制4个点";
                     MessageColor = ColorRed;
@@ -231,13 +234,13 @@ namespace MyPassword.ViewModels
                 else
                 {
                     Message = "";
-                    string myLock = LockManager.Instance.GeneratePassword(datas);
-                    CreateGuestureLockSuccess(myLock);
+                    string myLock = guetureLockSerivce.GeneratePassword(datas);
+                    CreateGuestureLockSuccessAsync(myLock);
                 }
             }
         }
 
-        protected abstract void CreateGuestureLockSuccess(string strLock);
-        
+        protected abstract Task CreateGuestureLockSuccessAsync(string strLock);
+
     }
 }

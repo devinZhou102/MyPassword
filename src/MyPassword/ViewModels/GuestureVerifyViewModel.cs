@@ -1,9 +1,6 @@
-﻿using MyPassword.Manager;
+﻿using MyPassword.Services;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
-using static MyPassword.Pages.GuestureVerifyPage;
+using System.Threading.Tasks;
 
 namespace MyPassword.ViewModels
 {
@@ -11,13 +8,13 @@ namespace MyPassword.ViewModels
     {
 
         public Action VerifySuccess { get; set; }
-        public GuestureVerifyViewModel()
+        public GuestureVerifyViewModel(IGuestureLockService guestureLockService):base(guestureLockService)
         {
         }
 
-        protected override void CreateGuestureLockSuccess(string strLock)
+        protected override Task CreateGuestureLockSuccessAsync(string strLock)
         {
-            var cachelock = LockManager.Instance.GuestureLock;
+            var cachelock = guetureLockSerivce.GuestureLock;
             if(cachelock.Equals(strLock))
             {
                 VerifySuccess?.Invoke();
@@ -27,6 +24,7 @@ namespace MyPassword.ViewModels
                 Message = "手势密码错误";
                 MessageColor = ColorRed;
             }
+            return Task.CompletedTask;
         }
 
 

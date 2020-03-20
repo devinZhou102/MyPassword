@@ -6,15 +6,19 @@
        xmlns:pages="clr-namespace:MyPassword.Pages"
        mc:Ignorable="d"
        x:Class="MyPassword.AppMainShell">
-    <TabBar FlyoutDisplayOptions="AsMultipleItems">
+
+    <TabBar>
         <Tab Title="密钥" Icon="IconKey.png">
             <ShellContent ContentTemplate="{DataTemplate pages:PasswordListPage}" />
+        </Tab>
+        <Tab Title="密钥" Icon="IconKey.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:CategoryListPage}" />
         </Tab>
         <Tab Title="设置" Icon="IconSetting.png">
             <ShellContent ContentTemplate="{DataTemplate pages:SettingPage}" />
         </Tab>
     </TabBar>
-    <FlyoutItem Title="Home" Icon="home.png">
+    <!--<FlyoutItem Title="Home" Icon="home.png">
         <Tab Title="密钥" Icon="IconKey.png">
             <ShellContent ContentTemplate="{DataTemplate pages:PasswordListPage}" />
         </Tab>
@@ -23,6 +27,6 @@
         <Tab Title="设置" Icon="IconSetting.png">
             <ShellContent ContentTemplate="{DataTemplate pages:SettingPage}" />
         </Tab>
-    </FlyoutItem>
+    </FlyoutItem>-->
     
 </Shell>

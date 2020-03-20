@@ -28,6 +28,7 @@ namespace MyPassword.ViewModels
             SimpleIoc.Default.Register<GuestureVerifyViewModel>();
             SimpleIoc.Default.Register<BackUpViewModel>();
             SimpleIoc.Default.Register<IconSelectViewModel>();
+            SimpleIoc.Default.Register<CategoryViewModel>();
 
         }
 
@@ -38,7 +39,8 @@ namespace MyPassword.ViewModels
 
         private void RegisterServices()
         {
-            SimpleIoc.Default.Register <IAlertService, AlertService>();
+            SimpleIoc.Default.Register<IAlertService, AlertService>();
+            SimpleIoc.Default.Register<IGuestureLockService, GuestureLockService>();
         }
 
         public T GetService<T>()

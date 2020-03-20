@@ -1,6 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MyPassword.Manager;
+using MyPassword.Services;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MyPassword.ViewModels
@@ -14,13 +16,13 @@ namespace MyPassword.ViewModels
 
         public Action ActionSetLockFinish { get; set; }
 
-        public GuestureLockViewModel()
+        public GuestureLockViewModel(IGuestureLockService guestureLockService):base(guestureLockService)
         {
             ResetLockExcute();
             ResetLockCommand = new RelayCommand(()=>ResetLockExcute());
         }
 
-        protected override void CreateGuestureLockSuccess(string strLock)
+        protected override async Task CreateGuestureLockSuccessAsync(string strLock)
         {
             if(1 == Count)
             {
@@ -34,7 +36,8 @@ namespace MyPassword.ViewModels
                 if(CacheLock.Equals(strLock))
                 {
                     Message = "";
-                    if(LockManager.Instance.Save(strLock))
+                    var f = await guetureLockSerivce.SaveAsync(strLock);
+                    if (f)
                     {
                         ActionSetLockFinish?.Invoke();
                     }

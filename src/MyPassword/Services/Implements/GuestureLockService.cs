@@ -3,23 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 
-namespace MyPassword.Manager
+namespace MyPassword.Services
 {
-    public class LockManager
+    public class GuestureLockService: IGuestureLockService
     {
         private const string KEY_GUESTURE_LOCK = "guestureLock";
 
-        private static Lazy<LockManager> instance = new Lazy<LockManager>(()=>new LockManager());
-
-        public static LockManager Instance => instance.Value;
-
         public string GuestureLock { get; private set; }
-        
-        private LockManager()
+
+        public GuestureLockService()
         {
-            ReadAsync();
+            Task.Run(async () => await ReadAsync());
         }
 
         /// <summary>
@@ -34,9 +31,9 @@ namespace MyPassword.Manager
         /// <returns></returns>
         public bool IsLockValid(List<int> indexList)
         {
-            if(null == indexList || indexList.Count < 4)
+            if (null == indexList || indexList.Count < 4)
             {
-                
+
                 return false;
             }
             return true;
@@ -47,7 +44,7 @@ namespace MyPassword.Manager
         /// </summary>
         /// <param name="indexList"></param>
         /// <returns></returns>
-        public String GeneratePassword(List<int> indexList)
+        public string GeneratePassword(List<int> indexList)
         {
             if (!IsLockValid(indexList)) return "";
             String pwd = "";
@@ -62,7 +59,7 @@ namespace MyPassword.Manager
             return pwd;
         }
 
-        public  string GetMD5String(string value)
+        public string GetMD5String(string value)
         {
             var md5 = MD5.Create();
             byte[] bytResult = md5.ComputeHash(Encoding.UTF8.GetBytes(value));
@@ -71,23 +68,24 @@ namespace MyPassword.Manager
             return strResult;
         }
 
-        private async void ReadAsync()
+        private async Task ReadAsync()
         {
             GuestureLock = await SecureStorage.GetAsync(KEY_GUESTURE_LOCK);
             if (GuestureLock == null) GuestureLock = "";
-           // GuestureLock = CrossSecureStorage.Current.GetValue(KEY_GUESTURE_LOCK, "");
         }
 
-        public bool Save(string value)
+        public async Task<bool> SaveAsync(string value)
         {
-            GuestureLock = value;
-            SecureStorage.SetAsync(KEY_GUESTURE_LOCK, value);
-            //if (CrossSecureStorage.Current.SetValue(KEY_GUESTURE_LOCK, value))
-            //{
-            //    GuestureLock = value;
-            //    return true;
-            //}
-            return true;
+            try
+            {
+                await SecureStorage.SetAsync(KEY_GUESTURE_LOCK, value);
+                GuestureLock = value;
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

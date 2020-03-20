@@ -123,4 +123,7 @@
   <data name="AppVersion" xml:space="preserve">
     <value>应用版本v{0}</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>[{"name":"游戏","icon":"IconGame","key":"game"},{"name":"银行","icon":"IconBank","key":"bank"},{"name":"社交","icon":"IconChat","key":"social"},{"name":"邮箱","icon":"IconEmail","key":"email"},{"name":"购物","icon":"IconShop","key":"shop"},{"name":"视频","icon":"IconVideo","key":"video"},{"name":"音乐","icon":"IconMusic","key":"music"},{"name":"网站","icon":"IconWeb","key":"web"},{"name":"其他","icon":"IconAccount","key":"others"}]</value>
+  </data>
 </root>

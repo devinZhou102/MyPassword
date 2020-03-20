@@ -1,6 +1,7 @@
 using MyPassword.Helpers;
 using MyPassword.Manager;
 using MyPassword.Pages;
+using MyPassword.Services;
 using MyPassword.ViewModels;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -11,16 +12,22 @@ namespace MyPassword
 {
     public partial class App : Application
 	{
+        private IGuestureLockService GuestureLockService;
 
         public App ()
 		{
 			InitializeComponent();
+            Initialize();
             DataBaseHelper.Instance.ConnectDataBase("mypassword");
             MainPage = new InitalPage();
             MainNavi();
         }
 
-        private static ViewModelLocator _locator = new ViewModelLocator();
+        private void Initialize()
+        {
+            GuestureLockService = Locator.GetService<IGuestureLockService>();
+        }
+        private static readonly ViewModelLocator _locator = new ViewModelLocator();
         public static ViewModelLocator Locator
         {
             get { return _locator; }
@@ -62,7 +69,7 @@ namespace MyPassword
             var tcs = new TaskCompletionSource<bool>();
             Task.Factory.StartNew(() =>
             {
-                if (string.IsNullOrEmpty(LockManager.Instance.GuestureLock))
+                if (string.IsNullOrEmpty(GuestureLockService.GuestureLock))
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
