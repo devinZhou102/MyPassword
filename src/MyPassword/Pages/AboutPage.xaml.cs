@@ -17,7 +17,7 @@ namespace MyPassword.Pages
         public AboutPage ()
 		{
 			InitializeComponent ();
-            BindingContext = App.Locator.GetViewModel<AboutViewModel>();
+            BindingContext = App.Locator.GetViewModel<AboutViewModel,string>("");
         }
 
         protected override void OnAppear()

@@ -3,17 +3,16 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MyPassword.Const;
 using MyPassword.Helpers;
-using MyPassword.Manager;
 using MyPassword.Models;
+using MyPassword.Services;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MyPassword.ViewModels
 {
-    public class ChangeSecureKeyViewModel:ViewModelBase
+    public class ChangeSecureKeyViewModel:BaseViewModel
     {
 
         private string _OldSecureKey;
@@ -109,11 +108,14 @@ namespace MyPassword.ViewModels
 
         private List<DataItemModel> DataList;
 
-        public ChangeSecureKeyViewModel()
+        private readonly ISecureKeyService secureKeyService;
+
+        public ChangeSecureKeyViewModel(ISecureKeyService secureKeyService)
         {
             HideSecureKey = true;
+            this.secureKeyService = secureKeyService;
             SaveCommand = new RelayCommand(()=>SaveExcuteAsync());
-            CurrentKey = SecureKeyManager.Instance.SecureKey;
+            CurrentKey = secureKeyService.SecureKey;
             DataList = DataBaseHelper.Instance.Database.SecureGetAll<DataItemModel>(CurrentKey);
         }
 
@@ -146,7 +148,7 @@ namespace MyPassword.ViewModels
 
         private async Task<bool> SaveSecureKeyAsync()
         {
-           return await SecureKeyManager.Instance.SaveAsync(NewSecureKey);
+           return await secureKeyService.SaveAsync(NewSecureKey);
         }
 
 

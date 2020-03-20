@@ -7,9 +7,15 @@ namespace MyPassword.ViewModels
     public class GuestureVerifyViewModel:BaseGuestureLockViewModel
     {
 
-        public Action VerifySuccess { get; set; }
+        Action VerifySuccess;
         public GuestureVerifyViewModel(IGuestureLockService guestureLockService):base(guestureLockService)
         {
+        }
+
+        public override Task InitializeAsync<T>(T parameter)
+        {
+            VerifySuccess = parameter as Action;
+            return base.InitializeAsync(parameter);
         }
 
         protected override Task CreateGuestureLockSuccessAsync(string strLock)

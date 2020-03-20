@@ -1,30 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
-namespace MyPassword.Manager
+namespace MyPassword.Services
 {
-    public class SecureKeyManager
+    public class SecureKeyService : ISecureKeyService
     {
-
         private const string KEY_SECURE_KEY = "secureKey";
 
-        private static readonly Lazy<SecureKeyManager> instance = new Lazy<SecureKeyManager>(() => new SecureKeyManager());
-
-        public static SecureKeyManager Instance => instance.Value;
 
         public string SecureKey { get; private set; }
 
-        private SecureKeyManager()
+        public SecureKeyService()
         {
         }
 
-        public async Task InitAsync()
-        {
-            await ReadAsync();
-        }
 
-        private async Task ReadAsync()
+        public async Task LoadSecureKeyAsync()
         {
             SecureKey = await SecureStorage.GetAsync(KEY_SECURE_KEY);
             if (SecureKey == null) SecureKey = "";
@@ -41,6 +35,5 @@ namespace MyPassword.Manager
             }
             return false;
         }
-
     }
 }

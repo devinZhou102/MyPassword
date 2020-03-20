@@ -14,7 +14,7 @@ using System.Windows.Input;
 
 namespace MyPassword.ViewModels
 {
-    public class PasswordDetailViewModel:ViewModelBase
+    public class PasswordDetailViewModel:BaseViewModel
     {
         private const string PasswordMask = "******";
 
@@ -125,10 +125,8 @@ namespace MyPassword.ViewModels
 
         private DataItemModel DataItem;
 
-        public PasswordDetailViewModel(DataItemModel data)
+        public PasswordDetailViewModel()
         {
-            Update(data);
-            HideSecureKey = true;
             EditCommand = new RelayCommand(() => EditExcute());
             DeleteCommand = new RelayCommand(() => DeleteExcuteAsync());
             MessengerInstance.Register<DataItemModel>(this,TokenConst.TokenUpdate, (value) => 
@@ -138,6 +136,16 @@ namespace MyPassword.ViewModels
                     Update(value);
                 }
             });
+        }
+
+        public override Task InitializeAsync<T>(T parameter)
+        {
+            if(parameter != null && parameter is DataItemModel data)
+            {
+                Update(data);
+                HideSecureKey = true;
+            }
+            return base.InitializeAsync(parameter);
         }
 
         private void UpdatePassword()

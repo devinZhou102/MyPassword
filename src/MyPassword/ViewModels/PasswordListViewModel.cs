@@ -1,22 +1,18 @@
 ﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Messaging;
-using MyPassword.Helpers;
-using MyPassword.Manager;
-using MyPassword.Models;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
-using System.Threading.Tasks;
-using System.Linq;
-using MyPassword.Const;
-using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using MyPassword.Const;
+using MyPassword.Helpers;
+using MyPassword.Models;
 using MyPassword.Pages;
+using MyPassword.Services;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Input;
 
 namespace MyPassword.ViewModels
 {
-    public class PasswordListViewModel:ViewModelBase
+    public class PasswordListViewModel:BaseViewModel
     {
 
         private ObservableCollection<DataItemModel> _PasswordList;
@@ -48,10 +44,11 @@ namespace MyPassword.ViewModels
                 RaisePropertyChanged(nameof(EmptyTipsVisible));
             }
         }
-        
 
-        public PasswordListViewModel()
+        private ISecureKeyService secureKeyService;
+        public PasswordListViewModel(ISecureKeyService secureKeyService)
         {
+            this.secureKeyService = secureKeyService;
             LoadData();
             RegisterMessager();
             AddDataCommand = new RelayCommand(() => AddDataExcute());
@@ -59,7 +56,7 @@ namespace MyPassword.ViewModels
 
         public void LoadData()
         {
-            var datas = DataBaseHelper.Instance.Database?.SecureGetAll<DataItemModel>(SecureKeyManager.Instance.SecureKey);
+            var datas = DataBaseHelper.Instance.Database?.SecureGetAll<DataItemModel>(secureKeyService.SecureKey);
             PasswordList.Clear();
             if (null != datas)
             {

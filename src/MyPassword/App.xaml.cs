@@ -1,5 +1,4 @@
 using MyPassword.Helpers;
-using MyPassword.Manager;
 using MyPassword.Pages;
 using MyPassword.Services;
 using MyPassword.ViewModels;
@@ -13,6 +12,7 @@ namespace MyPassword
     public partial class App : Application
 	{
         private IGuestureLockService GuestureLockService;
+        private ISecureKeyService SecureKeyService;
 
         public App ()
 		{
@@ -25,6 +25,7 @@ namespace MyPassword
 
         private void Initialize()
         {
+            SecureKeyService = Locator.GetService<ISecureKeyService>();
             GuestureLockService = Locator.GetService<IGuestureLockService>();
         }
         private static readonly ViewModelLocator _locator = new ViewModelLocator();
@@ -46,8 +47,8 @@ namespace MyPassword
             var tcs = new TaskCompletionSource<bool>();
             Task.Factory.StartNew(async () =>
             {
-                await SecureKeyManager.Instance.InitAsync();
-                if (string.IsNullOrEmpty(SecureKeyManager.Instance.SecureKey))
+                await SecureKeyService.LoadSecureKeyAsync();
+                if (string.IsNullOrEmpty(SecureKeyService.SecureKey))
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {

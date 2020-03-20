@@ -20,8 +20,7 @@ namespace MyPassword.Pages
 			InitializeComponent ();
             NavigationPage.SetHasNavigationBar(this, false);
             NavigationPage.SetHasBackButton(this,false);
-            ViewModel = App.Locator.GetViewModel<GuestureVerifyViewModel>();
-            ViewModel.VerifySuccess = successedEvent;
+            ViewModel = App.Locator.GetViewModel<GuestureVerifyViewModel,Action>(successedEvent);
             BindingContext = ViewModel;
             ButtonClose.IsVisible = closeButtonVisible; 
         }

@@ -19,7 +19,7 @@ namespace MyPassword.Pages
 		{
 			InitializeComponent ();
             NavigationPage.SetHasBackButton(this,true);
-            viewModel = new PasswordDetailViewModel(dataItem);
+            viewModel = App.Locator.GetViewModel<PasswordDetailViewModel,DataItemModel>(dataItem);
             BindingContext = viewModel;
 		}
 

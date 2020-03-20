@@ -32,7 +32,7 @@ namespace MyPassword.Pages
 
         private void InitViewModel(DataItemModel dataItem)
         {
-            viewModel = new PasswordEditViewModel(dataItem);
+            viewModel = App.Locator.GetViewModel<PasswordEditViewModel, DataItemModel>(dataItem);
             BindingContext = viewModel;
         }
 

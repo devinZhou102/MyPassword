@@ -31,23 +31,30 @@ namespace MyPassword.ViewModels
             }
         }
 
-        public Action<string> SelectIconComplete { get; set; }
+        Action<string> SelectIconComplete;
 
         public IconSelectViewModel()
         {
-            InitIconListAsync();
+            InitIconList();
             TappedCommand = new RelayCommand<IconModel>((param) => TappedExcute(param));
         }
 
-        private async void InitIconListAsync()
+        public override Task InitializeAsync<T>(T parameter)
+        {
+            SelectIconComplete = parameter as Action<string>;
+            return base.InitializeAsync(parameter);
+        }
+
+        private void InitIconList()
         {
             //await Task.Delay(350);
             foreach (var icon in IconConst.IconDatas)
             {
                 IconList.Add(
-                    new IconModel{
+                    new IconModel
+                    {
                         GroupId = 0,
-                        Icon =IconHelper.GetIcon(icon)
+                        Icon = IconHelper.GetIcon(icon)
                     });
             }
         }

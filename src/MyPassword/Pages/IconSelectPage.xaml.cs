@@ -20,8 +20,7 @@ namespace MyPassword.Pages
 			InitializeComponent ();
             NavigationPage.SetHasBackButton(this,false);
             NavigationPage.SetHasNavigationBar(this,false);
-            var vm = App.Locator.GetViewModel<IconSelectViewModel>();
-            vm.SelectIconComplete = complete;
+            var vm = App.Locator.GetViewModel<IconSelectViewModel,Action<string>>(complete);
             BindingContext = vm;
         }
         

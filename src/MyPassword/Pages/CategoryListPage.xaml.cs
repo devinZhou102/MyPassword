@@ -16,7 +16,7 @@ namespace MyPassword.Pages
         public CategoryListPage()
         {
             InitializeComponent();
-            BindingContext = App.Locator.GetViewModel<CategoryViewModel>();
+            BindingContext = App.Locator.GetViewModel<CategoryViewModel,string>("");
             SetTabBarVisible(true);
         }
 

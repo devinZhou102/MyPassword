@@ -4,20 +4,18 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MyPassword.Const;
 using MyPassword.Helpers;
-using MyPassword.Manager;
 using MyPassword.Models;
 using MyPassword.Pages;
+using MyPassword.Services;
 using MyPassword.Utils;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MyPassword.ViewModels
 {
-    public class PasswordEditViewModel : ViewModelBase
+    public class PasswordEditViewModel : BaseViewModel
     {
 
         private PwdConditionViewModel _ConditionViewModel;
@@ -146,15 +144,22 @@ namespace MyPassword.ViewModels
 
 
         DataItemModel DataItem;
+        private ISecureKeyService secureKeyService;
 
-        public PasswordEditViewModel(DataItemModel dataItem)
+        public PasswordEditViewModel(ISecureKeyService secureKeyService)
         {
-            DataItem = dataItem;
+            this.secureKeyService = secureKeyService;
             GenerateCommand = new RelayCommand(() => GenerateExcute());
             SaveCommand = new RelayCommand(() => SaveExcuteAsync());
-            ImageTapCommand = new RelayCommand(() => ImageTapExcuteAsync());
-            if (DataItem != null)
+            ImageTapCommand = new RelayCommand(async () => await ImageTapExcuteAsync());
+          
+        }
+
+        public override Task InitializeAsync<T>(T parameter)
+        {
+            if (parameter != null && parameter is DataItemModel dataItem)
             {
+                DataItem = dataItem;
                 Icon = DataItem.Icon;
                 Account = DataItem.Account;
                 Title = DataItem.Name;
@@ -162,9 +167,9 @@ namespace MyPassword.ViewModels
                 Description = DataItem.Description;
             }
             HideSecureKey = true;
+            return base.InitializeAsync(parameter);
         }
 
-        
         public ICommand SaveCommand { get; private set; }
 
         public ICommand GenerateCommand { get; private set; }
@@ -239,11 +244,11 @@ namespace MyPassword.ViewModels
                 if (DataItem != null)
                 {
                     item.Id = DataItem.Id;
-                    result = DataBaseHelper.Instance.Database.SecureUpdate<DataItemModel>(item, SecureKeyManager.Instance.SecureKey);
+                    result = DataBaseHelper.Instance.Database.SecureUpdate<DataItemModel>(item, secureKeyService.SecureKey);
                 }
                 else
                 {
-                    result = DataBaseHelper.Instance.Database.SecureInsert<DataItemModel>(item, SecureKeyManager.Instance.SecureKey);
+                    result = DataBaseHelper.Instance.Database.SecureInsert<DataItemModel>(item, secureKeyService.SecureKey);
                 }
                 tcs.SetResult(result == 1?item:null);
             });

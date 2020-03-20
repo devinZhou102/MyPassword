@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using MyPassword.Localization;
 using MyPassword.Services;
+using System.Threading.Tasks;
 
 namespace MyPassword.ViewModels
 {
@@ -14,5 +15,9 @@ namespace MyPassword.ViewModels
 
         }
 
+        public virtual Task InitializeAsync<T>(T parameter)
+        {
+            return Task.FromResult(false);
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace MyPassword.Pages
 		public PasswordListPage ()
 		{
 			InitializeComponent ();
-            viewModel = new PasswordListViewModel();
+            viewModel = App.Locator.GetViewModel<PasswordListViewModel,string>("");
             BindingContext = viewModel;
             SetTabBarVisible(true);
         }

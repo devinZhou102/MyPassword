@@ -32,8 +32,7 @@ namespace MyPassword.Pages
 
         private void InitViewModel(Action actionSetLockFinish)
         {
-            viewModel = App.Locator.GetViewModel<GuestureLockViewModel>();
-            viewModel.ActionSetLockFinish = actionSetLockFinish;
+            viewModel = App.Locator.GetViewModel<GuestureLockViewModel,Action>(actionSetLockFinish);
             BindingContext = viewModel;
         }
 
