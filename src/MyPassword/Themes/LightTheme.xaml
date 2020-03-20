@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyPassword.Themes.LightTheme">
+
+    <!-- #region Color for shell -->
+    <Color x:Key="ShellBackgroundColor">#2196F3</Color>
+    <Color x:Key="ShellForegroundColor">White</Color>
+    <Color x:Key="ShellTitleColor">White</Color>
+    <Color x:Key="ShellDisabledColor">#B4FFFFFF</Color>
+    <Color x:Key="ShellUnselectedColor">#95FFFFFF</Color>
+    <Color x:Key="ShellTabBarBackgroundColor">#2196F3</Color>
+    <Color x:Key="ShellTabBarForegroundColor">White</Color>
+    <Color x:Key="ShellTabBarUnselectedColor">#95FFFFFF</Color>
+    <Color x:Key="ShellTabBarTitleColor">White</Color>
+
+    <!--#endregion Color for shell -->
+
+    <!-- #region  Main Color for app -->
+
+    <Color x:Key="MainBackgroundColor">WhiteSmoke</Color>
+    <Color x:Key="MainButtonBackgroudColor">#2196F3</Color>
+    <Color x:Key="MainCollectionViewItemColor">White</Color>
+    <Color x:Key="DividerColor">WhiteSmoke</Color>
+    <Color x:Key="LightTextColor">White</Color>
+    <Color x:Key="DarkTextColor">Black</Color>
+    <Color x:Key="LightDarkTextColor">LightGray</Color>
+    <Color x:Key="MainPlaceHolderTextColor">LightGray</Color>
+    
+    <!-- #endregion Main Color for app-->
+
+    <!--#region color for login -->
+
+    <Color x:Key="SegmentedBackgroundColor">White</Color>
+    <Color x:Key="SegmentedTintColor">#007AFF</Color>
+    <Color x:Key="SegmentedSelectedColor">White</Color>
+    <Color x:Key="SegmentedUnselectedColor">#95FFFFFF</Color>
+
+    <!--#endregion-->
+</ResourceDictionary>

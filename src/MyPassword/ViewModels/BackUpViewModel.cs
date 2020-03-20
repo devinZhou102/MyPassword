@@ -4,7 +4,7 @@ using System.Windows.Input;
 
 namespace MyPassword.ViewModels
 {
-    public class BackUpViewModel:ViewModelBase
+    public class BackUpViewModel:BaseViewModel
     {
 
         public BackUpViewModel()

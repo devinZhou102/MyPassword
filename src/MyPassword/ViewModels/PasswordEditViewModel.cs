@@ -152,7 +152,7 @@ namespace MyPassword.ViewModels
             DataItem = dataItem;
             GenerateCommand = new RelayCommand(() => GenerateExcute());
             SaveCommand = new RelayCommand(() => SaveExcuteAsync());
-            ImageTapCommand = new RelayCommand(() => ImageTapExcute());
+            ImageTapCommand = new RelayCommand(() => ImageTapExcuteAsync());
             if (DataItem != null)
             {
                 Icon = DataItem.Icon;
@@ -259,11 +259,11 @@ namespace MyPassword.ViewModels
             }
         }
 
-        private void ImageTapExcute()
+        private async Task ImageTapExcuteAsync()
         {
             try
             {
-                NavigationService.Navigation.PushModalAsync(new IconGridPage((data) =>
+                await NavigationService.PushPopupPageAsync(new IconSelectPage((data) =>
                 {
                     Icon = data;
                 }));

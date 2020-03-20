@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace MyPassword.ViewModels
 {
-    public class IconSelectViewModel : ViewModelBase
+    public class IconSelectViewModel : BaseViewModel
     {
         private ObservableCollection<IconModel> _IconList;
         public ObservableCollection<IconModel> IconList
@@ -31,18 +31,17 @@ namespace MyPassword.ViewModels
             }
         }
 
-        readonly Action<string> SelectIconComplete;
+        public Action<string> SelectIconComplete { get; set; }
 
-        public IconSelectViewModel(Action<string> selectIconComplete)
+        public IconSelectViewModel()
         {
-            SelectIconComplete = selectIconComplete;
             InitIconListAsync();
             TappedCommand = new RelayCommand<IconModel>((param) => TappedExcute(param));
         }
 
         private async void InitIconListAsync()
         {
-            await Task.Delay(350);
+            //await Task.Delay(350);
             foreach (var icon in IconConst.IconDatas)
             {
                 IconList.Add(

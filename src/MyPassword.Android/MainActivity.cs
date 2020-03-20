@@ -23,6 +23,7 @@ namespace MyPassword.Droid
             UserDialogs.Init(this);
             VersionTracking.Track();
             //SecureStorageImplementation.StorageType = StorageTypes.AndroidKeyStore;
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
         }

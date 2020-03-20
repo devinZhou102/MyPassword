@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MyPassword
@@ -28,6 +31,17 @@ namespace MyPassword
         public static void PopModalAsync()
         {
             Navigation?.PopModalAsync();
+        }
+
+
+        public static async Task PushPopupPageAsync(PopupPage popup, bool animated = true)
+        {
+            await PopupNavigation.Instance.PushAsync(popup, animated);
+        }
+
+        public static async Task PopPopupAsync(bool animated = true)
+        {
+            await PopupNavigation.Instance.PopAsync(animated);
         }
     }
 }

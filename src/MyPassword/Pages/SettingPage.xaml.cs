@@ -21,7 +21,7 @@ namespace MyPassword.Pages
             InitializeComponent();
             viewModel = new SettingViewModel();
             BindingContext = viewModel;
-
+            SetTabBarVisible(true);
         }
         
         private void Button_Clicked(object sender, EventArgs e)
@@ -49,7 +49,7 @@ namespace MyPassword.Pages
                     {
                         PushPage(item);
                         Navigation.PopModalAsync();
-                    }));
+                    },true),true);
                 }
                 else
                 {
@@ -63,13 +63,15 @@ namespace MyPassword.Pages
 
         private void PushPage(SettingItemModel item)
         {
-            var paramTpyes = new Type[0];
-            var constructor = item.PageType.GetConstructor(paramTpyes);
-            if (constructor != null)
-            {
-                var page = constructor.Invoke(null) as Page;
-                Navigation.PushAsync(page);
-            }
+            Device.BeginInvokeOnMainThread(()=> {
+                var paramTpyes = new Type[0];
+                var constructor = item.PageType.GetConstructor(paramTpyes);
+                if (constructor != null)
+                {
+                    var page = constructor.Invoke(null) as Page;
+                    Navigation.PushAsync(page);
+                }
+            });
         }
     }
 }

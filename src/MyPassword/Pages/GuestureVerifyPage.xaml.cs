@@ -14,14 +14,17 @@ namespace MyPassword.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class GuestureVerifyPage : BaseContentPage
 	{
-        
-        public GuestureVerifyPage(Action successedEvent)
+        GuestureVerifyViewModel ViewModel;
+        public GuestureVerifyPage(Action successedEvent,bool closeButtonVisible = false)
 		{
 			InitializeComponent ();
             NavigationPage.SetHasNavigationBar(this, false);
             NavigationPage.SetHasBackButton(this,false);
-            BindingContext = new GuestureVerifyViewModel(successedEvent);
-		}
+            ViewModel = App.Locator.GetViewModel<GuestureVerifyViewModel>();
+            ViewModel.VerifySuccess = successedEvent;
+            BindingContext = ViewModel;
+            ButtonClose.IsVisible = closeButtonVisible; 
+        }
 
         protected override void OnAppear()
         {
@@ -29,6 +32,11 @@ namespace MyPassword.Pages
 
         protected override void OnFirstAppear()
         {
+        }
+
+        private void ButtonClose_Clicked(object sender, EventArgs e)
+        {
+            NavigationService.PopModalAsync();
         }
     }
 }

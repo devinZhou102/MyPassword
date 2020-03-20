@@ -9,7 +9,7 @@ namespace MyPassword.Manager
 
         private const string KEY_SECURE_KEY = "secureKey";
 
-        private static Lazy<SecureKeyManager> instance = new Lazy<SecureKeyManager>(() => new SecureKeyManager());
+        private static readonly Lazy<SecureKeyManager> instance = new Lazy<SecureKeyManager>(() => new SecureKeyManager());
 
         public static SecureKeyManager Instance => instance.Value;
 
@@ -17,10 +17,14 @@ namespace MyPassword.Manager
 
         private SecureKeyManager()
         {
-            ReadAsync();
         }
 
-        private async void ReadAsync()
+        public async Task InitAsync()
+        {
+            await ReadAsync();
+        }
+
+        private async Task ReadAsync()
         {
             SecureKey = await SecureStorage.GetAsync(KEY_SECURE_KEY);
             if (SecureKey == null) SecureKey = "";

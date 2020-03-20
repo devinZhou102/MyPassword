@@ -1,15 +1,10 @@
-﻿using MyPassword.IServices;
+﻿using MyPassword.Dependencys;
 using SQLite.Net.Interop;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(MyPassword.iOS.ImpServices.ImpiOSGetSQLitePlatformService))]
+[assembly: Dependency(typeof(MyPassword.iOS.Dependencys.ImpiOSGetSQLitePlatformService))]
 
-namespace MyPassword.iOS.ImpServices
+namespace MyPassword.iOS.Dependencys
 {
     class ImpiOSGetSQLitePlatformService : IGetSQLitePlatformService
     {

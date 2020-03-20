@@ -22,7 +22,7 @@ namespace MyPassword.Pages
 			InitializeComponent ();
             viewModel = new PasswordListViewModel();
             BindingContext = viewModel;
-
+            SetTabBarVisible(true);
         }
 
         protected override void OnAppear()

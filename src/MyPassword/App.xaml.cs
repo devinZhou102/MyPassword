@@ -1,6 +1,8 @@
 using MyPassword.Helpers;
 using MyPassword.Manager;
 using MyPassword.Pages;
+using MyPassword.Services;
+using MyPassword.ViewModels;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -10,13 +12,27 @@ namespace MyPassword
 {
     public partial class App : Application
 	{
+        private IGuestureLockService GuestureLockService;
+
         public App ()
 		{
 			InitializeComponent();
+            Initialize();
             DataBaseHelper.Instance.ConnectDataBase("mypassword");
-            MainPage = new ContentPage();
+            MainPage = new InitalPage();
             MainNavi();
         }
+
+        private void Initialize()
+        {
+            GuestureLockService = Locator.GetService<IGuestureLockService>();
+        }
+        private static readonly ViewModelLocator _locator = new ViewModelLocator();
+        public static ViewModelLocator Locator
+        {
+            get { return _locator; }
+        }
+
 
         private async void MainNavi()
         {
@@ -28,8 +44,9 @@ namespace MyPassword
         private Task<bool> CheckSecureKeyAsync()
         {
             var tcs = new TaskCompletionSource<bool>();
-            Task.Factory.StartNew(() =>
+            Task.Factory.StartNew(async () =>
             {
+                await SecureKeyManager.Instance.InitAsync();
                 if (string.IsNullOrEmpty(SecureKeyManager.Instance.SecureKey))
                 {
                     Device.BeginInvokeOnMainThread(() =>
@@ -52,7 +69,7 @@ namespace MyPassword
             var tcs = new TaskCompletionSource<bool>();
             Task.Factory.StartNew(() =>
             {
-                if (string.IsNullOrEmpty(LockManager.Instance.GuestureLock))
+                if (string.IsNullOrEmpty(GuestureLockService.GuestureLock))
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
@@ -81,7 +98,16 @@ namespace MyPassword
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                MainPage = new MyNavigationPage(new MainTabbedPage());
+                switch(Device.RuntimePlatform)
+                {
+                    case Device.Android:
+                    case Device.iOS:
+                        MainPage = new AppMainShell();
+                        break;
+                    case Device.UWP:
+                        MainPage = new MyNavigationPage(new MainTabbedPage());
+                        break;
+                }
             });
         }
 

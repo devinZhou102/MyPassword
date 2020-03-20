@@ -1,12 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MyPassword.Helpers;
 using MyPassword.Manager;
-using MyPassword.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MyPassword.ViewModels
@@ -65,6 +60,10 @@ namespace MyPassword.ViewModels
             if(!string.IsNullOrEmpty(SecureKey) && !oldKey.Equals(SecureKey))
             {
                 SaveSecureKeyAsync();
+            }
+            else
+            {
+                //todo show key error
             }
         }
 

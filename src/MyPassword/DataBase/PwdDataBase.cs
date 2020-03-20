@@ -3,9 +3,7 @@ using SQLite.Net.Cipher.Data;
 using SQLite.Net.Cipher.Security;
 using SQLite.Net.Interop;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 
 namespace MyPassword.DataBase
 {

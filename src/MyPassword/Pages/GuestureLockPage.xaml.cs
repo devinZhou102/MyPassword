@@ -13,27 +13,27 @@ namespace MyPassword.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class GuestureLockPage : BaseContentPage
 	{
-        GusetureLockViewModel viewModel;
+        GuestureLockViewModel viewModel;
         public GuestureLockPage()
         {
             InitializeComponent();
             InitViewModel(()=> {
                 Navigation.PopAsync();
             });
+            Title = "重设手势密码";
         }
 
         public GuestureLockPage(Action ActionSetLockFinish)
         {
             InitializeComponent();
             InitViewModel(ActionSetLockFinish);
+            Title = "手势密码";
         }
 
-        private void InitViewModel(Action ActionSetLockFinish)
+        private void InitViewModel(Action actionSetLockFinish)
         {
-
-            NavigationPage.SetHasNavigationBar(this, false);
-            NavigationPage.SetHasBackButton(this, false);
-            viewModel = new GusetureLockViewModel(ActionSetLockFinish);
+            viewModel = App.Locator.GetViewModel<GuestureLockViewModel>();
+            viewModel.ActionSetLockFinish = actionSetLockFinish;
             BindingContext = viewModel;
         }
 

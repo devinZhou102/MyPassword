@@ -3,7 +3,7 @@ using Xamarin.Essentials;
 
 namespace MyPassword.ViewModels
 {
-    public class AboutViewModel:ViewModelBase
+    public class AboutViewModel:BaseViewModel
     {
         private string _AppVersion;
 
@@ -23,12 +23,16 @@ namespace MyPassword.ViewModels
                 RaisePropertyChanged(nameof(AppVersion));
             }
         }
-        
+
+        private string _AppName;
+
         public string AppName
         {
-            get
+            get => _AppName ?? (_AppName = "");
+            set
             {
-                return "MyPassword";
+                _AppName = value;
+                RaisePropertyChanged(nameof(AppName));
             }
         }
 
@@ -37,6 +41,7 @@ namespace MyPassword.ViewModels
         {
             var currentVersion = VersionTracking.CurrentVersion;
             AppVersion = currentVersion;
+            AppName = Xamarin.Essentials.AppInfo.Name;
             //var vt = CrossVersionTracking.Current;
             //AppVersion = vt.CurrentVersion;
         }

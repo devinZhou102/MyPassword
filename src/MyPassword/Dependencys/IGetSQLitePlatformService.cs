@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MyPassword.IServices
+namespace MyPassword.Dependencys
 {
     public interface IGetSQLitePlatformService
     {
