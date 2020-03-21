@@ -1,16 +1,18 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using MyPassword.Pages;
+using MyPassword.Models;
 using MyPassword.Services;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MyPassword.ViewModels
 {
-
-   
-    public class CategoryViewModel:BaseViewModel
+    public class CategorySelectViewModel:BaseViewModel
     {
+
 
         private ObservableCollection<CategoryItemViewModel> _CategoryItems;
 
@@ -24,10 +26,12 @@ namespace MyPassword.ViewModels
             }
         }
 
-
-        public CategoryViewModel(ICategoryService categoryService)
+        private Action<CategoryModel> actionSelected;
+        readonly ICategoryService categoryService;
+        public CategorySelectViewModel(ICategoryService categoryService)
         {
-            foreach(var c in categoryService.Categories)
+            this.categoryService = categoryService;
+            foreach (var c in categoryService.Categories)
             {
                 CategoryItems.Add(new CategoryItemViewModel
                 {
@@ -40,15 +44,16 @@ namespace MyPassword.ViewModels
             }
         }
 
-        private ICommand ItemClickCommand => new RelayCommand<CategoryItemViewModel>((c)=> {
-            alertService.DisplayAlert("密钥", ""+c.Name, "确定");
-        });
+        public override Task InitializeAsync<T>(T parameter)
+        {
+            actionSelected = parameter as Action<CategoryModel>;
+            return base.InitializeAsync(parameter);
+        }
 
-        public ICommand SearchCommand => new RelayCommand(() => {
-            alertService.DisplayAlert("密钥","功能开发中...","确定");
-        });
-        public ICommand AddCommand => new RelayCommand(async () => {
-            await NavigationService.PushAsync(new PasswordEditPage());
+
+        private ICommand ItemClickCommand => new RelayCommand<CategoryItemViewModel>(async (c) => {
+            actionSelected?.Invoke(categoryService.FindCategoryByKey(c.Key));
+            await NavigationService.PopAsync();
         });
     }
 }

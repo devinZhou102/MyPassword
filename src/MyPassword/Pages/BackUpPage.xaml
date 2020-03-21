@@ -7,15 +7,18 @@
     Title="数据备份"
     x:Class="MyPassword.Pages.BackUpPage">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Start" Margin="12">
-            <Button Text="导出数据" TextColor="White" Command="{Binding ExportDataCommand}" 
+        <Grid BackgroundColor="{DynamicResource MainBackgroundColor}">
+
+            <StackLayout VerticalOptions="Start" Margin="12">
+                <Button Text="导出数据" TextColor="White" Command="{Binding ExportDataCommand}" 
                     CornerRadius="5" BackgroundColor="#2196F3"
                     android:Button.UseDefaultShadow="True"
                     android:Button.UseDefaultPadding="True"/>
-            <Button Text="导入数据" TextColor="White" Command="{Binding InportDataCommand}" 
+                <Button Text="导入数据" TextColor="White" Command="{Binding InportDataCommand}" 
                     CornerRadius="5" BackgroundColor="#2196F3" 
                     Margin="0,12" android:Button.UseDefaultShadow="True"
                     android:Button.UseDefaultPadding="True"/>
-        </StackLayout>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </local:BaseContentPage>

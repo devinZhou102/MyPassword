@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyPassword.Themes.DarkTheme">
 
-
-    <!-- Color for shell -->
+    <!-- #region Color for shell -->
     <Color x:Key="ShellBackgroundColor">#2196F3</Color>
     <Color x:Key="ShellForegroundColor">White</Color>
     <Color x:Key="ShellTitleColor">White</Color>
@@ -15,4 +14,28 @@
     <Color x:Key="ShellTabBarUnselectedColor">#95FFFFFF</Color>
     <Color x:Key="ShellTabBarTitleColor">White</Color>
 
+    <!--#endregion Color for shell -->
+
+    <!-- #region  Main Color for app -->
+    <!--页面背景色-->
+    <Color x:Key="MainBackgroundColor">#4F4F4F</Color>
+    <!--通用按钮背景色-->
+    <Color x:Key="MainButtonBackgroundColor">#2196F3</Color>
+    <!--通用内容背景色 如：列表项-->
+    <Color x:Key="MainItemBackgroundColor">#5B5B5B</Color>
+    <!-- 分割线-->
+    <Color x:Key="DividerColor">#7B7B7B</Color>
+
+    <Color x:Key="MainCollectionViewItemColor">White</Color>
+    <Color x:Key="LightTextColor">White</Color>
+    <Color x:Key="DarkTextColor">Black</Color>
+    <Color x:Key="LightDarkTextColor">LightGray</Color>
+    <Color x:Key="MainPlaceHolderTextColor">LightGray</Color>
+
+    <!-- #endregion Main Color for app-->
+
+    <!--#region color for login -->
+
+
+    <!--#endregion-->
 </ResourceDictionary>

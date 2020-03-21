@@ -36,7 +36,7 @@ namespace MyPassword.ViewModels
             SimpleIoc.Default.Register<SecureKeyViewModel>();
             SimpleIoc.Default.Register<SettingViewModel>();
             SimpleIoc.Default.Register<PwdGenerateViewModel>();
-
+            SimpleIoc.Default.Register<CategorySelectViewModel>();
         }
 
         private void RegisterDependencys()

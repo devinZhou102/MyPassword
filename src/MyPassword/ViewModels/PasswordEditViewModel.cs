@@ -202,10 +202,9 @@ namespace MyPassword.ViewModels
 
         public ICommand ImageTapCommand { get; private set; }
 
-        public ICommand CategoryCommand => new RelayCommand(() => 
+        public ICommand CategoryCommand => new RelayCommand(async () => 
         {
-            //todo
-            alertService.DisplayAlert("category","in developing","confirm");
+            await NavigationService.PushAsync(new CategorySelectPage((c) => UpdateCategory(c)));
         });
 
         private async void SaveExcuteAsync()

@@ -18,9 +18,9 @@
             Order="Primary" Priority="0" Command="{Binding AddCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-       
-        <Grid>
-            <CollectionView ItemsSource="{Binding CategoryItems}">
+
+        <Grid BackgroundColor="{DynamicResource MainItemBackgroundColor}">
+            <CollectionView ItemsSource="{Binding CategoryItems}" >
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Span="1" Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
@@ -54,7 +54,7 @@
                             </Grid>
                             <Label Text="{Binding Name}" Grid.Row="0" VerticalOptions="Center" Grid.Column="1"/>
                             <Label Text="{Binding Count}" Grid.Row="0" Grid.Column="2" VerticalOptions="Center" Margin="12,0"/>
-                            <Grid Grid.Row="1" Grid.ColumnSpan="3" BackgroundColor="WhiteSmoke"/>
+                            <Grid Grid.Row="1" Grid.ColumnSpan="3" BackgroundColor="{DynamicResource DividerColor}"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

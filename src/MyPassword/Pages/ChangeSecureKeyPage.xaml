@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<localPage:BaseContentPage 
+<localPage:BaseContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:localPage="clr-namespace:MyPassword.Pages"
     xmlns:converter="clr-namespace:MyPassword.Converters"
+    xmlns:localPage="clr-namespace:MyPassword.Pages"
     Title="修改密钥"
     x:Class="MyPassword.Pages.ChangeSecureKeyPage">
     <ContentPage.Resources>
         <converter:TipVisibleConverter x:Key="TipConverter"/>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
+        <Grid BackgroundColor="{DynamicResource MainBackgroundColor}">
             <StackLayout Orientation="Vertical" Margin="12">
                 <Label Text="原密钥：" IsVisible="{Binding OldSecureKey,Converter={StaticResource TipConverter}}"/>
                 <Entry Placeholder="您的密钥" FontSize="14" Text="{Binding OldSecureKey}" IsPassword="{Binding HideSecureKey}" PlaceholderColor="DarkGray"  Keyboard="Numeric" MaxLength="8"/>
@@ -22,6 +22,6 @@
                 <Label Text="设置您的加密密钥（8位），它将用于加密的数据，这很重要，请妥善保存!" />
                 <Label Text="提示：修改密钥前请先备份数据，以免数据发生损坏后，无法还原。" TextColor="Orange" />
             </StackLayout>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </localPage:BaseContentPage>

@@ -28,7 +28,7 @@ namespace MyPassword
         {
             SecureKeyService = Locator.GetService<ISecureKeyService>();
             GuestureLockService = Locator.GetService<IGuestureLockService>();
-            ThemeHelper.LightTheme();
+            ThemeHelper.DarkTheme();
         }
         private static readonly ViewModelLocator _locator = new ViewModelLocator();
         public static ViewModelLocator Locator

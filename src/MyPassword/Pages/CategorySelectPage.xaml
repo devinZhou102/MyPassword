@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                       xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                       xmlns:pages="clr-namespace:MyPassword.Pages"
+                       mc:Ignorable="d"
+                       x:Class="MyPassword.Pages.CategorySelectPage">
+    <ContentPage.Content>
+
+        <CollectionView ItemsSource="{Binding CategoryItems}" BackgroundColor="{DynamicResource MainItemBackgroundColor}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Span="1" Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid  RowSpacing="0" ColumnSpacing="0">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ItemClickCommand}" CommandParameter="{Binding .}" />
+                        </Grid.GestureRecognizers>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="1"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" Grid.Row="0" Margin="12,0">
+                            <ffimageloading:CachedImage x:Name="CachedImageView"
+                                    Aspect="AspectFit" CacheType="All" WidthRequest="60" HeightRequest="60"
+                                    Source="{Binding Icon}"
+                                    HorizontalOptions="Fill"  VerticalOptions="CenterAndExpand"
+                                    DownsampleToViewSize="true">
+                                <ffimageloading:CachedImage.ErrorPlaceholder>
+                                    <OnPlatform x:TypeArguments="ImageSource">
+                                        <On Platform="Android,iOS">IconAppFailedImage.png</On>
+                                    </OnPlatform>
+                                </ffimageloading:CachedImage.ErrorPlaceholder>
+                            </ffimageloading:CachedImage>
+                        </Grid>
+                        <Label Text="{Binding Name}" Grid.Row="0" VerticalOptions="Center" Grid.Column="1"/>
+                        <Grid Grid.Row="1" Grid.ColumnSpan="3" BackgroundColor="{DynamicResource DividerColor}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ContentPage.Content>
+</pages:BaseContentPage>

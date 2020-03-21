@@ -6,7 +6,7 @@
     Title="设置"
     x:Class="MyPassword.Pages.SettingPage">
     <ContentPage.Content>
-        <Grid BackgroundColor="WhiteSmoke">
+        <Grid BackgroundColor="{DynamicResource MainBackgroundColor}">
             <ListView ItemsSource="{Binding SettingItemList}" 
                   ItemTapped="ListView_ItemTapped" 
                   SeparatorVisibility="None"
@@ -17,7 +17,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid BackgroundColor="White" Margin="3">
+                            <Grid BackgroundColor="{DynamicResource MainItemBackgroundColor}" Margin="3">
                                 <Grid VerticalOptions="Center" Margin="12,3">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto"/>
