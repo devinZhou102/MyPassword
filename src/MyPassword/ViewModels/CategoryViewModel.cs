@@ -1,10 +1,9 @@
-﻿using MyPassword.Localization;
-using MyPassword.Models;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using GalaSoft.MvvmLight.Command;
+using MyPassword.Pages;
+using MyPassword.Services;
 using System.Collections.ObjectModel;
-using System.Text;
+using System.Diagnostics;
+using System.Windows.Input;
 
 namespace MyPassword.ViewModels
 {
@@ -25,6 +24,8 @@ namespace MyPassword.ViewModels
                 RaisePropertyChanged(nameof(Count));
             }
         }
+
+        public ICommand ItemClickCommand { get; set; }
     }
 
     public class CategoryViewModel:BaseViewModel
@@ -43,20 +44,30 @@ namespace MyPassword.ViewModels
         }
 
 
-        public CategoryViewModel()
+        public CategoryViewModel(ICategoryService categoryService)
         {
-            var category = JsonConvert.DeserializeObject<List<CategoryModel>>(AppResource.Category);
-            foreach(var c in category)
+            foreach(var c in categoryService.Categories)
             {
                 CategoryItems.Add(new CategoryItemModel
                 {
                     Name = c.Name,
                     Icon = c.Icon,
                     Key = c.Key,
-                    Count = 0
+                    Count = 0,
+                    ItemClickCommand = ItemClickCommand
                 });
             }
         }
 
+        private ICommand ItemClickCommand => new RelayCommand<CategoryItemModel>((c)=> {
+            alertService.DisplayAlert("密钥", ""+c.Name, "确定");
+        });
+
+        public ICommand SearchCommand => new RelayCommand(() => {
+            alertService.DisplayAlert("密钥","功能开发中...","确定");
+        });
+        public ICommand AddCommand => new RelayCommand(() => {
+            NavigationService.PushAsync(new PasswordEditPage());
+        });
     }
 }

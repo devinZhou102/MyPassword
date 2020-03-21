@@ -127,7 +127,7 @@ namespace MyPassword.ViewModels
 
         public PasswordDetailViewModel()
         {
-            EditCommand = new RelayCommand(() => EditExcute());
+            EditCommand = new RelayCommand(() => EditExcuteAsync());
             DeleteCommand = new RelayCommand(() => DeleteExcuteAsync());
             MessengerInstance.Register<DataItemModel>(this,TokenConst.TokenUpdate, (value) => 
             {
@@ -164,9 +164,9 @@ namespace MyPassword.ViewModels
 
         public ICommand DeleteCommand { get; private set; }
 
-        private void EditExcute()
+        private async Task EditExcuteAsync()
         {
-           NavigationService.Navigation.PushAsync(new PasswordEditPage(DataItem));
+            await NavigationService.PushAsync(new PasswordEditPage(DataItem));
         }
 
         private async void DeleteExcuteAsync()
@@ -178,7 +178,7 @@ namespace MyPassword.ViewModels
                 bool f = await DeleteItemAsync();
                 dialog.Hide();
                 MessengerInstance.Send(DataItem, TokenConst.TokenDelete);
-                NavigationService.PopAsync();
+                await NavigationService.PopAsync();
             }
         }
 

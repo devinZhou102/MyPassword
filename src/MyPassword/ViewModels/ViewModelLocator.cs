@@ -35,6 +35,7 @@ namespace MyPassword.ViewModels
             SimpleIoc.Default.Register<PasswordListViewModel>();
             SimpleIoc.Default.Register<SecureKeyViewModel>();
             SimpleIoc.Default.Register<SettingViewModel>();
+            SimpleIoc.Default.Register<PwdGenerateViewModel>();
 
         }
 
@@ -47,7 +48,9 @@ namespace MyPassword.ViewModels
         {
             SimpleIoc.Default.Register<IAlertService, AlertService>();
             SimpleIoc.Default.Register<IGuestureLockService, GuestureLockService>();
-            SimpleIoc.Default.Register<ISecureKeyService, SecureKeyService>(true);
+            SimpleIoc.Default.Register<ISecureKeyService, SecureKeyService>();
+            SimpleIoc.Default.Register<ICategoryService, CategoryService>();
+            SimpleIoc.Default.Register<IPwdGenerateService, PwdGenerateService>();
         }
 
         public T GetService<T>()

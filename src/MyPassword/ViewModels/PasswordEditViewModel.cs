@@ -1,5 +1,4 @@
 ﻿using Acr.UserDialogs;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MyPassword.Const;
@@ -7,7 +6,6 @@ using MyPassword.Helpers;
 using MyPassword.Models;
 using MyPassword.Pages;
 using MyPassword.Services;
-using MyPassword.Utils;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -149,7 +147,7 @@ namespace MyPassword.ViewModels
         public PasswordEditViewModel(ISecureKeyService secureKeyService)
         {
             this.secureKeyService = secureKeyService;
-            GenerateCommand = new RelayCommand(() => GenerateExcute());
+            GenerateCommand = new RelayCommand(() => GenerateExcuteAsync());
             SaveCommand = new RelayCommand(() => SaveExcuteAsync());
             ImageTapCommand = new RelayCommand(async () => await ImageTapExcuteAsync());
           
@@ -255,13 +253,12 @@ namespace MyPassword.ViewModels
             return tcs.Task;
         }
 
-        private void GenerateExcute()
+        private async Task GenerateExcuteAsync()
         {
-            var param = ConditionViewModel.BuildParams();
-            if(param.IsOk())
+            await NavigationService.PushAsync(new PwdGeneratePage((pwd) => 
             {
-                Password = PwdGenerator.GetInstance().Generate(param);
-            }
+                Password = pwd;
+            }));
         }
 
         private async Task ImageTapExcuteAsync()

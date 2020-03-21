@@ -5,10 +5,20 @@
              xmlns:local="clr-namespace:MyPassword.Pages"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:res="clr-namespace:MyPassword.Localization"
              Title="密钥"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="MyPassword.Pages.CategoryListPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Text="{x:Static res:AppResource.Search}" IconImageSource="IconSearch.png"
+            Order="Primary" Priority="0" Command="{Binding SearchCommand}"/>
+        <ToolbarItem 
+            Text="{x:Static res:AppResource.Add}" IconImageSource="IconBarAdd.png"
+            Order="Primary" Priority="0" Command="{Binding AddCommand}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
+       
         <Grid>
             <CollectionView ItemsSource="{Binding CategoryItems}">
                 <CollectionView.ItemsLayout>
@@ -17,6 +27,9 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid  RowSpacing="0" ColumnSpacing="0">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ItemClickCommand}" CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="1"/>

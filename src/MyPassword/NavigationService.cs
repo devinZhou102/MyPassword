@@ -11,26 +11,26 @@ namespace MyPassword
     public class NavigationService
     {
 
-        public static INavigation Navigation { get { return App.Current.MainPage.Navigation; } }
+        static INavigation Navigation { get { return App.Current.MainPage.Navigation; } }
 
-        public static void PushAsync(Page page)
+        public static async Task PushAsync(Page page)
         {
-            Navigation.PushAsync(page);
+           await Navigation.PushAsync(page);
         }
 
-        public static void PopAsync()
+        public static async Task PopAsync()
         {
-            Navigation?.PopAsync();
+            await Navigation?.PopAsync();
         }
 
-        public static void PushModalAsync(Page page)
+        public static async Task PushModalAsync(Page page)
         {
-            Navigation.PushModalAsync(page);
+            await Navigation.PushModalAsync(page);
         }
 
-        public static void PopModalAsync()
+        public static async Task PopModalAsync()
         {
-            Navigation?.PopModalAsync();
+            await Navigation?.PopModalAsync();
         }
 
 

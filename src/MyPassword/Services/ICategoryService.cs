@@ -5,8 +5,11 @@ using System.Text;
 
 namespace MyPassword.Services
 {
-    public interface IPwdGenerateService
+    public interface ICategoryService
     {
-        string Generate(PwdGeneratorParams param);
+        List<CategoryModel> Categories { get; }
+
+
+
     }
 }

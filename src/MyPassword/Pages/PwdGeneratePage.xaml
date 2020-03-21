@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:MyPassword.Pages"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:res="clr-namespace:MyPassword.Localization"
+             Title="{x:Static res:AppResource.TitleGenerate}"
+             x:Class="MyPassword.Pages.PwdGeneratePage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Text="{x:Static res:AppResource.Ensure}" 
+            Order="Primary" Priority="0" Command="{Binding EnsureCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid Margin="12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Entry Placeholder="{x:Static res:AppResource.PwdPlaceHolder}" Text="{Binding Password}" Grid.Row="0" Margin="0,12"/>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="{x:Static res:AppResource.PwdNumbers}" VerticalOptions="Center" Grid.Row="0" Grid.Column="0"/>
+                <Label Text="" Grid.Column="0" Grid.Row="1"/>
+                <Switch IsToggled="{Binding CheckedNumber}" Grid.Column="1" Grid.RowSpan="2" VerticalOptions="Center"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="{x:Static res:AppResource.PwdLowerCase}" VerticalOptions="Center" Grid.Row="0" Grid.Column="0"/>
+                <Label Text="" Grid.Column="0" Grid.Row="1"/>
+                <Switch IsToggled="{Binding CheckedLowerCase}" Grid.Column="1" Grid.RowSpan="2" VerticalOptions="Center"/>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="{x:Static res:AppResource.PwdUppercase}" VerticalOptions="Center" Grid.Row="0" Grid.Column="0"/>
+                <Label Text="" Grid.Column="0" Grid.Row="1"/>
+                <Switch IsToggled="{Binding CheckedUpperCase}" Grid.Column="1" Grid.RowSpan="2" VerticalOptions="Center"/>
+            </Grid>
+            <Grid Grid.Row="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="{x:Static res:AppResource.PwdSpecialCharacter}" VerticalOptions="Center" Grid.Row="0" Grid.Column="0"/>
+                <Label Text="" Grid.Column="0" Grid.Row="1"/>
+                <Switch IsToggled="{Binding CheckedCharacter}" Grid.Column="1" Grid.RowSpan="2" VerticalOptions="Center"/>
+            </Grid>
+            
+            
+            <StackLayout Grid.Row="5" Orientation="Horizontal">
+                <Label Text="{x:Static res:AppResource.PwdLength}" VerticalOptions="Center"/>
+                <Label Text="{Binding Length}" VerticalOptions="Center"/>
+            </StackLayout>
+            <Slider Maximum="20" Minimum="6" Value="{Binding Length,Mode=TwoWay}" 
+                    MaximumTrackColor="#1976D2" 
+                    MinimumTrackColor="Red" 
+                    Grid.Row="6"/>
+            <Button Text="{x:Static res:AppResource.ButtonGenerate}" VerticalOptions="Center" 
+                    BackgroundColor="LawnGreen" HeightRequest="36" Grid.Row="7"
+                    Command="{Binding GenerateCommand}"/>
+        </Grid>
+    </ContentPage.Content>
+</pages:BaseContentPage>

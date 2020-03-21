@@ -120,10 +120,43 @@
   <data name="About" xml:space="preserve">
     <value>关于</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>新建</value>
+  </data>
   <data name="AppVersion" xml:space="preserve">
     <value>应用版本v{0}</value>
   </data>
+  <data name="ButtonGenerate" xml:space="preserve">
+    <value>生成密码</value>
+  </data>
   <data name="Category" xml:space="preserve">
     <value>[{"name":"游戏","icon":"IconGame","key":"game"},{"name":"银行","icon":"IconBank","key":"bank"},{"name":"社交","icon":"IconChat","key":"social"},{"name":"邮箱","icon":"IconEmail","key":"email"},{"name":"购物","icon":"IconShop","key":"shop"},{"name":"视频","icon":"IconVideo","key":"video"},{"name":"音乐","icon":"IconMusic","key":"music"},{"name":"网站","icon":"IconWeb","key":"web"},{"name":"其他","icon":"IconAccount","key":"others"}]</value>
+  </data>
+  <data name="Ensure" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="PwdLength" xml:space="preserve">
+    <value>密码长度</value>
+  </data>
+  <data name="PwdLowerCase" xml:space="preserve">
+    <value>包含小写字母</value>
+  </data>
+  <data name="PwdNumbers" xml:space="preserve">
+    <value>包含数字</value>
+  </data>
+  <data name="PwdPlaceHolder" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="PwdSpecialCharacter" xml:space="preserve">
+    <value>包含特殊字符</value>
+  </data>
+  <data name="PwdUppercase" xml:space="preserve">
+    <value>包含大写字母</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>搜索</value>
+  </data>
+  <data name="TitleGenerate" xml:space="preserve">
+    <value>生成</value>
   </data>
 </root>

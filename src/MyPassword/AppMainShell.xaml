@@ -7,6 +7,7 @@
        mc:Ignorable="d"
        x:Class="MyPassword.AppMainShell">
 
+    
     <TabBar>
         <Tab Title="密钥" Icon="IconKey.png">
             <ShellContent ContentTemplate="{DataTemplate pages:CategoryListPage}" />
