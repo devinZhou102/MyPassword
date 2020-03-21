@@ -14,6 +14,9 @@ namespace MyPassword.Models
         public int Id { get; set; }
 
         public string Icon { get; set; }
+
+        public string CategoryKey { get; set; }
+
         [Secure]
         public string Name { get; set; }
         [Secure]

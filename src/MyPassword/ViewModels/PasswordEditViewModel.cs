@@ -108,20 +108,6 @@ namespace MyPassword.ViewModels
             }
         }
         
-        private bool _HideSecureKey;
-        public bool HideSecureKey
-        {
-            get
-            {
-                return _HideSecureKey;
-            }
-            set
-            {
-                _HideSecureKey = value;
-                RaisePropertyChanged(nameof(HideSecureKey));
-            }
-        }
-
         private string _Icon;
         public string Icon
         {
@@ -140,14 +126,39 @@ namespace MyPassword.ViewModels
             }
         }
 
+        private string _CategoryIcon;
+        public string CategoryIcon
+        {
+            get => _CategoryIcon ?? (_CategoryIcon = "");
+            set
+            {
+                _CategoryIcon = value;
+                RaisePropertyChanged(nameof(CategoryIcon));
+            }
+        }
+
+        private string _CategoryName;
+        public string CategoryName
+        {
+            get => _CategoryName ?? (_CategoryName = "");
+            set
+            {
+                _CategoryName = value;
+                RaisePropertyChanged(nameof(CategoryName));
+            }
+        }
+
+        private string CategoryKey;
 
         DataItemModel DataItem;
-        private ISecureKeyService secureKeyService;
+        private readonly ISecureKeyService secureKeyService;
+        private readonly ICategoryService categoryService;
 
-        public PasswordEditViewModel(ISecureKeyService secureKeyService)
+        public PasswordEditViewModel(ISecureKeyService secureKeyService,ICategoryService categoryService)
         {
             this.secureKeyService = secureKeyService;
-            GenerateCommand = new RelayCommand(() => GenerateExcuteAsync());
+            this.categoryService = categoryService;
+            GenerateCommand = new RelayCommand(async () => await GenerateExcuteAsync());
             SaveCommand = new RelayCommand(() => SaveExcuteAsync());
             ImageTapCommand = new RelayCommand(async () => await ImageTapExcuteAsync());
           
@@ -163,9 +174,26 @@ namespace MyPassword.ViewModels
                 Title = DataItem.Name;
                 Password = DataItem.Password;
                 Description = DataItem.Description;
+                CategoryKey = DataItem.CategoryKey;
             }
-            HideSecureKey = true;
+            if(string.IsNullOrEmpty(CategoryKey))
+            {
+                var c = categoryService.GetDefaultCategory();
+                UpdateCategory(c);
+            }
+            else
+            {
+                var c = categoryService.FindCategoryByKey(CategoryKey);
+                UpdateCategory(c);
+            }
             return base.InitializeAsync(parameter);
+        }
+
+        private void UpdateCategory(CategoryModel category)
+        {
+            CategoryName = category.Name;
+            CategoryIcon = category.Icon;
+            CategoryKey = category.Key;
         }
 
         public ICommand SaveCommand { get; private set; }
@@ -173,6 +201,12 @@ namespace MyPassword.ViewModels
         public ICommand GenerateCommand { get; private set; }
 
         public ICommand ImageTapCommand { get; private set; }
+
+        public ICommand CategoryCommand => new RelayCommand(() => 
+        {
+            //todo
+            alertService.DisplayAlert("category","in developing","confirm");
+        });
 
         private async void SaveExcuteAsync()
         {
@@ -188,7 +222,7 @@ namespace MyPassword.ViewModels
             {
                 UserDialogs.Instance.Toast("保存数据成功");
                 Messenger.Default.Send(GetDataItemModel(success.Id),TokenConst.TokenUpdate);
-                NavigationService.PopAsync();
+                await NavigationService.PopAsync();
             }
             else
             {
@@ -218,7 +252,9 @@ namespace MyPassword.ViewModels
             else if (string.IsNullOrEmpty(Password.Trim())) isValid = false;
             else if (string.IsNullOrEmpty(Title.Trim())) isValid = false;
             else if (string.IsNullOrEmpty(Description.Trim())) isValid = false;
-            if(!isValid)
+            else if (string.IsNullOrEmpty(CategoryKey.Trim())) isValid = false;
+            //todo 待优化
+            if (!isValid)
             {
                 App.Current.MainPage.DisplayAlert("保存","请输入有效数据...","确定");
             }
@@ -236,7 +272,8 @@ namespace MyPassword.ViewModels
                     Account = Account,
                     Password = Password,
                     Name = Title,
-                    Description = Description
+                    Description = Description,
+                    CategoryKey = CategoryKey
                 };
                 int result = 0;
                 if (DataItem != null)

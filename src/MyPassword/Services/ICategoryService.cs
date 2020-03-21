@@ -9,7 +9,8 @@ namespace MyPassword.Services
     {
         List<CategoryModel> Categories { get; }
 
+        CategoryModel FindCategoryByKey(string key);
 
-
+        CategoryModel GetDefaultCategory();
     }
 }

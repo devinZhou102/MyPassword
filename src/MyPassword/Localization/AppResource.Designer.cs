@@ -106,11 +106,29 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 点击输入.
+        /// </summary>
+        internal static string CommonPlaceHolder {
+            get {
+                return ResourceManager.GetString("CommonPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 确定.
         /// </summary>
         internal static string Ensure {
             get {
                 return ResourceManager.GetString("Ensure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 账号.
+        /// </summary>
+        internal static string PwdAccount {
+            get {
+                return ResourceManager.GetString("PwdAccount", resourceCulture);
             }
         }
         
@@ -144,9 +162,27 @@ namespace MyPassword.Localization {
         /// <summary>
         ///   Looks up a localized string similar to 密码.
         /// </summary>
+        internal static string PwdPassword {
+            get {
+                return ResourceManager.GetString("PwdPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 密码.
+        /// </summary>
         internal static string PwdPlaceHolder {
             get {
                 return ResourceManager.GetString("PwdPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 备注.
+        /// </summary>
+        internal static string PwdRemark {
+            get {
+                return ResourceManager.GetString("PwdRemark", resourceCulture);
             }
         }
         
@@ -156,6 +192,15 @@ namespace MyPassword.Localization {
         internal static string PwdSpecialCharacter {
             get {
                 return ResourceManager.GetString("PwdSpecialCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 标题.
+        /// </summary>
+        internal static string PwdTitle {
+            get {
+                return ResourceManager.GetString("PwdTitle", resourceCulture);
             }
         }
         

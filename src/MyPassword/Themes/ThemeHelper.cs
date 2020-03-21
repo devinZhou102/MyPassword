@@ -9,7 +9,7 @@ namespace MyPassword.Themes
     {
         public static string CurrentTheme;
 
-        public static void ChangeTheme(string theme)
+        private static void ChangeTheme(string theme)
         {
             // don't change to the same theme
             if (theme == CurrentTheme) return;
@@ -41,6 +41,16 @@ namespace MyPassword.Themes
             CurrentTheme = theme;
             MessagingCenter.Send<ThemeMessage>(new ThemeMessage(), ThemeMessage.ThemeChanged);
 
+        }
+
+        public static void LightTheme()
+        {
+            ChangeTheme("light");
+        }
+
+        public static void DarkTheme()
+        {
+            ChangeTheme("dark");
         }
 
         private static void ManuallyCopyThemes(ResourceDictionary fromResource, ResourceDictionary toResource)

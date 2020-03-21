@@ -17,11 +17,16 @@
     <!--#endregion Color for shell -->
 
     <!-- #region  Main Color for app -->
-
+    <!--页面背景色-->
     <Color x:Key="MainBackgroundColor">WhiteSmoke</Color>
-    <Color x:Key="MainButtonBackgroudColor">#2196F3</Color>
-    <Color x:Key="MainCollectionViewItemColor">White</Color>
+    <!--通用按钮背景色-->
+    <Color x:Key="MainButtonBackgroundColor">#2196F3</Color>
+    <!--通用内容背景色 如：列表项-->
+    <Color x:Key="MainItemBackgroundColor">white</Color>
+    <!-- 分割线-->
     <Color x:Key="DividerColor">WhiteSmoke</Color>
+    
+    <Color x:Key="MainCollectionViewItemColor">White</Color>
     <Color x:Key="LightTextColor">White</Color>
     <Color x:Key="DarkTextColor">Black</Color>
     <Color x:Key="LightDarkTextColor">LightGray</Color>
@@ -30,11 +35,7 @@
     <!-- #endregion Main Color for app-->
 
     <!--#region color for login -->
-
-    <Color x:Key="SegmentedBackgroundColor">White</Color>
-    <Color x:Key="SegmentedTintColor">#007AFF</Color>
-    <Color x:Key="SegmentedSelectedColor">White</Color>
-    <Color x:Key="SegmentedUnselectedColor">#95FFFFFF</Color>
+ 
 
     <!--#endregion-->
 </ResourceDictionary>

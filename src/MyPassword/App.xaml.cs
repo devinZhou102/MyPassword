@@ -1,6 +1,7 @@
 using MyPassword.Helpers;
 using MyPassword.Pages;
 using MyPassword.Services;
+using MyPassword.Themes;
 using MyPassword.ViewModels;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -27,6 +28,7 @@ namespace MyPassword
         {
             SecureKeyService = Locator.GetService<ISecureKeyService>();
             GuestureLockService = Locator.GetService<IGuestureLockService>();
+            ThemeHelper.LightTheme();
         }
         private static readonly ViewModelLocator _locator = new ViewModelLocator();
         public static ViewModelLocator Locator

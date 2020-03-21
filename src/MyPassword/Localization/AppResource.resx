@@ -132,8 +132,14 @@
   <data name="Category" xml:space="preserve">
     <value>[{"name":"游戏","icon":"IconGame","key":"game"},{"name":"银行","icon":"IconBank","key":"bank"},{"name":"社交","icon":"IconChat","key":"social"},{"name":"邮箱","icon":"IconEmail","key":"email"},{"name":"购物","icon":"IconShop","key":"shop"},{"name":"视频","icon":"IconVideo","key":"video"},{"name":"音乐","icon":"IconMusic","key":"music"},{"name":"网站","icon":"IconWeb","key":"web"},{"name":"其他","icon":"IconAccount","key":"others"}]</value>
   </data>
+  <data name="CommonPlaceHolder" xml:space="preserve">
+    <value>点击输入</value>
+  </data>
   <data name="Ensure" xml:space="preserve">
     <value>确定</value>
+  </data>
+  <data name="PwdAccount" xml:space="preserve">
+    <value>账号</value>
   </data>
   <data name="PwdLength" xml:space="preserve">
     <value>密码长度</value>
@@ -144,11 +150,20 @@
   <data name="PwdNumbers" xml:space="preserve">
     <value>包含数字</value>
   </data>
+  <data name="PwdPassword" xml:space="preserve">
+    <value>密码</value>
+  </data>
   <data name="PwdPlaceHolder" xml:space="preserve">
     <value>密码</value>
   </data>
+  <data name="PwdRemark" xml:space="preserve">
+    <value>备注</value>
+  </data>
   <data name="PwdSpecialCharacter" xml:space="preserve">
     <value>包含特殊字符</value>
+  </data>
+  <data name="PwdTitle" xml:space="preserve">
+    <value>标题</value>
   </data>
   <data name="PwdUppercase" xml:space="preserve">
     <value>包含大写字母</value>
