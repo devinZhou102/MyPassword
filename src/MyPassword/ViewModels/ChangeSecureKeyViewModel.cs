@@ -90,21 +90,6 @@ namespace MyPassword.ViewModels
             }
         }
 
-        private bool _HideSecureKey;
-
-        public bool HideSecureKey
-        {
-            get
-            {
-                return _HideSecureKey;
-            }
-            set
-            {
-                _HideSecureKey = value;
-                RaisePropertyChanged(nameof(HideSecureKey));
-            }
-        }
-
 
         private List<DataItemModel> DataList;
 
@@ -112,7 +97,6 @@ namespace MyPassword.ViewModels
 
         public ChangeSecureKeyViewModel(ISecureKeyService secureKeyService)
         {
-            HideSecureKey = true;
             this.secureKeyService = secureKeyService;
             SaveCommand = new RelayCommand(()=>SaveExcuteAsync());
             CurrentKey = secureKeyService.SecureKey;

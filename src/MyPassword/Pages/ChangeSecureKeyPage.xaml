@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converter="clr-namespace:MyPassword.Converters"
     xmlns:localPage="clr-namespace:MyPassword.Pages"
+    xmlns:res="clr-namespace:MyPassword.Localization"
+    xmlns:effects="clr-namespace:MyPassword.Effects"
     Title="修改密钥"
     x:Class="MyPassword.Pages.ChangeSecureKeyPage">
     <ContentPage.Resources>
@@ -11,16 +13,56 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid BackgroundColor="{DynamicResource MainBackgroundColor}">
-            <StackLayout Orientation="Vertical" Margin="12">
-                <Label Text="原密钥：" IsVisible="{Binding OldSecureKey,Converter={StaticResource TipConverter}}"/>
-                <Entry Placeholder="您的密钥" FontSize="14" Text="{Binding OldSecureKey}" IsPassword="{Binding HideSecureKey}" PlaceholderColor="DarkGray"  Keyboard="Numeric" MaxLength="8"/>
-                <Label Text="新密钥：" IsVisible="{Binding NewSecureKey,Converter={StaticResource TipConverter}}"/>
-                <Entry Placeholder="新密钥"  FontSize="14" Text="{Binding NewSecureKey}" IsPassword="{Binding HideSecureKey}" PlaceholderColor="DarkGray" Keyboard="Numeric" MaxLength="8"/>
-                <Label Text="再次输入密钥：" IsVisible="{Binding ConfirmSecureKey,Converter={StaticResource TipConverter}}"/>
-                <Entry Placeholder="再次输入密钥" FontSize="14" Text="{Binding ConfirmSecureKey}" IsPassword="{Binding HideSecureKey}" PlaceholderColor="DarkGray" Keyboard="Numeric" MaxLength="8"/>
-                <Label Text="{Binding ErrorMsg}" TextColor="Red"/>
-                <Label Text="设置您的加密密钥（8位），它将用于加密的数据，这很重要，请妥善保存!" />
-                <Label Text="提示：修改密钥前请先备份数据，以免数据发生损坏后，无法还原。" TextColor="Orange" />
+            <StackLayout Orientation="Vertical" Spacing="0">
+
+                <Grid HorizontalOptions="Fill" Padding="12" BackgroundColor="{DynamicResource MainItemBackgroundColor}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="{x:Static res:AppResource.OldSecureKey}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start"/>
+                    <Entry Placeholder="{x:Static res:AppResource.CommonPlaceHolder}" Margin="12,0" Grid.Column="1" Text="{Binding OldSecureKey}" 
+                       VerticalOptions="Center" HorizontalOptions="Fill" HorizontalTextAlignment="Start" IsEnabled="True" MaxLength="8" 
+                        IsPassword="True" FontSize="14">
+                        <Entry.Effects>
+                            <effects:EntryNoneBorderEffect/>
+                        </Entry.Effects>
+                    </Entry>
+                </Grid>
+                <Grid HeightRequest="1" BackgroundColor="{DynamicResource DividerColor}"/>
+                <Grid HorizontalOptions="Fill" Padding="12" BackgroundColor="{DynamicResource MainItemBackgroundColor}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="{x:Static res:AppResource.NewSecureKey}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start"/>
+                    <Entry Placeholder="{x:Static res:AppResource.CommonPlaceHolder}" Margin="12,0" Grid.Column="1" Text="{Binding NewSecureKey}" 
+                       VerticalOptions="Center" HorizontalOptions="Fill" HorizontalTextAlignment="Start" IsEnabled="True" MaxLength="8" 
+                           IsPassword="True" FontSize="14">
+                        <Entry.Effects>
+                            <effects:EntryNoneBorderEffect/>
+                        </Entry.Effects>
+                    </Entry>
+                </Grid>
+                <Grid HeightRequest="1" BackgroundColor="{DynamicResource DividerColor}"/>
+                <Grid HorizontalOptions="Fill" Padding="12" BackgroundColor="{DynamicResource MainItemBackgroundColor}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="{x:Static res:AppResource.ConfirmSecureKey}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start"/>
+                    <Entry Placeholder="{x:Static res:AppResource.CommonPlaceHolder}" Margin="12,0" Grid.Column="1" Text="{Binding ConfirmSecureKey}" 
+                       VerticalOptions="Center" HorizontalOptions="Fill" HorizontalTextAlignment="Start" IsPassword="True"
+                           IsEnabled="True" MaxLength="8" FontSize="14">
+                        <Entry.Effects>
+                            <effects:EntryNoneBorderEffect/>
+                        </Entry.Effects>
+                    </Entry>
+                </Grid>
+                
+                <Label Text="{Binding ErrorMsg}" TextColor="Red" Margin="12,6,12,0"/>
+                <Label Text="{x:Static res:AppResource.SecureKeyTips}" Margin="12,6"/>
+                <Label Text="{x:Static res:AppResource.SecureKeyWarning}" TextColor="Orange"  Margin="12,0"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

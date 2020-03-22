@@ -46,6 +46,7 @@ namespace MyPassword.ViewModels
 
         private void RegisterServices()
         {
+            SimpleIoc.Default.Register<IDatabaseService, DatabaseService>();
             SimpleIoc.Default.Register<IAlertService, AlertService>();
             SimpleIoc.Default.Register<IGuestureLockService, GuestureLockService>();
             SimpleIoc.Default.Register<ISecureKeyService, SecureKeyService>();

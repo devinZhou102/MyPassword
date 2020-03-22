@@ -13,19 +13,23 @@ namespace MyPassword.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CategoryListPage : BaseContentPage
     {
+        CategoryViewModel viewModel;
         public CategoryListPage()
         {
             InitializeComponent();
-            BindingContext = App.Locator.GetViewModel<CategoryViewModel,string>("");
+            viewModel = App.Locator.GetViewModel<CategoryViewModel,string>("");
+            BindingContext = viewModel;
             SetTabBarVisible(true);
         }
 
         protected override void OnAppear()
         {
+            viewModel.UpdateCategory();
         }
 
         protected override void OnFirstAppear()
         {
+            viewModel.UpdateCategory();
         }
     }
 }

@@ -28,22 +28,13 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid WidthRequest="50" HeightRequest="50">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TappedCommand}" CommandParameter="{Binding .}"/>
+                        </Grid.GestureRecognizers>
                         <Image Source="{Binding Icon}" VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFit" WidthRequest="40" HeightRequest="40"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <!--<controls:GridView 
-            x:Name="IconGridView"
-            BackgroundColor="Transparent"
-            IsGroupingEnabled="false"
-            ItemsSource="{Binding IconList}"
-            RowHeight="100"
-            ItemTemplate="{StaticResource IconCell}"
-            MinItemWidth="50"
-            IsPullToRefreshEnabled="False"
-            WidthRequest="50"
-            TappedCommand="{Binding TappedCommand}">
-        </controls:GridView>-->
     </Grid>
 </pages:PopupPage>

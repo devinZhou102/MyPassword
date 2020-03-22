@@ -115,11 +115,38 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 确认密钥.
+        /// </summary>
+        internal static string ConfirmSecureKey {
+            get {
+                return ResourceManager.GetString("ConfirmSecureKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 确定.
         /// </summary>
         internal static string Ensure {
             get {
                 return ResourceManager.GetString("Ensure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 新密钥.
+        /// </summary>
+        internal static string NewSecureKey {
+            get {
+                return ResourceManager.GetString("NewSecureKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 原密钥.
+        /// </summary>
+        internal static string OldSecureKey {
+            get {
+                return ResourceManager.GetString("OldSecureKey", resourceCulture);
             }
         }
         
@@ -219,6 +246,24 @@ namespace MyPassword.Localization {
         internal static string Search {
             get {
                 return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 设置您的加密密钥（8位），它将用于加密的数据，这很重要，请妥善保存!.
+        /// </summary>
+        internal static string SecureKeyTips {
+            get {
+                return ResourceManager.GetString("SecureKeyTips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 提示：修改密钥前请先备份数据，以免数据发生损坏后，无法还原。.
+        /// </summary>
+        internal static string SecureKeyWarning {
+            get {
+                return ResourceManager.GetString("SecureKeyWarning", resourceCulture);
             }
         }
         

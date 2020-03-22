@@ -36,7 +36,6 @@ namespace MyPassword.ViewModels
         public IconSelectViewModel()
         {
             InitIconList();
-            TappedCommand = new RelayCommand<IconModel>((param) => TappedExcuteAsync(param));
         }
 
         public override Task InitializeAsync<T>(T parameter)
@@ -47,32 +46,32 @@ namespace MyPassword.ViewModels
 
         private void InitIconList()
         {
-            //await Task.Delay(350);
             foreach (var icon in IconConst.IconDatas)
             {
                 IconList.Add(
                     new IconModel
                     {
                         GroupId = 0,
-                        Icon = IconHelper.GetIcon(icon)
+                        Icon = IconHelper.GetIcon(icon),
+                        TappedCommand = TappedCommand,
                     });
             }
         }
 
 
-        public ICommand TappedCommand { get; private set; }
-
-        private async Task TappedExcuteAsync(IconModel item)
+        public ICommand TappedCommand => new RelayCommand<IconModel>(async (item)=>
         {
-            await NavigationService.PopModalAsync();
-            //NavigationService.PopAsync();
             SelectIconComplete?.Invoke(item.Icon);
-        }
+            await NavigationService.PopPopupAsync();
+        });
+
     }
 
     public class IconModel
     {
         public int GroupId { get; set; }
         public string Icon { get; set; }
+
+        public ICommand TappedCommand { get; set; }
     }
 }

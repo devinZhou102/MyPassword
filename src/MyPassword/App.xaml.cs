@@ -14,12 +14,12 @@ namespace MyPassword
 	{
         private IGuestureLockService GuestureLockService;
         private ISecureKeyService SecureKeyService;
+        private IAlertService alertService;
 
         public App ()
 		{
-			InitializeComponent();
+            InitializeComponent();
             Initialize();
-            DataBaseHelper.Instance.ConnectDataBase("mypassword");
             MainPage = new InitalPage();
             MainNavi();
         }
@@ -28,7 +28,8 @@ namespace MyPassword
         {
             SecureKeyService = Locator.GetService<ISecureKeyService>();
             GuestureLockService = Locator.GetService<IGuestureLockService>();
-            ThemeHelper.DarkTheme();
+            alertService = Locator.GetService<IAlertService>();
+            ThemeHelper.LightTheme();
         }
         private static readonly ViewModelLocator _locator = new ViewModelLocator();
         public static ViewModelLocator Locator
@@ -39,9 +40,17 @@ namespace MyPassword
 
         private async void MainNavi()
         {
-            await CheckSecureKeyAsync();
-            await CheckGuestureLockAsync();
-            NaviToMain();
+            var connected = await DataBaseHelper.Instance.ConnectDataBase("mypassword");
+            if(connected)
+            {
+                await CheckSecureKeyAsync();
+                await CheckGuestureLockAsync();
+                NaviToMain();
+            }
+            else
+            {
+                await alertService.DisplayAlertAsync("MyPassword","connect database error","exit");
+            }
         }
 
         private Task<bool> CheckSecureKeyAsync()

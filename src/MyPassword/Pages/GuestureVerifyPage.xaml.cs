@@ -14,7 +14,7 @@ namespace MyPassword.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class GuestureVerifyPage : BaseContentPage
 	{
-        GuestureVerifyViewModel ViewModel;
+        readonly GuestureVerifyViewModel ViewModel;
         public GuestureVerifyPage(Action successedEvent,bool closeButtonVisible = false)
 		{
 			InitializeComponent ();
