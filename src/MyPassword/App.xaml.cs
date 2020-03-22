@@ -114,10 +114,8 @@ namespace MyPassword
                 {
                     case Device.Android:
                     case Device.iOS:
-                        MainPage = new AppMainShell();
-                        break;
                     case Device.UWP:
-                        MainPage = new MyNavigationPage(new MainTabbedPage());
+                        MainPage = new AppMainShell();
                         break;
                 }
             });

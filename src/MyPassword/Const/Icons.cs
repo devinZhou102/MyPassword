@@ -25,4 +25,16 @@ namespace MyPassword.Const
             "sampleflat326" };
 
     }
+
+    public static class IconFont
+    {
+        public const string Backup = "\uea83";
+        public const string Lock = "\ue67f";
+        public const string Key = "\ue738";
+        public const string All = "\ue6ef";
+        public const string Data = "\ue6f9";
+        public const string ArrowRight = "\ue743";
+        public const string Category = "\ue747";
+        public const string About = "\ue66a";
+    }
 }

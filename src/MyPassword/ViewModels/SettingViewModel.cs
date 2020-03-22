@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MyPassword.Const;
 using MyPassword.Helpers;
 using MyPassword.Localization;
 using MyPassword.Models;
@@ -73,7 +74,7 @@ namespace MyPassword.ViewModels
         {
             SettingItemList.Add(new SettingItemModel
             {
-                Icon = IconHelper.GetIcon("IconSecret"),
+                Icon = IconFont.Key,
                 Title = AppResource.ItemSecureKey,
                 Description = AppResource.ItemSecureKeyDesc,
                 SecureProtect = true,
@@ -82,7 +83,7 @@ namespace MyPassword.ViewModels
             });
             SettingItemList.Add(new SettingItemModel
             {
-                Icon = IconHelper.GetIcon("IconLock"),
+                Icon = IconFont.Lock,
                 Title = AppResource.ItemGuesture,
                 SecureProtect = true,
                 Description = AppResource.ItemGuestureDesc,
@@ -91,7 +92,7 @@ namespace MyPassword.ViewModels
             });
             SettingItemList.Add(new SettingItemModel
             {
-                Icon = IconHelper.GetIcon("IconBackup"),
+                Icon = IconFont.Backup,
                 SecureProtect = true,
                 Title = AppResource.ItemBackup,
                 Description = AppResource.ItemBackupDesc,
@@ -101,7 +102,7 @@ namespace MyPassword.ViewModels
             });
             SettingItemList.Add(new SettingItemModel
             {
-                Icon = IconHelper.GetIcon("IconAbout"),
+                Icon = IconFont.About,
                 Title = AppResource.ItemAbout,
                 SecureProtect = false,
                 Description = AppResource.ItemAboutDesc,

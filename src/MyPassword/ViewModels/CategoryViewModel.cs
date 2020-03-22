@@ -53,26 +53,29 @@ namespace MyPassword.ViewModels
             Task.Run(() =>
             {
                 var pwdlist = databaseService.SecureGetAll<DataItemModel>(secureKeyService.SecureKey);
-                Device.BeginInvokeOnMainThread(() =>
+                if(pwdlist != null)
                 {
-                    foreach (var c in CategoryItems)
+                    Device.BeginInvokeOnMainThread(() =>
                     {
-                        var list = pwdlist.FindAll((p) => p.CategoryKey.Equals(c.Key));
-                        c.Count = list == null ? 0 : list.Count;
-                    }
-                });
+                        foreach (var c in CategoryItems)
+                        {
+                            var list = pwdlist.FindAll((p) => p.CategoryKey?.Equals(c.Key) == true);
+                            c.Count = list == null ? 0 : list.Count;
+                        }
+                    });
+                }
             });
 
         }
 
         private ICommand ItemClickCommand => new RelayCommand<CategoryItemViewModel>(async (c) =>
         {
-            await NavigationService.PushAsync(new PasswordListPage(c.Key));
+            await NavigationService.PushAsync(new PasswordPage(c.Key));
         });
 
         public ICommand SearchCommand => new RelayCommand(async () =>
         {
-            await NavigationService.PushAsync(new PasswordListPage());
+            await NavigationService.PushAsync(new PasswordPage());
         });
         public ICommand AddCommand => new RelayCommand(async () =>
         {

@@ -16,25 +16,6 @@ namespace MyPassword.ViewModels
     public class PasswordEditViewModel : BaseViewModel
     {
 
-        private PwdConditionViewModel _ConditionViewModel;
-
-        public PwdConditionViewModel ConditionViewModel
-        {
-            get
-            {
-                if (null == _ConditionViewModel)
-                {
-                    _ConditionViewModel = new PwdConditionViewModel();
-                }
-                return _ConditionViewModel;
-            }
-            set
-            {
-                _ConditionViewModel = value;
-                RaisePropertyChanged(nameof(ConditionViewModel));
-            }
-        }
-
         private string _Password;
 
         public string Password

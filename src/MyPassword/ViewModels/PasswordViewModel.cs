@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace MyPassword.ViewModels
 {
-    public class PasswordListViewModel : BaseViewModel
+    public class PasswordViewModel : BaseViewModel
     {
 
         private ObservableCollection<PwdItemViewModel> _PasswordList;
@@ -73,7 +73,7 @@ namespace MyPassword.ViewModels
 
         private ISecureKeyService secureKeyService;
         private ICategoryService categoryService;
-        public PasswordListViewModel(ISecureKeyService secureKeyService, ICategoryService categoryService)
+        public PasswordViewModel(ISecureKeyService secureKeyService, ICategoryService categoryService)
         {
             this.categoryService = categoryService;
             this.secureKeyService = secureKeyService;

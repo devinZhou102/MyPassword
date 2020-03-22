@@ -13,18 +13,18 @@ using Xamarin.Forms.Xaml;
 namespace MyPassword.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class PasswordListPage : BaseContentPage
+	public partial class PasswordPage : BaseContentPage
 	{
 
-        PasswordListViewModel viewModel;
-		public PasswordListPage()
+        PasswordViewModel viewModel;
+		public PasswordPage()
 		{
 			InitializeComponent ();
             SetTabBarVisible(true);
             InitViewModel();
         }
 
-        public PasswordListPage(string categoryKey)
+        public PasswordPage(string categoryKey)
         {
             InitializeComponent();
             SetTabBarVisible(true);
@@ -33,7 +33,7 @@ namespace MyPassword.Pages
 
         private void InitViewModel(string key = "")
         {
-            viewModel = App.Locator.GetViewModel<PasswordListViewModel, string>(key);
+            viewModel = App.Locator.GetViewModel<PasswordViewModel, string>(key);
             BindingContext = viewModel;
         }
 

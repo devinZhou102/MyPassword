@@ -32,7 +32,7 @@ namespace MyPassword.ViewModels
             SimpleIoc.Default.Register<IconSelectViewModel>();
             SimpleIoc.Default.Register<PasswordDetailViewModel>();
             SimpleIoc.Default.Register<PasswordEditViewModel>();
-            SimpleIoc.Default.Register<PasswordListViewModel>();
+            SimpleIoc.Default.Register<PasswordViewModel>();
             SimpleIoc.Default.Register<SecureKeyViewModel>();
             SimpleIoc.Default.Register<SettingViewModel>();
             SimpleIoc.Default.Register<PwdGenerateViewModel>();
