@@ -26,11 +26,10 @@
     <!-- 分割线-->
     <Color x:Key="DividerColor">#7B7B7B</Color>
 
-    <Color x:Key="MainCollectionViewItemColor">White</Color>
-    <Color x:Key="LightTextColor">White</Color>
-    <Color x:Key="DarkTextColor">Black</Color>
-    <Color x:Key="LightDarkTextColor">LightGray</Color>
-    <Color x:Key="MainPlaceHolderTextColor">LightGray</Color>
+    <!--color category has values-->
+    <Color x:Key="ValueColor">#00BB00</Color>
+    <!--color category empty-->
+    <Color x:Key="NoValueColor">#d0d0d0</Color>
 
     <!-- #endregion Main Color for app-->
 

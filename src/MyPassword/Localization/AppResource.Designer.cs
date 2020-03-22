@@ -268,11 +268,38 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 分类.
+        /// </summary>
+        internal static string TitleCategory {
+            get {
+                return ResourceManager.GetString("TitleCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 分类选择.
+        /// </summary>
+        internal static string TitleCategorySelect {
+            get {
+                return ResourceManager.GetString("TitleCategorySelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 生成.
         /// </summary>
         internal static string TitleGenerate {
             get {
                 return ResourceManager.GetString("TitleGenerate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 设置.
+        /// </summary>
+        internal static string TitleSetting {
+            get {
+                return ResourceManager.GetString("TitleSetting", resourceCulture);
             }
         }
     }

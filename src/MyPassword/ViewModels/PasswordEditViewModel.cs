@@ -166,17 +166,28 @@ namespace MyPassword.ViewModels
 
         public override Task InitializeAsync<T>(T parameter)
         {
-            if (parameter != null && parameter is DataItemModel dataItem)
+
+            if (parameter is DataItemModel dataItem)
             {
-                DataItem = dataItem;
-                Icon = DataItem.Icon;
-                Account = DataItem.Account;
-                Title = DataItem.Name;
-                Password = DataItem.Password;
-                Description = DataItem.Description;
-                CategoryKey = DataItem.CategoryKey;
+                InitDatas(dataItem);
             }
-            if(string.IsNullOrEmpty(CategoryKey))
+            else
+            {
+                InitDatas(null);
+            }
+            return base.InitializeAsync(parameter);
+        }
+
+        private void InitDatas(DataItemModel dataItem)
+        {
+            DataItem = dataItem;
+            Icon = dataItem?.Icon;
+            Account = dataItem?.Account;
+            Title = dataItem?.Name;
+            Password = dataItem?.Password;
+            Description = dataItem?.Description;
+            CategoryKey = dataItem?.CategoryKey;
+            if (string.IsNullOrEmpty(CategoryKey))
             {
                 var c = categoryService.GetDefaultCategory();
                 UpdateCategory(c);
@@ -186,7 +197,6 @@ namespace MyPassword.ViewModels
                 var c = categoryService.FindCategoryByKey(CategoryKey);
                 UpdateCategory(c);
             }
-            return base.InitializeAsync(parameter);
         }
 
         private void UpdateCategory(CategoryModel category)

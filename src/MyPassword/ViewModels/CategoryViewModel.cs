@@ -65,14 +65,14 @@ namespace MyPassword.ViewModels
 
         }
 
-        private ICommand ItemClickCommand => new RelayCommand<CategoryItemViewModel>((c) =>
+        private ICommand ItemClickCommand => new RelayCommand<CategoryItemViewModel>(async (c) =>
         {
-            alertService.DisplayAlert("密钥", "" + c.Name, "确定");
+            await NavigationService.PushAsync(new PasswordListPage(c.Key));
         });
 
-        public ICommand SearchCommand => new RelayCommand(() =>
+        public ICommand SearchCommand => new RelayCommand(async () =>
         {
-            alertService.DisplayAlert("密钥", "功能开发中...", "确定");
+            await NavigationService.PushAsync(new PasswordListPage());
         });
         public ICommand AddCommand => new RelayCommand(async () =>
         {

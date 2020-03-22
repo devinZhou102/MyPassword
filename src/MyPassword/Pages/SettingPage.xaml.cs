@@ -20,13 +20,10 @@ namespace MyPassword.Pages
         {
             InitializeComponent();
             viewModel = new SettingViewModel();
-            BindingContext = viewModel;
+            BindingContext = App.Locator.GetViewModel<SettingViewModel, string>("");
             SetTabBarVisible(true);
         }
         
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-        }
 
         protected override void OnFirstAppear()
         {
@@ -36,42 +33,5 @@ namespace MyPassword.Pages
         {
         }
 
-        private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            if (e.Item == null)
-                return;
-            if(e.Item is SettingItemModel)
-            {
-                var item = e.Item as SettingItemModel;
-                if(item.SecureProtect)
-                {
-                    await Navigation.PushModalAsync(new GuestureVerifyPage(() =>
-                    {
-                        PushPage(item);
-                        Navigation.PopModalAsync();
-                    },true),true);
-                }
-                else
-                {
-                    PushPage(item);
-                }
-                
-            }
-            await Task.Delay(1000);
-            ((ListView)sender).SelectedItem = null;
-        }
-
-        private void PushPage(SettingItemModel item)
-        {
-            Device.BeginInvokeOnMainThread(()=> {
-                var paramTpyes = new Type[0];
-                var constructor = item.PageType.GetConstructor(paramTpyes);
-                if (constructor != null)
-                {
-                    var page = constructor.Invoke(null) as Page;
-                    Navigation.PushAsync(page);
-                }
-            });
-        }
     }
 }

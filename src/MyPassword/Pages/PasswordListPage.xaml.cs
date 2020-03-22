@@ -17,12 +17,24 @@ namespace MyPassword.Pages
 	{
 
         PasswordListViewModel viewModel;
-		public PasswordListPage ()
+		public PasswordListPage()
 		{
 			InitializeComponent ();
-            viewModel = App.Locator.GetViewModel<PasswordListViewModel,string>("");
-            BindingContext = viewModel;
             SetTabBarVisible(true);
+            InitViewModel();
+        }
+
+        public PasswordListPage(string categoryKey)
+        {
+            InitializeComponent();
+            SetTabBarVisible(true);
+            InitViewModel(categoryKey);
+        }
+
+        private void InitViewModel(string key = "")
+        {
+            viewModel = App.Locator.GetViewModel<PasswordListViewModel, string>(key);
+            BindingContext = viewModel;
         }
 
         protected override void OnAppear()
@@ -31,26 +43,8 @@ namespace MyPassword.Pages
 
         protected override void OnFirstAppear()
         {
-            ToolbarItems.Add(new ToolbarItem {
-                Text = "添加" ,
-                IconImageSource = IconHelper.GetIcon("IconBarAdd"),
-                Command = viewModel?.AddDataCommand
-            });
         }
 
-        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            if (e.Item == null)
-                return;
-            if(e.Item is DataItemModel)
-            {
-                Device.BeginInvokeOnMainThread(async ()=> {
-                    await Navigation.PushAsync(new PasswordDetailPage((e.Item as DataItemModel)));
-                });
-            }
-            //await Task.Delay(1000);
-           ((ListView)sender).SelectedItem = null;
-        }
 
         public override void OnPoppedOut()
         {

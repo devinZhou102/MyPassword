@@ -47,5 +47,6 @@ namespace MyPassword.Models
         {
             return this.MemberwiseClone();
         }
+
     }
 }

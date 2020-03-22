@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <local:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:local="clr-namespace:MyPassword.Pages"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             xmlns:res="clr-namespace:MyPassword.Localization"
-             Title="密钥"
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             x:Class="MyPassword.Pages.CategoryListPage">
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                       xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                       xmlns:res="clr-namespace:MyPassword.Localization"
+                       xmlns:local="clr-namespace:MyPassword.Pages"
+                       xmlns:converters="clr-namespace:MyPassword.Converters"
+                       mc:Ignorable="d"
+                       Title="{x:Static res:AppResource.TitleCategory}"
+                       x:Class="MyPassword.Pages.CategoryListPage">
     <ContentPage.ToolbarItems>
         <ToolbarItem 
             Text="{x:Static res:AppResource.Search}" IconImageSource="IconSearch.png"
@@ -17,45 +18,49 @@
             Text="{x:Static res:AppResource.Add}" IconImageSource="IconBarAdd.png"
             Order="Primary" Priority="0" Command="{Binding AddCommand}"/>
     </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:CountColorConverter x:Key="CountColorConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
 
-        <Grid BackgroundColor="{DynamicResource MainItemBackgroundColor}">
+        <Grid BackgroundColor="{DynamicResource MainBackgroundColor}">
             <CollectionView ItemsSource="{Binding CategoryItems}" >
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Span="1" Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid  RowSpacing="0" ColumnSpacing="0">
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ItemClickCommand}" CommandParameter="{Binding .}" />
-                            </Grid.GestureRecognizers>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="1"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="60"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0" Grid.Row="0" Margin="12,0">
-                                <ffimageloading:CachedImage x:Name="CachedImageView"
+                        <StackLayout Orientation="Vertical" Spacing="0">
+                            <Grid  RowSpacing="0" ColumnSpacing="0" BackgroundColor="{DynamicResource MainItemBackgroundColor}">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ItemClickCommand}" CommandParameter="{Binding .}" />
+                                </Grid.GestureRecognizers>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" Grid.Row="0" Margin="12,0">
+                                    <ffimageloading:CachedImage x:Name="CachedImageView"
                                     Aspect="AspectFit" CacheType="All" WidthRequest="60" HeightRequest="60"
                                     Source="{Binding Icon}"
                                     HorizontalOptions="Fill"  VerticalOptions="CenterAndExpand"
                                     DownsampleToViewSize="true">
-                                    <ffimageloading:CachedImage.ErrorPlaceholder>
-                                        <OnPlatform x:TypeArguments="ImageSource">
-                                            <On Platform="Android,iOS">IconAppFailedImage.png</On>
-                                        </OnPlatform>
-                                    </ffimageloading:CachedImage.ErrorPlaceholder>
-                                </ffimageloading:CachedImage>
+                                        <ffimageloading:CachedImage.ErrorPlaceholder>
+                                            <OnPlatform x:TypeArguments="ImageSource">
+                                                <On Platform="Android,iOS">IconAppFailedImage.png</On>
+                                            </OnPlatform>
+                                        </ffimageloading:CachedImage.ErrorPlaceholder>
+                                    </ffimageloading:CachedImage>
+                                </Grid>
+                                <Label Text="{Binding Name}" Grid.Row="0" VerticalOptions="Center" Grid.Column="1"/>
+                                <Label Text="{Binding Count}" Grid.Row="0" Grid.Column="2" TextColor="{Binding Count,Converter={StaticResource CountColorConverter}}"
+                                   VerticalOptions="Center" Margin="12,0"/>
                             </Grid>
-                            <Label Text="{Binding Name}" Grid.Row="0" VerticalOptions="Center" Grid.Column="1"/>
-                            <Label Text="{Binding Count}" Grid.Row="0" Grid.Column="2" VerticalOptions="Center" Margin="12,0"/>
-                            <Grid Grid.Row="1" Grid.ColumnSpan="3" BackgroundColor="{DynamicResource DividerColor}"/>
-                        </Grid>
+                            <Grid HeightRequest="1" BackgroundColor="{DynamicResource DividerColor}"/>
+                        </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

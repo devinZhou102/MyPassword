@@ -8,22 +8,23 @@ using MyPassword.Pages;
 using MyPassword.Services;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MyPassword.ViewModels
 {
-    public class PasswordListViewModel:BaseViewModel
+    public class PasswordListViewModel : BaseViewModel
     {
 
-        private ObservableCollection<DataItemModel> _PasswordList;
+        private ObservableCollection<PwdItemViewModel> _PasswordList;
 
-        public ObservableCollection<DataItemModel> PasswordList
+        public ObservableCollection<PwdItemViewModel> PasswordList
         {
             get
             {
                 if (null == _PasswordList)
                 {
-                    _PasswordList = new ObservableCollection<DataItemModel>();
+                    _PasswordList = new ObservableCollection<PwdItemViewModel>();
                 }
                 return _PasswordList;
             }
@@ -34,24 +35,74 @@ namespace MyPassword.ViewModels
             }
         }
 
-        private bool _EmptyTipsVisible;
-        public bool EmptyTipsVisible
+        private bool _CategoryVisible;
+        public bool CategoryVisible
         {
-            get => _EmptyTipsVisible;
+            get => _CategoryVisible;
             set
             {
-                _EmptyTipsVisible = value;
-                RaisePropertyChanged(nameof(EmptyTipsVisible));
+                _CategoryVisible = value;
+                RaisePropertyChanged(nameof(CategoryVisible));
             }
         }
 
-        private ISecureKeyService secureKeyService;
-        public PasswordListViewModel(ISecureKeyService secureKeyService)
+
+        private string _CategoryIcon;
+        public string CategoryIcon
         {
+            get => _CategoryIcon ?? (_CategoryIcon = "");
+            set
+            {
+                _CategoryIcon = value;
+                RaisePropertyChanged(nameof(CategoryIcon));
+            }
+        }
+
+        private string _CategoryName;
+        public string CategoryName
+        {
+            get => _CategoryName ?? (_CategoryName = "");
+            set
+            {
+                _CategoryName = value;
+                RaisePropertyChanged(nameof(CategoryName));
+            }
+        }
+
+        private string CategoryKey;
+
+        private ISecureKeyService secureKeyService;
+        private ICategoryService categoryService;
+        public PasswordListViewModel(ISecureKeyService secureKeyService, ICategoryService categoryService)
+        {
+            this.categoryService = categoryService;
             this.secureKeyService = secureKeyService;
-            LoadData();
             RegisterMessager();
-            AddDataCommand = new RelayCommand(() => AddDataExcute());
+        }
+
+        public override Task InitializeAsync<T>(T parameter)
+        {
+            CategoryKey = parameter as string;
+            CategoryVisible = false;
+            if (!string.IsNullOrEmpty(CategoryKey))
+            {
+                var c = categoryService.FindCategoryByKey(CategoryKey);
+                if (c != null)
+                {
+                    CategoryVisible = true;
+                    UpdateCategory(c);
+                }
+            }
+            LoadData();
+            return base.InitializeAsync(parameter);
+        }
+
+
+        private void UpdateCategory(CategoryModel category)
+        {
+            CategoryName = category.Name;
+            CategoryIcon = category.Icon;
+            CategoryKey = category.Key;
         }
 
         public void LoadData()
@@ -62,47 +113,43 @@ namespace MyPassword.ViewModels
             {
                 foreach (var item in datas)
                 {
-                    PasswordList.Add(item);
+                    PasswordList.Add(Trans2PwdItemViewModel(item));
                 }
             }
-            UpdateEmptyTipsVisible();
         }
 
-        private void UpdateEmptyTipsVisible()
-        {
-            EmptyTipsVisible = PasswordList == null || PasswordList.Count == 0;
-        }
 
         private void RegisterMessager()
         {
-            MessengerInstance.Register<DataItemModel>(this,TokenConst.TokenUpdate,(data) => 
-            {
-                if(data != null)
-                {
-                  var item = PasswordList.Where((v) => v.Id == data.Id);
-                  if(item != null && item.Count() > 0)
+            MessengerInstance.Register<DataItemModel>(this, TokenConst.TokenUpdate, (data) =>
+              {
+                  if (data != null)
                   {
-                       int index = PasswordList.IndexOf(item.First());
-                       PasswordList.RemoveAt(index);
-                       PasswordList.Insert(index,data);
-                  }
-                  else
-                  {
-                      PasswordList.Add(data);
-                  }
-                }
-                UpdateEmptyTipsVisible();
-            });
+                      var pwdvm = Trans2PwdItemViewModel(data);
+                      var item = PasswordList.Where((v) => v.Id == data.Id);
+                      if (item != null && item.Count() > 0)
+                      {
+                          int index = PasswordList.IndexOf(item.First());
+                          PasswordList.RemoveAt(index);
 
-            MessengerInstance.Register<int>(this,(value)=> 
-            {
-                if(value == TokenConst.TokenUpdateList)
-                {
-                    LoadData();
-                }
-            });
+                          PasswordList.Insert(index, pwdvm);
+                      }
+                      else
+                      {
+                          PasswordList.Add(pwdvm);
+                      }
+                  }
+              });
 
-            MessengerInstance.Register<DataItemModel>(this, TokenConst.TokenDelete, (value)=> 
+            MessengerInstance.Register<int>(this, (value) =>
+             {
+                 if (value == TokenConst.TokenUpdateList)
+                 {
+                     LoadData();
+                 }
+             });
+
+            MessengerInstance.Register<DataItemModel>(this, TokenConst.TokenDelete, (value) =>
             {
                 var item = PasswordList.Where((v) => v.Id == value.Id);
                 if (item != null && item.Count() > 0)
@@ -110,21 +157,68 @@ namespace MyPassword.ViewModels
                     int index = PasswordList.IndexOf(item.First());
                     PasswordList.RemoveAt(index);
                 }
-                UpdateEmptyTipsVisible();
             });
         }
-        
-        public ICommand AddDataCommand { get; private set; }
 
-        private void AddDataExcute()
+        private DataItemModel Trans2DataItemModel(PwdItemViewModel item)
         {
-            NavigationService.PushAsync(new PasswordEditPage());
+            return new DataItemModel
+            {
+                Id = item.Id,
+                Name = item.Name,
+                Account = item.Account,
+                Icon = item.Icon,
+                CategoryKey = item.CategoryKey,
+                Password = item.Password,
+                Description = item.Description,
+            };
         }
+
+        private PwdItemViewModel Trans2PwdItemViewModel(DataItemModel item)
+        {
+            return new PwdItemViewModel
+            {
+                Id = item.Id,
+                Name = item.Name,
+                Account = item.Account,
+                Icon = item.Icon,
+                CategoryKey = item.CategoryKey,
+                Password = item.Password,
+                Description = item.Description,
+                TappedCommand = TappedCommand
+            };
+        }
+
+        public ICommand AddDataCommand => new RelayCommand(async () =>
+            await NavigationService.PushAsync(new PasswordEditPage()));
+
+        public ICommand TappedCommand => new RelayCommand<PwdItemViewModel>(async (item) =>
+            await NavigationService.PushAsync(new PasswordEditPage(Trans2DataItemModel(item))));
 
         public override void Cleanup()
         {
             Messenger.Default.Unregister(this);
         }
-        
+
     }
+
+    public class PwdItemViewModel : BaseViewModel
+    {
+
+        public int Id { get; set; }
+
+        public string Icon { get; set; }
+
+        public string CategoryKey { get; set; }
+
+        public string Name { get; set; }
+        public string Account { get; set; }
+        public string Password { get; set; }
+        public string Description { get; set; }
+
+        public ICommand TappedCommand { get; set; }
+
+
+    }
+
 }

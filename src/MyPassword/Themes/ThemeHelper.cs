@@ -20,7 +20,6 @@ namespace MyPassword.Themes
             ResourceDictionary applicationResourceDictionary = Application.Current.Resources;
             ResourceDictionary newTheme = null;
 
-
             switch (theme.ToLowerInvariant())
             {
                 case "light":
@@ -29,6 +28,7 @@ namespace MyPassword.Themes
                 case "dark":
                     newTheme = new DarkTheme();
                     break;
+                    
             }
 
             foreach (var merged in newTheme.MergedDictionaries)

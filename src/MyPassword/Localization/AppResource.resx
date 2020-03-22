@@ -186,7 +186,16 @@
   <data name="SecureKeyWarning" xml:space="preserve">
     <value>提示：修改密钥前请先备份数据，以免数据发生损坏后，无法还原。</value>
   </data>
+  <data name="TitleCategory" xml:space="preserve">
+    <value>分类</value>
+  </data>
+  <data name="TitleCategorySelect" xml:space="preserve">
+    <value>分类选择</value>
+  </data>
   <data name="TitleGenerate" xml:space="preserve">
     <value>生成</value>
+  </data>
+  <data name="TitleSetting" xml:space="preserve">
+    <value>设置</value>
   </data>
 </root>
