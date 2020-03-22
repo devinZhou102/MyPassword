@@ -133,6 +133,78 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 关于.
+        /// </summary>
+        internal static string ItemAbout {
+            get {
+                return ResourceManager.GetString("ItemAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 应用相关信息.
+        /// </summary>
+        internal static string ItemAboutDesc {
+            get {
+                return ResourceManager.GetString("ItemAboutDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 数据备份.
+        /// </summary>
+        internal static string ItemBackup {
+            get {
+                return ResourceManager.GetString("ItemBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 备份您的数据.
+        /// </summary>
+        internal static string ItemBackupDesc {
+            get {
+                return ResourceManager.GetString("ItemBackupDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 手势密码.
+        /// </summary>
+        internal static string ItemGuesture {
+            get {
+                return ResourceManager.GetString("ItemGuesture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 用于保护应用的使用权限.
+        /// </summary>
+        internal static string ItemGuestureDesc {
+            get {
+                return ResourceManager.GetString("ItemGuestureDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 加密密钥.
+        /// </summary>
+        internal static string ItemSecureKey {
+            get {
+                return ResourceManager.GetString("ItemSecureKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 用于数据加密.
+        /// </summary>
+        internal static string ItemSecureKeyDesc {
+            get {
+                return ResourceManager.GetString("ItemSecureKeyDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 新密钥.
         /// </summary>
         internal static string NewSecureKey {

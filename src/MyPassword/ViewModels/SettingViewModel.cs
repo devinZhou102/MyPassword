@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MyPassword.Helpers;
+using MyPassword.Localization;
 using MyPassword.Models;
 using MyPassword.Pages;
 using System;
@@ -73,8 +74,8 @@ namespace MyPassword.ViewModels
             SettingItemList.Add(new SettingItemModel
             {
                 Icon = IconHelper.GetIcon("IconSecret"),
-                Title = "加密密钥",
-                Description = "用于数据加密",
+                Title = AppResource.ItemSecureKey,
+                Description = AppResource.ItemSecureKeyDesc,
                 SecureProtect = true,
                 PageType = typeof(ChangeSecureKeyPage),
                 TappedCommand = TappedCommand
@@ -82,9 +83,9 @@ namespace MyPassword.ViewModels
             SettingItemList.Add(new SettingItemModel
             {
                 Icon = IconHelper.GetIcon("IconLock"),
-                Title = "手势密码",
+                Title = AppResource.ItemGuesture,
                 SecureProtect = true,
-                Description = "用于保护APP的使用权",
+                Description = AppResource.ItemGuestureDesc,
                 PageType = typeof(GuestureLockPage),
                 TappedCommand = TappedCommand
             });
@@ -92,8 +93,8 @@ namespace MyPassword.ViewModels
             {
                 Icon = IconHelper.GetIcon("IconBackup"),
                 SecureProtect = true,
-                Title = "数据备份",
-                Description = "备份您的数据",
+                Title = AppResource.ItemBackup,
+                Description = AppResource.ItemBackupDesc,
                 PageType = typeof(BackUpPage),
                 TappedCommand = TappedCommand
 
@@ -101,9 +102,9 @@ namespace MyPassword.ViewModels
             SettingItemList.Add(new SettingItemModel
             {
                 Icon = IconHelper.GetIcon("IconAbout"),
-                Title = "关于",
+                Title = AppResource.ItemAbout,
                 SecureProtect = false,
-                Description = "APP相关信息",
+                Description = AppResource.ItemAboutDesc,
                 PageType = typeof(AboutPage),
                 TappedCommand = TappedCommand
             });

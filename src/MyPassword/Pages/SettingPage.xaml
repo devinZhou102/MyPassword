@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <Grid BackgroundColor="{DynamicResource MainBackgroundColor}">
 
-            <CollectionView ItemsSource="{Binding SettingItemList}" Margin="0,24,0,0">
+            <CollectionView ItemsSource="{Binding SettingItemList}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>

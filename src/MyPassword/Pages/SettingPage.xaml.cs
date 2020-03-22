@@ -15,11 +15,9 @@ namespace MyPassword.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SettingPage : BaseContentPage
 	{
-        SettingViewModel viewModel;
 		public SettingPage () : base()
         {
             InitializeComponent();
-            viewModel = new SettingViewModel();
             BindingContext = App.Locator.GetViewModel<SettingViewModel, string>("");
             SetTabBarVisible(true);
         }
