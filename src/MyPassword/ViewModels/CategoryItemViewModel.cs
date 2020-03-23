@@ -9,6 +9,9 @@ namespace MyPassword.ViewModels
     {
         public string Name { get; set; }
         public string Icon { get; set; }
+
+        public string Background { get; set; }
+
         public string Key { get; set; }
 
         private int _Count;

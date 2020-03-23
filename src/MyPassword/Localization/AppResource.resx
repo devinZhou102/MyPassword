@@ -130,7 +130,62 @@
     <value>生成密码</value>
   </data>
   <data name="Category" xml:space="preserve">
-    <value>[{"name":"游戏","icon":"IconGame","key":"game"},{"name":"银行","icon":"IconBank","key":"bank"},{"name":"社交","icon":"IconChat","key":"social"},{"name":"邮箱","icon":"IconEmail","key":"email"},{"name":"购物","icon":"IconShop","key":"shop"},{"name":"视频","icon":"IconVideo","key":"video"},{"name":"音乐","icon":"IconMusic","key":"music"},{"name":"网站","icon":"IconWeb","key":"web"},{"name":"其他","icon":"IconAccount","key":"others"}]</value>
+    <value>[
+    {
+        "name": "游戏",
+        "key": "game",
+        "icon": "\ue7b9",
+        "background": "#00A600"
+    },
+    {
+        "name": "银行",
+        "key": "bank",
+        "icon": "\ue6c6",
+        "background": "#C4C400"
+    },
+    {
+        "name": "社交",
+        "key": "social",
+        "icon": "\ue60b",
+        "background": "#FF5151"
+    },
+    {
+        "name": "邮箱",
+        "key": "email",
+        "icon": "\uef79",
+        "background": "#8080C0"
+    },
+    {
+        "name": "购物",
+        "key": "shop",
+        "icon": "\ue60a",
+        "background": "#FF77FF"
+    },
+    {
+        "name": "视频",
+        "key": "video",
+        "icon": "\ue673",
+        "background": "#6A6AFF"
+    },
+    {
+        "name": "音乐",
+        "key": "music",
+        "icon": "\ue714",
+        "background": "#FFD306"
+    },
+    {
+        "name": "网站",
+        "key": "web",
+        "icon": "\ue61f",
+        "background": "#6FB7B7"
+    },
+    {
+        "name": "其他",
+        "key": "others",
+        "icon": "\ue64f",
+        "background": "#BE77FF"
+    }
+]</value>
   </data>
   <data name="CommonPlaceHolder" xml:space="preserve">
     <value>点击输入</value>

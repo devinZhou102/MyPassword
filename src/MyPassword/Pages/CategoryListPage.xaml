@@ -33,7 +33,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Orientation="Vertical" Spacing="0">
-                            <Grid  RowSpacing="0" ColumnSpacing="0" BackgroundColor="{DynamicResource MainItemBackgroundColor}">
+                            <Grid  RowSpacing="0" ColumnSpacing="0" Padding="12,10" BackgroundColor="{DynamicResource MainItemBackgroundColor}">
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding ItemClickCommand}" CommandParameter="{Binding .}" />
                                 </Grid.GestureRecognizers>
@@ -42,18 +42,14 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="0" Grid.Row="0" Margin="12,0">
-                                    <ffimageloading:CachedImage x:Name="CachedImageView"
-                                    Aspect="AspectFit" CacheType="All" WidthRequest="60" HeightRequest="60"
-                                    Source="{Binding Icon}"
-                                    HorizontalOptions="Fill"  VerticalOptions="CenterAndExpand"
-                                    DownsampleToViewSize="true">
-                                        <ffimageloading:CachedImage.ErrorPlaceholder>
-                                            <OnPlatform x:TypeArguments="ImageSource">
-                                                <On Platform="Android,iOS">IconAppFailedImage.png</On>
-                                            </OnPlatform>
-                                        </ffimageloading:CachedImage.ErrorPlaceholder>
-                                    </ffimageloading:CachedImage>
+                                <Grid Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" 
+                                      HeightRequest="40" WidthRequest="40" ColumnSpacing="0" RowSpacing="0">
+                                    <BoxView HeightRequest="40" WidthRequest="40" CornerRadius="20" BackgroundColor="{Binding Background}"/>
+                                    <Image WidthRequest="20" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="Center">
+                                        <Image.Source>
+                                            <FontImageSource Glyph="{Binding Icon}" FontFamily="iconfont"/>
+                                        </Image.Source>
+                                    </Image>
                                 </Grid>
                                 <Label Text="{Binding Name}" Grid.Row="0" VerticalOptions="Center" Grid.Column="1"/>
                                 <Label Text="{Binding Count}" Grid.Row="0" Grid.Column="2" TextColor="{Binding Count,Converter={StaticResource CountColorConverter}}"

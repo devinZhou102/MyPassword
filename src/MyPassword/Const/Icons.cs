@@ -30,7 +30,7 @@ namespace MyPassword.Const
     {
         public const string Backup = "\uea83";
         public const string Lock = "\ue67f";
-        public const string Key = "\ue738";
+        public const string Key = "\ue6d9";
         public const string All = "\ue6ef";
         public const string Data = "\ue6f9";
         public const string ArrowRight = "\ue743";

@@ -43,6 +43,7 @@ namespace MyPassword.ViewModels
                     Icon = c.Icon,
                     Key = c.Key,
                     Count = 0,
+                    Background = c.Background,
                     ItemClickCommand = ItemClickCommand
                 });
             }

@@ -97,7 +97,33 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [{&quot;name&quot;:&quot;游戏&quot;,&quot;icon&quot;:&quot;IconGame&quot;,&quot;key&quot;:&quot;game&quot;},{&quot;name&quot;:&quot;银行&quot;,&quot;icon&quot;:&quot;IconBank&quot;,&quot;key&quot;:&quot;bank&quot;},{&quot;name&quot;:&quot;社交&quot;,&quot;icon&quot;:&quot;IconChat&quot;,&quot;key&quot;:&quot;social&quot;},{&quot;name&quot;:&quot;邮箱&quot;,&quot;icon&quot;:&quot;IconEmail&quot;,&quot;key&quot;:&quot;email&quot;},{&quot;name&quot;:&quot;购物&quot;,&quot;icon&quot;:&quot;IconShop&quot;,&quot;key&quot;:&quot;shop&quot;},{&quot;name&quot;:&quot;视频&quot;,&quot;icon&quot;:&quot;IconVideo&quot;,&quot;key&quot;:&quot;video&quot;},{&quot;name&quot;:&quot;音乐&quot;,&quot;icon&quot;:&quot;IconMusic&quot;,&quot;key&quot;:&quot;music&quot;},{&quot;name&quot;:&quot;网站&quot;,&quot;icon&quot;:&quot;IconWeb&quot;,&quot;key&quot;:&quot;web&quot;},{&quot;name&quot;:&quot;其他&quot;,&quot;icon&quot;:&quot;IconAccount&quot;,&quot;key&quot;:&quot;others&quot;}].
+        ///   Looks up a localized string similar to [
+        ///    {
+        ///        &quot;name&quot;: &quot;游戏&quot;,
+        ///        &quot;key&quot;: &quot;game&quot;,
+        ///        &quot;icon&quot;: &quot;\ue7b9&quot;,
+        ///        &quot;background&quot;: &quot;#00A600&quot;
+        ///    },
+        ///    {
+        ///        &quot;name&quot;: &quot;银行&quot;,
+        ///        &quot;key&quot;: &quot;bank&quot;,
+        ///        &quot;icon&quot;: &quot;\ue6c6&quot;,
+        ///        &quot;background&quot;: &quot;#C4C400&quot;
+        ///    },
+        ///    {
+        ///        &quot;name&quot;: &quot;社交&quot;,
+        ///        &quot;key&quot;: &quot;social&quot;,
+        ///        &quot;icon&quot;: &quot;\ue60b&quot;,
+        ///        &quot;background&quot;: &quot;#FF5151&quot;
+        ///    },
+        ///    {
+        ///        &quot;name&quot;: &quot;邮箱&quot;,
+        ///        &quot;key&quot;: &quot;email&quot;,
+        ///        &quot;icon&quot;: &quot;\uef79&quot;,
+        ///        &quot;background&quot;: &quot;#8080C0&quot;
+        ///    },
+        ///    {
+        ///        &quot;na [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Category {
             get {

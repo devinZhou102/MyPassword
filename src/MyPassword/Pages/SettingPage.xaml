@@ -35,7 +35,7 @@
                                         <FontImageSource Glyph="{Binding Icon}" Color="#46A3FF" FontFamily="iconfont"/>
                                     </Image.Source>
                                 </Image>
-                              
+
                                 <Label Text="{Binding Title}" FontSize="16" TextColor="Gray" Grid.Row="0" Grid.Column="1"/>
                                 <Label Text="{Binding Description}" FontSize="14" TextColor="DarkGray" Grid.Row="1" Grid.Column="1"/>
                             </Grid>

@@ -129,7 +129,21 @@ namespace MyPassword.ViewModels
             }
         }
 
+        private string _CategoryBackground;
+        public string CategoryBackground
+        {
+            get => _CategoryBackground ?? (_CategoryBackground = "");
+            set
+            {
+                _CategoryBackground = value;
+                RaisePropertyChanged(nameof(CategoryBackground));
+            }
+        }
+
+
         private string CategoryKey;
+
+
 
         DataItemModel DataItem;
         private readonly ISecureKeyService secureKeyService;
@@ -185,6 +199,7 @@ namespace MyPassword.ViewModels
             CategoryName = category.Name;
             CategoryIcon = category.Icon;
             CategoryKey = category.Key;
+            CategoryBackground = category.Background;
         }
 
         public ICommand SaveCommand { get; private set; }

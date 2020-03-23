@@ -11,7 +11,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <controls:GuestureView/>
-            <Image Margin="0,0,-18,-6" WidthRequest="200" Aspect="AspectFit" HorizontalOptions="End" VerticalOptions="End"> 
+            <Image Margin="0,0,-18,-6" WidthRequest="200" Aspect="AspectFit" HorizontalOptions="End" VerticalOptions="End">
                 <Image.Source>
                     <OnPlatform x:TypeArguments="ImageSource">
                         <On Platform="Android,iOS">ImageShrimp.png</On>
@@ -19,13 +19,10 @@
                     </OnPlatform>
                 </Image.Source>
             </Image>
-            <ImageButton x:Name="ButtonClose" Clicked="ButtonClose_Clicked" Margin="12"
+            <ImageButton x:Name="ButtonClose" Clicked="ButtonClose_Clicked" Margin="12" WidthRequest="36" HeightRequest="36"
                          VerticalOptions="Start" HorizontalOptions="End" BackgroundColor="Transparent">
                 <ImageButton.Source>
-                    <OnPlatform x:TypeArguments="ImageSource">
-                        <On Platform="Android,iOS">IconClose.png</On>
-                        <On Platform="UWP">Assets/IconClose.png</On>
-                    </OnPlatform>
+                    <FontImageSource Glyph="&#xe60d;" Color="#46A3FF" FontFamily="iconfont"/>
                 </ImageButton.Source>
             </ImageButton>
         </Grid>
