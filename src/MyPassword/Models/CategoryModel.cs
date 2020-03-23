@@ -8,6 +8,9 @@ namespace MyPassword.Models
     {
         public string Name { get; set; }
         public string Icon { get; set; }
+        
+        public IconModel FontIcon { get; set; }
+
         public string Key { get; set; }
     }
 }
