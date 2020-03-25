@@ -1,4 +1,5 @@
-﻿using MyPassword.ViewModels;
+﻿using MyPassword.Models;
+using MyPassword.ViewModels;
 using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
 using System;
@@ -15,12 +16,12 @@ namespace MyPassword.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class IconSelectPage : PopupPage
     {
-		public IconSelectPage (Action<string> complete)
+		public IconSelectPage (Action<FontIcon> complete)
 		{
 			InitializeComponent ();
             NavigationPage.SetHasBackButton(this,false);
             NavigationPage.SetHasNavigationBar(this,false);
-            var vm = App.Locator.GetViewModel<IconSelectViewModel,Action<string>>(complete);
+            var vm = App.Locator.GetViewModel<IconSelectViewModel,Action<FontIcon>>(complete);
             BindingContext = vm;
         }
         

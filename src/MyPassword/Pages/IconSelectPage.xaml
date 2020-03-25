@@ -27,11 +27,20 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid WidthRequest="50" HeightRequest="50">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding TappedCommand}" CommandParameter="{Binding .}"/>
-                        </Grid.GestureRecognizers>
-                        <Image Source="{Binding Icon}" VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFit" WidthRequest="40" HeightRequest="40"/>
+                    <Grid WidthRequest="60" HeightRequest="60">
+                        <Grid Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"
+                                      HeightRequest="46" WidthRequest="46" ColumnSpacing="0" RowSpacing="0">
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding TappedCommand}" CommandParameter="{Binding .}"/>
+                            </Grid.GestureRecognizers>
+                            <BoxView HeightRequest="46" WidthRequest="46" CornerRadius="23" BackgroundColor="{Binding Background}"/>
+                            <Image WidthRequest="26" HeightRequest="26" VerticalOptions="Center" HorizontalOptions="Center">
+                                <Image.Source>
+                                    <FontImageSource Glyph="{Binding Icon}" FontFamily="iconfont"/>
+                                </Image.Source>
+                            </Image>
+                        </Grid>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

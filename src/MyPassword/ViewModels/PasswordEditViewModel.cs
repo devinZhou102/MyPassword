@@ -22,7 +22,7 @@ namespace MyPassword.ViewModels
         {
             get
             {
-                if(null == _Password)
+                if (null == _Password)
                 {
                     _Password = "";
                 }
@@ -40,7 +40,7 @@ namespace MyPassword.ViewModels
         {
             get
             {
-                if(null == _Title)
+                if (null == _Title)
                 {
                     _Title = "";
                 }
@@ -76,7 +76,7 @@ namespace MyPassword.ViewModels
         {
             get
             {
-                if(_Description == null)
+                if (_Description == null)
                 {
                     _Description = "";
                 }
@@ -88,13 +88,13 @@ namespace MyPassword.ViewModels
                 RaisePropertyChanged(nameof(Description));
             }
         }
-        
+
         private string _Icon;
         public string Icon
         {
             get
             {
-                if(null == _Icon)
+                if (null == _Icon)
                 {
                     _Icon = "";
                 }
@@ -140,10 +140,29 @@ namespace MyPassword.ViewModels
             }
         }
 
-
         private string CategoryKey;
 
+        private string _FontIconSource;
+        public string FontIconSource
+        {
+            get => _FontIconSource ?? (_FontIconSource = "");
+            set
+            {
+                _FontIconSource = value;
+                RaisePropertyChanged(nameof(FontIconSource));
+            }
+        }
 
+        private string _FontIconBg;
+        public string FontIconBg
+        {
+            get => _FontIconBg ?? (_FontIconBg = "#9F35FF");
+            set
+            {
+                _FontIconBg = value;
+                RaisePropertyChanged(nameof(FontIconBg));
+            }
+        }
 
         DataItemModel DataItem;
         private readonly ISecureKeyService secureKeyService;
@@ -192,6 +211,8 @@ namespace MyPassword.ViewModels
                 var c = categoryService.FindCategoryByKey(CategoryKey);
                 UpdateCategory(c);
             }
+            var icon = FontIcon.ToFontIcon(Icon);
+            UpdateFontIcon(icon);
         }
 
         private void UpdateCategory(CategoryModel category)
@@ -295,6 +316,12 @@ namespace MyPassword.ViewModels
             return tcs.Task;
         }
 
+        private void UpdateFontIcon(FontIcon data)
+        {
+            FontIconSource = data.Icon;
+            FontIconBg = data.Background;
+        }
+
         private async Task GenerateExcuteAsync()
         {
             await NavigationService.PushAsync(new PwdGeneratePage((pwd) => 
@@ -309,7 +336,8 @@ namespace MyPassword.ViewModels
             {
                 await NavigationService.PushPopupPageAsync(new IconSelectPage((data) =>
                 {
-                    Icon = data;
+                    Icon = data.ToJson();
+                    UpdateFontIcon(data);
                 }));
             }
             catch(Exception e)

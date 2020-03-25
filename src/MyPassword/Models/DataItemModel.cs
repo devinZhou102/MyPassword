@@ -17,14 +17,16 @@ namespace MyPassword.Models
 
         public string CategoryKey { get; set; }
 
-        [Secure]
         public string Name { get; set; }
-        [Secure]
+
         public string Account { get; set; }
         [Secure]
         public string Password { get; set; }
 
-        [Secure]
+        public string Phone { get; set; }
+
+        public DateTimeOffset UpdateTime { get; set; }
+
         public string Description { get; set; }
 
         string IModel.Id

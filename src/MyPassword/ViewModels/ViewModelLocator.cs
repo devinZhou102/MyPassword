@@ -52,6 +52,7 @@ namespace MyPassword.ViewModels
             SimpleIoc.Default.Register<ISecureKeyService, SecureKeyService>();
             SimpleIoc.Default.Register<ICategoryService, CategoryService>();
             SimpleIoc.Default.Register<IPwdGenerateService, PwdGenerateService>();
+            SimpleIoc.Default.Register<IAppIconService, AppIconService>();
         }
 
         public T GetService<T>()

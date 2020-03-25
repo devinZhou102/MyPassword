@@ -6,10 +6,15 @@ using MyPassword.Helpers;
 using MyPassword.Models;
 using MyPassword.Pages;
 using MyPassword.Services;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace MyPassword.ViewModels
 {
@@ -72,7 +77,7 @@ namespace MyPassword.ViewModels
         private string _CategoryBackground;
         public string CategoryBackground
         {
-            get => _CategoryBackground ?? (_CategoryBackground = "");
+            get => _CategoryBackground ?? (_CategoryBackground = "#667567");
             set
             {
                 _CategoryBackground = value;
@@ -104,7 +109,7 @@ namespace MyPassword.ViewModels
                     UpdateCategory(c);
                 }
             }
-            LoadData();
+            QueryDatas("");
             return base.InitializeAsync(parameter);
         }
 
@@ -117,9 +122,8 @@ namespace MyPassword.ViewModels
             CategoryBackground = category.Background;
         }
 
-        public void LoadData()
+        private void UpdateDatas(List<DataItemModel> datas)
         {
-            var datas = DataBaseHelper.Instance.Database?.SecureGetAll<DataItemModel>(secureKeyService.SecureKey);
             PasswordList.Clear();
             if (null != datas)
             {
@@ -130,6 +134,45 @@ namespace MyPassword.ViewModels
             }
         }
 
+        private void QueryDatas(string key)
+        {
+            List<DataItemModel> datas = null;
+            string query;
+            bool hasWhere;
+            List<string> param = new List<string>();
+            if (string.IsNullOrEmpty(CategoryKey))
+            {
+                query = "Select * from DataItemModel";
+                hasWhere = false;
+            }
+            else
+            {
+                hasWhere = true;
+                query = string.Format("Select * from DataItemModel where CategoryKey = '{0}'", CategoryKey);
+                //query = "Select * from DataItemModel where CategoryKey = '{0}'";
+                //param.Add(CategoryKey);
+            }
+            if (!string.IsNullOrEmpty(key))
+            {
+                byte[] bytes = Encoding.Convert(Encoding.Default, Encoding.UTF8, Encoding.Default.GetBytes(key));
+                string searchKey = Encoding.UTF8.GetString(bytes);
+                string splitter = hasWhere?" and ":" where ";
+                var q = $"Name like '%{searchKey}%'";
+                query = string.Join(splitter, query, q);
+                param.Add(key);
+            }
+
+            Debug.WriteLine("query : "+ query);
+            try
+            {
+                datas = DataBaseHelper.Instance.Database?.SecureQuery<DataItemModel>(query, secureKeyService.SecureKey);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            UpdateDatas(datas);
+        }
 
         private void RegisterMessager()
         {
@@ -157,7 +200,7 @@ namespace MyPassword.ViewModels
              {
                  if (value == TokenConst.TokenUpdateList)
                  {
-                     LoadData();
+                     QueryDatas("");
                  }
              });
 
@@ -188,18 +231,26 @@ namespace MyPassword.ViewModels
 
         private PwdItemViewModel Trans2PwdItemViewModel(DataItemModel item)
         {
+            var icon = FontIcon.ToFontIcon(item.Icon);
             return new PwdItemViewModel
             {
                 Id = item.Id,
                 Name = item.Name,
                 Account = item.Account,
                 Icon = item.Icon,
+                FontIconBackground = icon.Background,
+                FontIconSource = icon.Icon,
                 CategoryKey = item.CategoryKey,
                 Password = item.Password,
                 Description = item.Description,
                 TappedCommand = TappedCommand
             };
         }
+
+        public ICommand SearchCommand => new Command<string>((key)=>
+        {
+            QueryDatas(key);
+        });
 
         public ICommand AddDataCommand => new RelayCommand(async () =>
             await NavigationService.PushAsync(new PasswordEditPage()));
@@ -222,6 +273,9 @@ namespace MyPassword.ViewModels
         public string Icon { get; set; }
 
         public string CategoryKey { get; set; }
+
+        public string FontIconSource { get; set; }
+        public string FontIconBackground { get; set; }
 
         public string Name { get; set; }
         public string Account { get; set; }

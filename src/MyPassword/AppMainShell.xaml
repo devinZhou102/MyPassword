@@ -10,10 +10,10 @@
 
 
     <TabBar>
-        <Tab Title="{x:Static res:AppResource.TitleCategory}" Icon="IconKey.png">
+        <Tab Title="{x:Static res:AppResource.TitleCategory}" Icon="IconCategory">
             <ShellContent ContentTemplate="{DataTemplate pages:CategoryListPage}" />
         </Tab>
-        <Tab Title="{x:Static res:AppResource.TitleSetting}" Icon="IconSetting.png">
+        <Tab Title="{x:Static res:AppResource.TitleSetting}" Icon="IconSetting">
             <ShellContent ContentTemplate="{DataTemplate pages:SettingPage}" />
         </Tab>
     </TabBar>

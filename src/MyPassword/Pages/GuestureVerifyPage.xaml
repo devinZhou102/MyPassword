@@ -22,7 +22,7 @@
             <ImageButton x:Name="ButtonClose" Clicked="ButtonClose_Clicked" Margin="12" WidthRequest="36" HeightRequest="36"
                          VerticalOptions="Start" HorizontalOptions="End" BackgroundColor="Transparent">
                 <ImageButton.Source>
-                    <FontImageSource Glyph="&#xe60d;" Color="#46A3FF" FontFamily="iconfont"/>
+                    <FontImageSource Glyph="&#xe689;" Color="#46A3FF" FontFamily="iconfont"/>
                 </ImageButton.Source>
             </ImageButton>
         </Grid>
