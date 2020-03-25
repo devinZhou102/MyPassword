@@ -1,8 +1,6 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MyPassword.Const;
-using MyPassword.Helpers;
 using MyPassword.Models;
 using MyPassword.Pages;
 using MyPassword.Services;
@@ -89,8 +87,11 @@ namespace MyPassword.ViewModels
 
         private ISecureKeyService secureKeyService;
         private ICategoryService categoryService;
-        public PasswordViewModel(ISecureKeyService secureKeyService, ICategoryService categoryService)
+        private IDataBaseService dataBaseSerice;
+
+        public PasswordViewModel(IDataBaseService dataBaseSerice,ISecureKeyService secureKeyService, ICategoryService categoryService)
         {
+            this.dataBaseSerice = dataBaseSerice;
             this.categoryService = categoryService;
             this.secureKeyService = secureKeyService;
             RegisterMessager();
@@ -165,7 +166,7 @@ namespace MyPassword.ViewModels
             Debug.WriteLine("query : "+ query);
             try
             {
-                datas = DataBaseHelper.Instance.Database?.SecureQuery<DataItemModel>(query, secureKeyService.SecureKey);
+                dataBaseSerice.SecureQuery<DataItemModel>(query, secureKeyService.SecureKey);
             }
             catch (Exception ex)
             {

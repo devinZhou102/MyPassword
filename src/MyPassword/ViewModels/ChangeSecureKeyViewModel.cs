@@ -1,8 +1,6 @@
 ﻿using Acr.UserDialogs;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MyPassword.Const;
-using MyPassword.Helpers;
 using MyPassword.Models;
 using MyPassword.Services;
 using System;
@@ -94,13 +92,22 @@ namespace MyPassword.ViewModels
         private List<DataItemModel> DataList;
 
         private readonly ISecureKeyService secureKeyService;
-
-        public ChangeSecureKeyViewModel(ISecureKeyService secureKeyService)
+        private IDataBaseService secureDataBase;
+        public ChangeSecureKeyViewModel(IDataBaseService secureDataBase, ISecureKeyService secureKeyService)
         {
+            this.secureDataBase = secureDataBase;
             this.secureKeyService = secureKeyService;
             SaveCommand = new RelayCommand(()=>SaveExcuteAsync());
+        }
+
+        public override Task InitializeAsync<T>(T parameter)
+        {
+            OldSecureKey = "";
+            NewSecureKey = "";
+            ConfirmSecureKey = "";
             CurrentKey = secureKeyService.SecureKey;
-            DataList = DataBaseHelper.Instance.Database.SecureGetAll<DataItemModel>(CurrentKey);
+            DataList = secureDataBase.SecureGetAll<DataItemModel>(CurrentKey);
+            return base.InitializeAsync(parameter);
         }
 
         private Task<bool> UpdateDatabase(string secureKey)
@@ -110,13 +117,15 @@ namespace MyPassword.ViewModels
             {
                 try
                 {
-                    DataBaseHelper.Instance.Database.DeleteTables();
-                    await DataBaseHelper.Instance.ConnectDataBase("mypassword");
+                    secureDataBase.DeleteTable(typeof(DataItemModel));
+                    secureDataBase.CreateTable(typeof(DataItemModel));
+                    //todo  待验证
+                    //await DataBaseHelper.Instance.ConnectDataBase("mypassword");
                     if (DataList != null)
                     {
                         foreach (var item in DataList)
                         {
-                            DataBaseHelper.Instance.Database.SecureInsert(item, secureKey);
+                            secureDataBase.SecureInsert(item, secureKey);
                         }
                     }
                     var result = await SaveSecureKeyAsync();
@@ -153,7 +162,7 @@ namespace MyPassword.ViewModels
                 else
                 {
                     UserDialogs.Instance.Toast("修改密钥成功");
-                    NavigationService.PopAsync();
+                    await NavigationService.PopAsync();
                 }
                 MessengerInstance.Send<int>(TokenConst.TokenUpdateList);
             }

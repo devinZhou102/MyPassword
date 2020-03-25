@@ -1,54 +1,40 @@
-﻿using MyPassword.DataBase;
-using MyPassword.Helpers;
+﻿using MyPassword.Models;
+using SQLite.Net.Cipher.Data;
+using SQLite.Net.Cipher.Interfaces;
+using SQLite.Net.Cipher.Security;
+using SQLite.Net.Interop;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MyPassword.Services
 {
-    public class DatabaseService : IDatabaseService
+    public partial class DatabaseService : SecureDatabase, IDataBaseService
     {
 
-        private IPasswordDataBase Database => DataBaseHelper.Instance.Database;
 
-        public DatabaseService()
+        public DatabaseService(ISQLitePlatform platform, string dbfile, CryptoService salt) : base(platform, dbfile, salt)
         {
         }
 
 
-        int IDatabaseService.SecureDelete<T>(string id)
+        public void CreateTable(Type type)
         {
-            return Database.SecureDelete<T>(id);
+            base.CreateTable(type);
         }
 
-        T IDatabaseService.SecureGet<T>(string id, string keySeed)
+        public void DeleteTable(Type type)
         {
-            return Database.SecureGet<T>(id,keySeed);
+            DropTable(type);
         }
 
-        List<T> IDatabaseService.SecureGetAll<T>(string keySeed)
+        public void DeleteTables()
         {
-            return Database.SecureGetAll<T>(keySeed);
+            DropTable<DataItemModel>();
         }
 
-        int IDatabaseService.SecureGetCount<T>()
+        protected override void CreateTables()
         {
-            return Database.SecureGetCount<T>();
+            CreateTable<DataItemModel>();
         }
 
-        int IDatabaseService.SecureInsert<T>(T obj, string keySeed)
-        {
-            return Database.SecureInsert(obj, keySeed);
-        }
-
-        int IDatabaseService.SecureInsertOrReplace<T>(T obj, string keySeed)
-        {
-           return Database.SecureInsertOrReplace(obj, keySeed);
-        }
-
-        int IDatabaseService.SecureUpdate<T>(T obj, string keySeed)
-        {
-            return Database.SecureUpdate(obj,keySeed);
-        }
     }
 }

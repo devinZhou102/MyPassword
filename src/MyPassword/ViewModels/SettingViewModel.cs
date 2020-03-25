@@ -1,14 +1,10 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using MyPassword.Const;
-using MyPassword.Helpers;
 using MyPassword.Localization;
 using MyPassword.Models;
 using MyPassword.Pages;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 

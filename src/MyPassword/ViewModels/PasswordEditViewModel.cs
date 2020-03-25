@@ -2,7 +2,6 @@
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MyPassword.Const;
-using MyPassword.Helpers;
 using MyPassword.Models;
 using MyPassword.Pages;
 using MyPassword.Services;
@@ -167,9 +166,11 @@ namespace MyPassword.ViewModels
         DataItemModel DataItem;
         private readonly ISecureKeyService secureKeyService;
         private readonly ICategoryService categoryService;
+        private IDataBaseService secureDatabase;
 
-        public PasswordEditViewModel(ISecureKeyService secureKeyService,ICategoryService categoryService)
+        public PasswordEditViewModel(IDataBaseService secureDatabase, ISecureKeyService secureKeyService,ICategoryService categoryService)
         {
+            this.secureDatabase = secureDatabase;
             this.secureKeyService = secureKeyService;
             this.categoryService = categoryService;
             GenerateCommand = new RelayCommand(async () => await GenerateExcuteAsync());
@@ -305,11 +306,11 @@ namespace MyPassword.ViewModels
                 if (DataItem != null)
                 {
                     item.Id = DataItem.Id;
-                    result = DataBaseHelper.Instance.Database.SecureUpdate<DataItemModel>(item, secureKeyService.SecureKey);
+                    result = secureDatabase.SecureUpdate<DataItemModel>(item, secureKeyService.SecureKey);
                 }
                 else
                 {
-                    result = DataBaseHelper.Instance.Database.SecureInsert<DataItemModel>(item, secureKeyService.SecureKey);
+                    result = secureDatabase.SecureInsert<DataItemModel>(item, secureKeyService.SecureKey);
                 }
                 tcs.SetResult(result == 1?item:null);
             });

@@ -1,8 +1,8 @@
 ﻿using CommonServiceLocator;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using MyPassword.Dependencys;
 using MyPassword.Services;
+using SQLite.Net.Cipher.Interfaces;
 using System;
 using Xamarin.Forms;
 
@@ -30,7 +30,6 @@ namespace MyPassword.ViewModels
             SimpleIoc.Default.Register<GuestureLockViewModel>();
             SimpleIoc.Default.Register<GuestureVerifyViewModel>();
             SimpleIoc.Default.Register<IconSelectViewModel>();
-            SimpleIoc.Default.Register<PasswordDetailViewModel>();
             SimpleIoc.Default.Register<PasswordEditViewModel>();
             SimpleIoc.Default.Register<PasswordViewModel>();
             SimpleIoc.Default.Register<SecureKeyViewModel>();
@@ -46,14 +45,16 @@ namespace MyPassword.ViewModels
 
         private void RegisterServices()
         {
-            SimpleIoc.Default.Register<IDatabaseService, DatabaseService>();
+            SimpleIoc.Default.Register<ISecureDatabase, DatabaseService>();
             SimpleIoc.Default.Register<IAlertService, AlertService>();
             SimpleIoc.Default.Register<IGuestureLockService, GuestureLockService>();
             SimpleIoc.Default.Register<ISecureKeyService, SecureKeyService>();
             SimpleIoc.Default.Register<ICategoryService, CategoryService>();
             SimpleIoc.Default.Register<IPwdGenerateService, PwdGenerateService>();
             SimpleIoc.Default.Register<IAppIconService, AppIconService>();
+            SimpleIoc.Default.Register<IDataBaseService>(() => DataBaseSerivce.ConnectDataBase(),true);
         }
+
 
         public T GetService<T>()
         {

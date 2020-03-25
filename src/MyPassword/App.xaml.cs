@@ -1,4 +1,3 @@
-using MyPassword.Helpers;
 using MyPassword.Pages;
 using MyPassword.Services;
 using MyPassword.Themes;
@@ -33,6 +32,7 @@ namespace MyPassword
             appIconService = Locator.GetService<IAppIconService>();
             ThemeHelper.LightTheme();
         }
+
         private static readonly ViewModelLocator _locator = new ViewModelLocator();
         public static ViewModelLocator Locator
         {
@@ -42,8 +42,8 @@ namespace MyPassword
 
         private async void MainNavi()
         {
-            var connected = await DataBaseHelper.Instance.ConnectDataBase("mypassword");
-            if(connected)
+            var connected = Locator.GetService<IDataBaseService>() != null;
+            if (connected)
             {
                 await CheckSecureKeyAsync();
                 await CheckGuestureLockAsync();

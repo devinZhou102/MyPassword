@@ -2,6 +2,7 @@
 using MyPassword.Models;
 using MyPassword.Pages;
 using MyPassword.Services;
+using SQLite.Net.Cipher.Interfaces;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -28,10 +29,10 @@ namespace MyPassword.ViewModels
             }
         }
 
-        private IDatabaseService databaseService;
+        private IDataBaseService databaseService;
         private ISecureKeyService secureKeyService;
 
-        public CategoryViewModel(ICategoryService categoryService, IDatabaseService databaseService, ISecureKeyService secureKeyService)
+        public CategoryViewModel(ICategoryService categoryService, IDataBaseService databaseService, ISecureKeyService secureKeyService)
         {
             this.databaseService = databaseService;
             this.secureKeyService = secureKeyService;
