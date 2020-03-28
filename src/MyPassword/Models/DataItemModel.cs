@@ -7,9 +7,11 @@ using System.Text;
 
 namespace MyPassword.Models
 {
-    [Table("DataItemModel")]
+    [Table("table_data")]
     public class DataItemModel : IModel, SQLite.Net.Cipher.Interfaces.ICloneable
     {
+        public static string TableName = "table_data";
+
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
@@ -37,8 +39,7 @@ namespace MyPassword.Models
             }
             set
             {
-                int result = 0;
-                if (int.TryParse(value, out result))
+                if (int.TryParse(value, out int result))
                 {
                     Id = result;
                 }

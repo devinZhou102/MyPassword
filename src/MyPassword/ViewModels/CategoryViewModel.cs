@@ -54,8 +54,9 @@ namespace MyPassword.ViewModels
         {
             Task.Run(() =>
             {
-                var pwdlist = databaseService.SecureGetAll<DataItemModel>(secureKeyService.SecureKey);
-                if(pwdlist != null)
+                string query = $"Select * from {DataItemModel.TableName}";
+                var pwdlist = databaseService.SecureQuery<DataItemModel>(query, secureKeyService.SecureKey);
+                if (pwdlist != null)
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
@@ -67,7 +68,6 @@ namespace MyPassword.ViewModels
                     });
                 }
             });
-
         }
 
         private ICommand ItemClickCommand => new RelayCommand<CategoryItemViewModel>(async (c) =>

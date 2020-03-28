@@ -74,6 +74,7 @@ namespace MyPassword.ViewModels
                 Title = AppResource.ItemSecureKey,
                 Description = AppResource.ItemSecureKeyDesc,
                 SecureProtect = true,
+                Background = "#7373B9",
                 PageType = typeof(ChangeSecureKeyPage),
                 TappedCommand = TappedCommand
             });
@@ -83,6 +84,7 @@ namespace MyPassword.ViewModels
                 Title = AppResource.ItemGuesture,
                 SecureProtect = true,
                 Description = AppResource.ItemGuestureDesc,
+                Background = "#9F4D95",
                 PageType = typeof(GuestureLockPage),
                 TappedCommand = TappedCommand
             });
@@ -92,6 +94,7 @@ namespace MyPassword.ViewModels
                 SecureProtect = true,
                 Title = AppResource.ItemBackup,
                 Description = AppResource.ItemBackupDesc,
+                Background = "#949449",
                 PageType = typeof(BackUpPage),
                 TappedCommand = TappedCommand
 
@@ -102,6 +105,7 @@ namespace MyPassword.ViewModels
                 Title = AppResource.ItemAbout,
                 SecureProtect = false,
                 Description = AppResource.ItemAboutDesc,
+                Background = "#009393",
                 PageType = typeof(AboutPage),
                 TappedCommand = TappedCommand
             });

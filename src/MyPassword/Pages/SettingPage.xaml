@@ -16,8 +16,8 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Orientation="Vertical" Spacing="0">
-                            <Grid VerticalOptions="Center" Padding="12" RowSpacing="0"
-                            BackgroundColor="{DynamicResource MainItemBackgroundColor}">
+                            <Grid VerticalOptions="Center" Padding="12" RowSpacing="0" ColumnSpacing="0"
+                                BackgroundColor="{DynamicResource MainItemBackgroundColor}">
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding TappedCommand}" CommandParameter="{Binding .}"/>
                                 </Grid.GestureRecognizers>
@@ -29,13 +29,17 @@
                                     <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.RowSpan="2" Grid.Column="0" VerticalOptions="Start" Margin="0,0,12,0" WidthRequest="24" Aspect="AspectFit"  
-                                       BackgroundColor="Transparent" HeightRequest="24">
-                                    <Image.Source>
-                                        <FontImageSource Glyph="{Binding Icon}" Color="#46A3FF" FontFamily="iconfont"/>
-                                    </Image.Source>
-                                </Image>
 
+                                <Grid Grid.RowSpan="3" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="FillAndExpand" 
+                                      HeightRequest="40" WidthRequest="40" ColumnSpacing="0" RowSpacing="0" Margin="0,0,12,0">
+                                    <BoxView HeightRequest="40" WidthRequest="40" CornerRadius="20" BackgroundColor="{Binding Background}"/>
+                                    <Image VerticalOptions="Center"  WidthRequest="20" Aspect="AspectFit"  
+                                       BackgroundColor="Transparent" HeightRequest="20">
+                                        <Image.Source>
+                                            <FontImageSource Glyph="{Binding Icon}" Color="White" FontFamily="iconfont"/>
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
                                 <Label Text="{Binding Title}" FontSize="16" TextColor="Gray" Grid.Row="0" Grid.Column="1"/>
                                 <Label Text="{Binding Description}" FontSize="14" TextColor="DarkGray" Grid.Row="1" Grid.Column="1"/>
                             </Grid>

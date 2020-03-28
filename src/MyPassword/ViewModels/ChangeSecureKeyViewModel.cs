@@ -92,10 +92,10 @@ namespace MyPassword.ViewModels
         private List<DataItemModel> DataList;
 
         private readonly ISecureKeyService secureKeyService;
-        private IDataBaseService secureDataBase;
-        public ChangeSecureKeyViewModel(IDataBaseService secureDataBase, ISecureKeyService secureKeyService)
+        private IDataBaseService dataBaseService;
+        public ChangeSecureKeyViewModel(IDataBaseService dataBaseService, ISecureKeyService secureKeyService)
         {
-            this.secureDataBase = secureDataBase;
+            this.dataBaseService = dataBaseService;
             this.secureKeyService = secureKeyService;
             SaveCommand = new RelayCommand(()=>SaveExcuteAsync());
         }
@@ -106,7 +106,8 @@ namespace MyPassword.ViewModels
             NewSecureKey = "";
             ConfirmSecureKey = "";
             CurrentKey = secureKeyService.SecureKey;
-            DataList = secureDataBase.SecureGetAll<DataItemModel>(CurrentKey);
+            string query = $"Select * from {DataItemModel.TableName}";
+            DataList = dataBaseService.SecureQuery<DataItemModel>(query, secureKeyService.SecureKey);
             return base.InitializeAsync(parameter);
         }
 
@@ -117,15 +118,15 @@ namespace MyPassword.ViewModels
             {
                 try
                 {
-                    secureDataBase.DeleteTable(typeof(DataItemModel));
-                    secureDataBase.CreateTable(typeof(DataItemModel));
+                    dataBaseService.DeleteTable(typeof(DataItemModel));
+                    dataBaseService.CreateTable(typeof(DataItemModel));
                     //todo  待验证
                     //await DataBaseHelper.Instance.ConnectDataBase("mypassword");
                     if (DataList != null)
                     {
                         foreach (var item in DataList)
                         {
-                            secureDataBase.SecureInsert(item, secureKey);
+                            dataBaseService.SecureInsert(item, secureKey);
                         }
                     }
                     var result = await SaveSecureKeyAsync();

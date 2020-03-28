@@ -9,6 +9,9 @@ namespace MyPassword.Models
     {
         public string Icon { get; set; }
         public string Title { get; set; }
+
+        public string Background { get; set; }
+
         public string Description { get; set; }
         public Type PageType { get; set; }
         public bool SecureProtect { get; set; }

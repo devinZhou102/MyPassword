@@ -85,9 +85,25 @@ namespace MyPassword.ViewModels
 
         private string CategoryKey;
 
-        private ISecureKeyService secureKeyService;
-        private ICategoryService categoryService;
-        private IDataBaseService dataBaseSerice;
+        private string _SearchKey;
+
+        public string SearchKey
+        {
+            get => _SearchKey ?? (_SearchKey = "");
+            set
+            {
+                _SearchKey = value;
+                RaisePropertyChanged(nameof(SearchKey));
+                if (string.IsNullOrEmpty(SearchKey)) QueryDatas("");
+            }
+        }
+
+        private readonly ISecureKeyService secureKeyService;
+        private readonly ICategoryService categoryService;
+        private readonly IDataBaseService dataBaseSerice;
+
+
+        private List<DataItemModel> PasswordCacheList;
 
         public PasswordViewModel(IDataBaseService dataBaseSerice,ISecureKeyService secureKeyService, ICategoryService categoryService)
         {
@@ -110,7 +126,7 @@ namespace MyPassword.ViewModels
                     UpdateCategory(c);
                 }
             }
-            QueryDatas("");
+            LoadPasswordFromDataBase();
             return base.InitializeAsync(parameter);
         }
 
@@ -135,44 +151,32 @@ namespace MyPassword.ViewModels
             }
         }
 
+
+        private void LoadPasswordFromDataBase()
+        {
+            string query = $"Select * from {DataItemModel.TableName}";
+            if (!string.IsNullOrEmpty(CategoryKey))
+            {
+                query = $"{query} where CategoryKey = '{CategoryKey}'";
+            }
+            PasswordCacheList = dataBaseSerice.SecureQuery<DataItemModel>(query, secureKeyService.SecureKey);
+            UpdateDatas(PasswordCacheList);
+        }
+
         private void QueryDatas(string key)
         {
-            List<DataItemModel> datas = null;
-            string query;
-            bool hasWhere;
-            List<string> param = new List<string>();
-            if (string.IsNullOrEmpty(CategoryKey))
+            if(string.IsNullOrEmpty(key))
             {
-                query = "Select * from DataItemModel";
-                hasWhere = false;
+                UpdateDatas(PasswordCacheList);
             }
             else
             {
-                hasWhere = true;
-                query = string.Format("Select * from DataItemModel where CategoryKey = '{0}'", CategoryKey);
-                //query = "Select * from DataItemModel where CategoryKey = '{0}'";
-                //param.Add(CategoryKey);
+                var datas = PasswordCacheList.FindAll((p) =>
+                    p.Name?.Contains(key) == true ||
+                    p.Description?.Contains(key) == true ||
+                    p.Phone?.Contains(key) == true);
+                UpdateDatas(datas);
             }
-            if (!string.IsNullOrEmpty(key))
-            {
-                byte[] bytes = Encoding.Convert(Encoding.Default, Encoding.UTF8, Encoding.Default.GetBytes(key));
-                string searchKey = Encoding.UTF8.GetString(bytes);
-                string splitter = hasWhere?" and ":" where ";
-                var q = $"Name like '%{searchKey}%'";
-                query = string.Join(splitter, query, q);
-                param.Add(key);
-            }
-
-            Debug.WriteLine("query : "+ query);
-            try
-            {
-                dataBaseSerice.SecureQuery<DataItemModel>(query, secureKeyService.SecureKey);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
-            UpdateDatas(datas);
         }
 
         private void RegisterMessager()

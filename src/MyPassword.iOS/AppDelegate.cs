@@ -19,9 +19,9 @@ namespace MyPassword.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            Rg.Plugins.Popup.Popup.Init();
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
-            Rg.Plugins.Popup.Popup.Init();
             VersionTracking.Track();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             //SecureStorageImplementation.DefaultAccessible = Security.SecAccessible.Invalid;
