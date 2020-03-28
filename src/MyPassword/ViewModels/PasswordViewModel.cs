@@ -7,9 +7,7 @@ using MyPassword.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -127,6 +125,7 @@ namespace MyPassword.ViewModels
                 }
             }
             LoadPasswordFromDataBase();
+            QueryDatas("");
             return base.InitializeAsync(parameter);
         }
 
@@ -160,7 +159,6 @@ namespace MyPassword.ViewModels
                 query = $"{query} where CategoryKey = '{CategoryKey}'";
             }
             PasswordCacheList = dataBaseSerice.SecureQuery<DataItemModel>(query, secureKeyService.SecureKey);
-            UpdateDatas(PasswordCacheList);
         }
 
         private void QueryDatas(string key)
@@ -183,41 +181,38 @@ namespace MyPassword.ViewModels
         {
             MessengerInstance.Register<DataItemModel>(this, TokenConst.TokenUpdate, (data) =>
               {
-                  if (data != null)
+                  Device.BeginInvokeOnMainThread(async ()=>
                   {
-                      var pwdvm = Trans2PwdItemViewModel(data);
-                      var item = PasswordList.Where((v) => v.Id == data.Id);
-                      if (item != null && item.Count() > 0)
+                      await Task.Delay(300);
+                      if (data != null)
                       {
-                          int index = PasswordList.IndexOf(item.First());
-                          PasswordList.RemoveAt(index);
-
-                          PasswordList.Insert(index, pwdvm);
+                          var item = PasswordCacheList.Where((v) => v.Id == data.Id);
+                          if (item != null && item.Count() > 0)
+                          {
+                              int index = PasswordCacheList.IndexOf(item.First());
+                              PasswordCacheList.RemoveAt(index);
+                              PasswordCacheList.Insert(index, data);
+                          }
+                          else
+                          {
+                              PasswordCacheList.Add(data);
+                          }
+                          QueryDatas(SearchKey);
                       }
-                      else
-                      {
-                          PasswordList.Add(pwdvm);
-                      }
-                  }
+                  });
               });
 
             MessengerInstance.Register<int>(this, (value) =>
              {
                  if (value == TokenConst.TokenUpdateList)
                  {
-                     QueryDatas("");
+                     Device.BeginInvokeOnMainThread(async () =>
+                     {
+                         await Task.Delay(300);
+                         LoadPasswordFromDataBase();
+                     });
                  }
              });
-
-            MessengerInstance.Register<DataItemModel>(this, TokenConst.TokenDelete, (value) =>
-            {
-                var item = PasswordList.Where((v) => v.Id == value.Id);
-                if (item != null && item.Count() > 0)
-                {
-                    int index = PasswordList.IndexOf(item.First());
-                    PasswordList.RemoveAt(index);
-                }
-            });
         }
 
         private DataItemModel Trans2DataItemModel(PwdItemViewModel item)
@@ -229,6 +224,9 @@ namespace MyPassword.ViewModels
                 Account = item.Account,
                 Icon = item.Icon,
                 CategoryKey = item.CategoryKey,
+                Phone = item.Phone,
+                UpdateTime = item.UpdateTime,
+                Website = item.Website,
                 Password = item.Password,
                 Description = item.Description,
             };
@@ -247,8 +245,12 @@ namespace MyPassword.ViewModels
                 FontIconSource = icon.Icon,
                 CategoryKey = item.CategoryKey,
                 Password = item.Password,
+                Phone = item.Phone,
+                Website = item.Website,
+                UpdateTime = item.UpdateTime,
                 Description = item.Description,
-                TappedCommand = TappedCommand
+                TappedCommand = TappedCommand,
+                DeleteCommand = DeleteCommand
             };
         }
 
@@ -262,6 +264,19 @@ namespace MyPassword.ViewModels
 
         public ICommand TappedCommand => new RelayCommand<PwdItemViewModel>(async (item) =>
             await NavigationService.PushAsync(new PasswordEditPage(Trans2DataItemModel(item))));
+
+        public ICommand DeleteCommand => new RelayCommand<PwdItemViewModel>((data) =>
+        {
+            var item = PasswordCacheList.Where((v) => v.Id == data.Id);
+            if (item != null && item.Count() > 0)
+            {
+                int index = PasswordCacheList.IndexOf(item.First());
+                PasswordCacheList.RemoveAt(index);
+                var sql = $"delete from {DataItemModel.TableName} where id = {data.Id}";
+                dataBaseSerice.SecureQuery<DataItemModel>(sql,secureKeyService.SecureKey);
+                QueryDatas(SearchKey);
+            }
+        });
 
         public override void Cleanup()
         {
@@ -286,8 +301,15 @@ namespace MyPassword.ViewModels
         public string Account { get; set; }
         public string Password { get; set; }
         public string Description { get; set; }
+        public string Phone { get; set; }
+
+        public string Website { get; set; }
+
+        public DateTimeOffset UpdateTime { get; set; }
 
         public ICommand TappedCommand { get; set; }
+
+        public ICommand DeleteCommand { get; set; }
 
 
     }

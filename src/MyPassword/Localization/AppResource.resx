@@ -241,6 +241,9 @@
   <data name="PwdPassword" xml:space="preserve">
     <value>密码</value>
   </data>
+  <data name="PwdPhone" xml:space="preserve">
+    <value>手机</value>
+  </data>
   <data name="PwdPlaceHolder" xml:space="preserve">
     <value>密码</value>
   </data>
@@ -255,6 +258,12 @@
   </data>
   <data name="PwdUppercase" xml:space="preserve">
     <value>包含大写字母</value>
+  </data>
+  <data name="PwdWeb" xml:space="preserve">
+    <value>网址</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>搜索</value>

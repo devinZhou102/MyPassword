@@ -163,6 +163,39 @@ namespace MyPassword.ViewModels
             }
         }
 
+        private string _Website;
+        public string Website
+        {
+            get => _Website ?? (_Website = "");
+            set
+            {
+                _Website = value;
+                RaisePropertyChanged(nameof(Website));
+            }
+        }
+
+        private string _Phone;
+        public string Phone
+        {
+            get => _Phone ?? (_Phone = "");
+            set
+            {
+                _Phone = value;
+                RaisePropertyChanged(nameof(Phone));
+            }
+        }
+
+        private DateTimeOffset _UpdateTime;
+        public DateTimeOffset UpdateTime
+        {
+            get => _UpdateTime;
+            set
+            {
+                _UpdateTime = value;
+                RaisePropertyChanged(nameof(UpdateTime));
+            }
+        }
+
         DataItemModel DataItem;
         private readonly ISecureKeyService secureKeyService;
         private readonly ICategoryService categoryService;
@@ -202,6 +235,9 @@ namespace MyPassword.ViewModels
             Password = dataItem?.Password;
             Description = dataItem?.Description;
             CategoryKey = dataItem?.CategoryKey;
+            Phone = dataItem?.Phone;
+            Website = dataItem?.Website;
+            UpdateTime = dataItem == null?DateTimeOffset.UtcNow:dataItem.UpdateTime;
             if (string.IsNullOrEmpty(CategoryKey))
             {
                 var c = categoryService.GetDefaultCategory();
@@ -267,6 +303,10 @@ namespace MyPassword.ViewModels
                 Account = Account,
                 Password = Password,
                 Name = Title,
+                CategoryKey = CategoryKey,
+                Phone = Phone,
+                UpdateTime = DateTimeOffset.UtcNow,
+                Website = Website,
                 Description = Description
             };
             return item;

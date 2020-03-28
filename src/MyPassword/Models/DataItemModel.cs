@@ -27,6 +27,8 @@ namespace MyPassword.Models
 
         public string Phone { get; set; }
 
+        public string Website { get; set; }
+
         public DateTimeOffset UpdateTime { get; set; }
 
         public string Description { get; set; }

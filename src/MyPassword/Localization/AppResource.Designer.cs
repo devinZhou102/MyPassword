@@ -294,6 +294,15 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 手机.
+        /// </summary>
+        internal static string PwdPhone {
+            get {
+                return ResourceManager.GetString("PwdPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 密码.
         /// </summary>
         internal static string PwdPlaceHolder {
@@ -335,6 +344,24 @@ namespace MyPassword.Localization {
         internal static string PwdUppercase {
             get {
                 return ResourceManager.GetString("PwdUppercase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 网址.
+        /// </summary>
+        internal static string PwdWeb {
+            get {
+                return ResourceManager.GetString("PwdWeb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 保存.
+        /// </summary>
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
             }
         }
         
