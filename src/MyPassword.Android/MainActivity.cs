@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using System;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace MyPassword.Droid
 {
@@ -23,7 +24,8 @@ namespace MyPassword.Droid
             UserDialogs.Init(this);
             VersionTracking.Track();
             //SecureStorageImplementation.StorageType = StorageTypes.AndroidKeyStore;
-            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true); 
+            Forms.SetFlags("SwipeView_Experimental");
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
         }

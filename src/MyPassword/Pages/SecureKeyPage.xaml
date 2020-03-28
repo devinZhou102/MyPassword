@@ -5,7 +5,7 @@
              Title="设置加密密钥"
              x:Class="MyPassword.Pages.SecureKeyPage">
     <ContentPage.Content>
-        <Grid>
+        <Grid BackgroundColor="{DynamicResource MainBackgroundColor}">
             <StackLayout Orientation="Vertical" Margin="12">
                 <Entry Placeholder="您的密钥" Text="{Binding SecureKey}" IsPassword="{Binding HideSecureKey}" PlaceholderColor="DarkGray" Keyboard="Numeric" MaxLength="8"/>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" Margin="12,0">

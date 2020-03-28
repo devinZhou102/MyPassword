@@ -12,14 +12,11 @@ namespace MyPassword.Const
         /// Update List
         /// </summary>
         public const int TokenUpdateList = Token + 1;
-        /// <summary>
-        /// Delete Item
-        /// </summary>
-        public const int TokenDelete = Token + 2;
+
         /// <summary>
         /// Add or Update Item
         /// </summary>
-        public const int TokenUpdate = Token + 3;
+        public const int TokenUpdate = Token + 2;
 
     }
 }

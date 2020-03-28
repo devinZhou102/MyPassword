@@ -1,40 +1,27 @@
-﻿using MyPassword.Localization;
+﻿using GalaSoft.MvvmLight.Command;
 using MyPassword.Models;
-using Newtonsoft.Json;
+using MyPassword.Pages;
+using MyPassword.Services;
+using SQLite.Net.Cipher.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace MyPassword.ViewModels
 {
 
-    public class CategoryItemModel:BaseViewModel
-    {
-        public string Name { get; set; }
-        public string Icon { get; set; }
-        public string Key { get; set; }
 
-        private int _Count;
-        public int Count 
-        {
-            get => _Count; 
-            set
-            {
-                _Count = value;
-                RaisePropertyChanged(nameof(Count));
-            }
-        }
-    }
-
-    public class CategoryViewModel:BaseViewModel
+    public class CategoryViewModel : BaseViewModel
     {
 
-        private ObservableCollection<CategoryItemModel> _CategoryItems;
+        private ObservableCollection<CategoryItemViewModel> _CategoryItems;
 
-        public ObservableCollection<CategoryItemModel> CategoryItems
+        public ObservableCollection<CategoryItemViewModel> CategoryItems
         {
-            get => _CategoryItems ?? (_CategoryItems = new ObservableCollection<CategoryItemModel>());
+            get => _CategoryItems ?? (_CategoryItems = new ObservableCollection<CategoryItemViewModel>());
             set
             {
                 _CategoryItems = value;
@@ -42,21 +29,59 @@ namespace MyPassword.ViewModels
             }
         }
 
+        private IDataBaseService databaseService;
+        private ISecureKeyService secureKeyService;
 
-        public CategoryViewModel()
+        public CategoryViewModel(ICategoryService categoryService, IDataBaseService databaseService, ISecureKeyService secureKeyService)
         {
-            var category = JsonConvert.DeserializeObject<List<CategoryModel>>(AppResource.Category);
-            foreach(var c in category)
+            this.databaseService = databaseService;
+            this.secureKeyService = secureKeyService;
+            foreach (var c in categoryService.Categories)
             {
-                CategoryItems.Add(new CategoryItemModel
+                CategoryItems.Add(new CategoryItemViewModel
                 {
                     Name = c.Name,
                     Icon = c.Icon,
                     Key = c.Key,
-                    Count = 0
+                    Count = 0,
+                    Background = c.Background,
+                    ItemClickCommand = ItemClickCommand
                 });
             }
         }
 
+        public void UpdateCategory()
+        {
+            Task.Run(() =>
+            {
+                string query = $"Select * from {DataItemModel.TableName}";
+                var pwdlist = databaseService.SecureQuery<DataItemModel>(query, secureKeyService.SecureKey);
+                if (pwdlist != null)
+                {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        foreach (var c in CategoryItems)
+                        {
+                            var list = pwdlist.FindAll((p) => p.CategoryKey?.Equals(c.Key) == true);
+                            c.Count = list == null ? 0 : list.Count;
+                        }
+                    });
+                }
+            });
+        }
+
+        private ICommand ItemClickCommand => new RelayCommand<CategoryItemViewModel>(async (c) =>
+        {
+            await NavigationService.PushAsync(new PasswordPage(c.Key));
+        });
+
+        public ICommand SearchCommand => new RelayCommand(async () =>
+        {
+            await NavigationService.PushAsync(new PasswordPage());
+        });
+        public ICommand AddCommand => new RelayCommand(async () =>
+        {
+            await NavigationService.PushAsync(new PasswordEditPage());
+        });
     }
 }

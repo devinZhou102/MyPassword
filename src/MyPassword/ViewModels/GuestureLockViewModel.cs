@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using MyPassword.Manager;
 using MyPassword.Services;
 using System;
 using System.Threading.Tasks;
@@ -14,12 +13,18 @@ namespace MyPassword.ViewModels
 
         private string CacheLock = "";
 
-        public Action ActionSetLockFinish { get; set; }
+        Action ActionSetLockFinish;
 
         public GuestureLockViewModel(IGuestureLockService guestureLockService):base(guestureLockService)
         {
             ResetLockExcute();
             ResetLockCommand = new RelayCommand(()=>ResetLockExcute());
+        }
+
+        public override Task InitializeAsync<T>(T parameter)
+        {
+            ActionSetLockFinish = parameter as Action;
+            return base.InitializeAsync(parameter);
         }
 
         protected override async Task CreateGuestureLockSuccessAsync(string strLock)

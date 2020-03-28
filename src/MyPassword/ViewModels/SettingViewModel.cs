@@ -1,15 +1,16 @@
-﻿using GalaSoft.MvvmLight;
-using MyPassword.Helpers;
+﻿using GalaSoft.MvvmLight.Command;
+using MyPassword.Const;
+using MyPassword.Localization;
 using MyPassword.Models;
 using MyPassword.Pages;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace MyPassword.ViewModels
 {
-    public class SettingViewModel:ViewModelBase
+    public class SettingViewModel:BaseViewModel
     {
         private ObservableCollection<SettingItemModel> _SettingItemList;
 
@@ -34,42 +35,79 @@ namespace MyPassword.ViewModels
         {
             InitSettingItemList();
         }
-        
+
+        public ICommand TappedCommand => new RelayCommand<SettingItemModel>(async (item) => 
+        {
+            if (item.SecureProtect)
+            {
+                await NavigationService.PushModalAsync(new GuestureVerifyPage(async () =>
+                {
+                    PushPage(item);
+                    await NavigationService.PopModalAsync();
+                }, true));
+            }
+            else
+            {
+                PushPage(item);
+            }
+
+        });
+
+        private void PushPage(SettingItemModel item)
+        {
+            Device.BeginInvokeOnMainThread(async () => {
+                var paramTpyes = new Type[0];
+                var constructor = item.PageType.GetConstructor(paramTpyes);
+                if (constructor != null)
+                {
+                    var page = constructor.Invoke(null) as Page;
+                    await NavigationService.PushAsync(page);
+                }
+            });
+        }
 
         private void InitSettingItemList()
         {
             SettingItemList.Add(new SettingItemModel
             {
-                Icon = IconHelper.GetIcon("IconSecret"),
-                Title = "加密密钥",
-                Description = "用于数据加密",
+                Icon = IconFont.Key,
+                Title = AppResource.ItemSecureKey,
+                Description = AppResource.ItemSecureKeyDesc,
                 SecureProtect = true,
-                PageType = typeof(ChangeSecureKeyPage)
+                Background = "#7373B9",
+                PageType = typeof(ChangeSecureKeyPage),
+                TappedCommand = TappedCommand
             });
             SettingItemList.Add(new SettingItemModel
             {
-                Icon = IconHelper.GetIcon("IconLock"),
-                Title = "手势密码",
+                Icon = IconFont.Lock,
+                Title = AppResource.ItemGuesture,
                 SecureProtect = true,
-                Description = "用于保护APP的使用权",
-                PageType = typeof(GuestureLockPage)
+                Description = AppResource.ItemGuestureDesc,
+                Background = "#9F4D95",
+                PageType = typeof(GuestureLockPage),
+                TappedCommand = TappedCommand
             });
             SettingItemList.Add(new SettingItemModel
             {
-                Icon = IconHelper.GetIcon("IconBackup"),
+                Icon = IconFont.Backup,
                 SecureProtect = true,
-                Title = "数据备份",
-                Description = "备份您的数据",
-                PageType = typeof(BackUpPage)
+                Title = AppResource.ItemBackup,
+                Description = AppResource.ItemBackupDesc,
+                Background = "#949449",
+                PageType = typeof(BackUpPage),
+                TappedCommand = TappedCommand
 
             });
             SettingItemList.Add(new SettingItemModel
             {
-                Icon = IconHelper.GetIcon("IconAbout"),
-                Title = "关于",
+                Icon = IconFont.About,
+                Title = AppResource.ItemAbout,
                 SecureProtect = false,
-                Description = "APP相关信息",
-                PageType = typeof(AboutPage)
+                Description = AppResource.ItemAboutDesc,
+                Background = "#009393",
+                PageType = typeof(AboutPage),
+                TappedCommand = TappedCommand
             });
         }
 

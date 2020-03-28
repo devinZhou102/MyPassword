@@ -18,7 +18,7 @@ namespace MyPassword.Pages
 		public ChangeSecureKeyPage ()
 		{
 			InitializeComponent ();
-            viewModel = new ChangeSecureKeyViewModel();
+            viewModel = App.Locator.GetViewModel<ChangeSecureKeyViewModel,string>("");
             BindingContext = viewModel;
 		}
 

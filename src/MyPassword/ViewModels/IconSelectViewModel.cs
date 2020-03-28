@@ -1,16 +1,19 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using MyPassword.Const;
-using MyPassword.Helpers;
+﻿using GalaSoft.MvvmLight.Command;
+using MyPassword.Models;
+using MyPassword.Services;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MyPassword.ViewModels
 {
+    public class IconModel : FontIcon
+    {
+        public ICommand TappedCommand { get; set; }
+    }
+
+
     public class IconSelectViewModel : BaseViewModel
     {
         private ObservableCollection<IconModel> _IconList;
@@ -31,41 +34,41 @@ namespace MyPassword.ViewModels
             }
         }
 
-        public Action<string> SelectIconComplete { get; set; }
+        Action<FontIcon> SelectIconComplete;
+        IAppIconService appIconService;
 
-        public IconSelectViewModel()
+        public IconSelectViewModel(IAppIconService appIconService)
         {
-            InitIconListAsync();
-            TappedCommand = new RelayCommand<IconModel>((param) => TappedExcute(param));
+            this.appIconService = appIconService;
+            InitIconList();
         }
 
-        private async void InitIconListAsync()
+        public override Task InitializeAsync<T>(T parameter)
         {
-            //await Task.Delay(350);
-            foreach (var icon in IconConst.IconDatas)
+            SelectIconComplete = parameter as Action<FontIcon>;
+            return base.InitializeAsync(parameter);
+        }
+
+        private void InitIconList()
+        {
+            foreach (var icon in appIconService.FontIcons)
             {
-                IconList.Add(
-                    new IconModel{
-                        GroupId = 0,
-                        Icon =IconHelper.GetIcon(icon)
-                    });
+                IconList.Add(new IconModel
+                {
+                    Icon = icon.Icon,
+                    Background = icon.Background,
+                    TappedCommand = TappedCommand,
+                });
             }
         }
 
 
-        public ICommand TappedCommand { get; private set; }
-
-        private void TappedExcute(IconModel item)
+        public ICommand TappedCommand => new RelayCommand<FontIcon>(async (item) =>
         {
-            NavigationService.Navigation.PopModalAsync();
-            //NavigationService.PopAsync();
-            SelectIconComplete?.Invoke(item.Icon);
-        }
+            SelectIconComplete?.Invoke(item);
+            await NavigationService.PopPopupAsync();
+        });
+
     }
 
-    public class IconModel
-    {
-        public int GroupId { get; set; }
-        public string Icon { get; set; }
-    }
 }

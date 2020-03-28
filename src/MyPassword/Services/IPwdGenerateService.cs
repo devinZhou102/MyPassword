@@ -1,10 +1,12 @@
-﻿using System;
+﻿using MyPassword.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MyPassword.Services
 {
-    interface IPwdGenerateService
+    public interface IPwdGenerateService
     {
+        string Generate(PwdGeneratorParams param);
     }
 }

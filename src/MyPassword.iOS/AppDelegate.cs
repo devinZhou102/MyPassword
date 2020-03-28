@@ -1,6 +1,7 @@
 ﻿using Foundation;
 using UIKit;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace MyPassword.iOS
 {
@@ -19,10 +20,10 @@ namespace MyPassword.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            Forms.SetFlags("SwipeView_Experimental");
+            Rg.Plugins.Popup.Popup.Init();
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
-            Rg.Plugins.Popup.Popup.Init();
-            var x = typeof(Plugin.GridViewControl.iOS.Renderers.GridViewRenderer);
             VersionTracking.Track();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             //SecureStorageImplementation.DefaultAccessible = Security.SecAccessible.Invalid;

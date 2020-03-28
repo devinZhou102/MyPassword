@@ -1,43 +1,19 @@
 ﻿using Acr.UserDialogs;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MyPassword.Const;
-using MyPassword.Helpers;
-using MyPassword.Manager;
 using MyPassword.Models;
 using MyPassword.Pages;
-using MyPassword.Utils;
+using MyPassword.Services;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MyPassword.ViewModels
 {
-    public class PasswordEditViewModel : ViewModelBase
+    public class PasswordEditViewModel : BaseViewModel
     {
-
-        private PwdConditionViewModel _ConditionViewModel;
-
-        public PwdConditionViewModel ConditionViewModel
-        {
-            get
-            {
-                if (null == _ConditionViewModel)
-                {
-                    _ConditionViewModel = new PwdConditionViewModel();
-                }
-                return _ConditionViewModel;
-            }
-            set
-            {
-                _ConditionViewModel = value;
-                RaisePropertyChanged(nameof(ConditionViewModel));
-            }
-        }
 
         private string _Password;
 
@@ -45,7 +21,7 @@ namespace MyPassword.ViewModels
         {
             get
             {
-                if(null == _Password)
+                if (null == _Password)
                 {
                     _Password = "";
                 }
@@ -63,7 +39,7 @@ namespace MyPassword.ViewModels
         {
             get
             {
-                if(null == _Title)
+                if (null == _Title)
                 {
                     _Title = "";
                 }
@@ -99,7 +75,7 @@ namespace MyPassword.ViewModels
         {
             get
             {
-                if(_Description == null)
+                if (_Description == null)
                 {
                     _Description = "";
                 }
@@ -111,27 +87,13 @@ namespace MyPassword.ViewModels
                 RaisePropertyChanged(nameof(Description));
             }
         }
-        
-        private bool _HideSecureKey;
-        public bool HideSecureKey
-        {
-            get
-            {
-                return _HideSecureKey;
-            }
-            set
-            {
-                _HideSecureKey = value;
-                RaisePropertyChanged(nameof(HideSecureKey));
-            }
-        }
 
         private string _Icon;
         public string Icon
         {
             get
             {
-                if(null == _Icon)
+                if (null == _Icon)
                 {
                     _Icon = "";
                 }
@@ -144,32 +106,170 @@ namespace MyPassword.ViewModels
             }
         }
 
-
-        DataItemModel DataItem;
-
-        public PasswordEditViewModel(DataItemModel dataItem)
+        private string _CategoryIcon;
+        public string CategoryIcon
         {
-            DataItem = dataItem;
-            GenerateCommand = new RelayCommand(() => GenerateExcute());
-            SaveCommand = new RelayCommand(() => SaveExcuteAsync());
-            ImageTapCommand = new RelayCommand(() => ImageTapExcuteAsync());
-            if (DataItem != null)
+            get => _CategoryIcon ?? (_CategoryIcon = "");
+            set
             {
-                Icon = DataItem.Icon;
-                Account = DataItem.Account;
-                Title = DataItem.Name;
-                Password = DataItem.Password;
-                Description = DataItem.Description;
+                _CategoryIcon = value;
+                RaisePropertyChanged(nameof(CategoryIcon));
             }
-            HideSecureKey = true;
         }
 
-        
+        private string _CategoryName;
+        public string CategoryName
+        {
+            get => _CategoryName ?? (_CategoryName = "");
+            set
+            {
+                _CategoryName = value;
+                RaisePropertyChanged(nameof(CategoryName));
+            }
+        }
+
+        private string _CategoryBackground;
+        public string CategoryBackground
+        {
+            get => _CategoryBackground ?? (_CategoryBackground = "");
+            set
+            {
+                _CategoryBackground = value;
+                RaisePropertyChanged(nameof(CategoryBackground));
+            }
+        }
+
+        private string CategoryKey;
+
+        private string _FontIconSource;
+        public string FontIconSource
+        {
+            get => _FontIconSource ?? (_FontIconSource = "");
+            set
+            {
+                _FontIconSource = value;
+                RaisePropertyChanged(nameof(FontIconSource));
+            }
+        }
+
+        private string _FontIconBg;
+        public string FontIconBg
+        {
+            get => _FontIconBg ?? (_FontIconBg = "#9F35FF");
+            set
+            {
+                _FontIconBg = value;
+                RaisePropertyChanged(nameof(FontIconBg));
+            }
+        }
+
+        private string _Website;
+        public string Website
+        {
+            get => _Website ?? (_Website = "");
+            set
+            {
+                _Website = value;
+                RaisePropertyChanged(nameof(Website));
+            }
+        }
+
+        private string _Phone;
+        public string Phone
+        {
+            get => _Phone ?? (_Phone = "");
+            set
+            {
+                _Phone = value;
+                RaisePropertyChanged(nameof(Phone));
+            }
+        }
+
+        private DateTimeOffset _UpdateTime;
+        public DateTimeOffset UpdateTime
+        {
+            get => _UpdateTime;
+            set
+            {
+                _UpdateTime = value;
+                RaisePropertyChanged(nameof(UpdateTime));
+            }
+        }
+
+        DataItemModel DataItem;
+        private readonly ISecureKeyService secureKeyService;
+        private readonly ICategoryService categoryService;
+        private IDataBaseService secureDatabase;
+
+        public PasswordEditViewModel(IDataBaseService secureDatabase, ISecureKeyService secureKeyService,ICategoryService categoryService)
+        {
+            this.secureDatabase = secureDatabase;
+            this.secureKeyService = secureKeyService;
+            this.categoryService = categoryService;
+            GenerateCommand = new RelayCommand(async () => await GenerateExcuteAsync());
+            SaveCommand = new RelayCommand(() => SaveExcuteAsync());
+            ImageTapCommand = new RelayCommand(async () => await ImageTapExcuteAsync());
+          
+        }
+
+        public override Task InitializeAsync<T>(T parameter)
+        {
+
+            if (parameter is DataItemModel dataItem)
+            {
+                InitDatas(dataItem);
+            }
+            else
+            {
+                InitDatas(null);
+            }
+            return base.InitializeAsync(parameter);
+        }
+
+        private void InitDatas(DataItemModel dataItem)
+        {
+            DataItem = dataItem;
+            Icon = dataItem?.Icon;
+            Account = dataItem?.Account;
+            Title = dataItem?.Name;
+            Password = dataItem?.Password;
+            Description = dataItem?.Description;
+            CategoryKey = dataItem?.CategoryKey;
+            Phone = dataItem?.Phone;
+            Website = dataItem?.Website;
+            UpdateTime = dataItem == null?DateTimeOffset.UtcNow:dataItem.UpdateTime;
+            if (string.IsNullOrEmpty(CategoryKey))
+            {
+                var c = categoryService.GetDefaultCategory();
+                UpdateCategory(c);
+            }
+            else
+            {
+                var c = categoryService.FindCategoryByKey(CategoryKey);
+                UpdateCategory(c);
+            }
+            var icon = FontIcon.ToFontIcon(Icon);
+            UpdateFontIcon(icon);
+        }
+
+        private void UpdateCategory(CategoryModel category)
+        {
+            CategoryName = category.Name;
+            CategoryIcon = category.Icon;
+            CategoryKey = category.Key;
+            CategoryBackground = category.Background;
+        }
+
         public ICommand SaveCommand { get; private set; }
 
         public ICommand GenerateCommand { get; private set; }
 
         public ICommand ImageTapCommand { get; private set; }
+
+        public ICommand CategoryCommand => new RelayCommand(async () => 
+        {
+            await NavigationService.PushAsync(new CategorySelectPage((c) => UpdateCategory(c)));
+        });
 
         private async void SaveExcuteAsync()
         {
@@ -185,7 +285,7 @@ namespace MyPassword.ViewModels
             {
                 UserDialogs.Instance.Toast("保存数据成功");
                 Messenger.Default.Send(GetDataItemModel(success.Id),TokenConst.TokenUpdate);
-                NavigationService.PopAsync();
+                await NavigationService.PopAsync();
             }
             else
             {
@@ -203,6 +303,10 @@ namespace MyPassword.ViewModels
                 Account = Account,
                 Password = Password,
                 Name = Title,
+                CategoryKey = CategoryKey,
+                Phone = Phone,
+                UpdateTime = DateTimeOffset.UtcNow,
+                Website = Website,
                 Description = Description
             };
             return item;
@@ -215,7 +319,9 @@ namespace MyPassword.ViewModels
             else if (string.IsNullOrEmpty(Password.Trim())) isValid = false;
             else if (string.IsNullOrEmpty(Title.Trim())) isValid = false;
             else if (string.IsNullOrEmpty(Description.Trim())) isValid = false;
-            if(!isValid)
+            else if (string.IsNullOrEmpty(CategoryKey.Trim())) isValid = false;
+            //todo 待优化
+            if (!isValid)
             {
                 App.Current.MainPage.DisplayAlert("保存","请输入有效数据...","确定");
             }
@@ -233,30 +339,36 @@ namespace MyPassword.ViewModels
                     Account = Account,
                     Password = Password,
                     Name = Title,
-                    Description = Description
+                    Description = Description,
+                    CategoryKey = CategoryKey
                 };
                 int result = 0;
                 if (DataItem != null)
                 {
                     item.Id = DataItem.Id;
-                    result = DataBaseHelper.Instance.Database.SecureUpdate<DataItemModel>(item, SecureKeyManager.Instance.SecureKey);
+                    result = secureDatabase.SecureUpdate<DataItemModel>(item, secureKeyService.SecureKey);
                 }
                 else
                 {
-                    result = DataBaseHelper.Instance.Database.SecureInsert<DataItemModel>(item, SecureKeyManager.Instance.SecureKey);
+                    result = secureDatabase.SecureInsert<DataItemModel>(item, secureKeyService.SecureKey);
                 }
                 tcs.SetResult(result == 1?item:null);
             });
             return tcs.Task;
         }
 
-        private void GenerateExcute()
+        private void UpdateFontIcon(FontIcon data)
         {
-            var param = ConditionViewModel.BuildParams();
-            if(param.IsOk())
+            FontIconSource = data.Icon;
+            FontIconBg = data.Background;
+        }
+
+        private async Task GenerateExcuteAsync()
+        {
+            await NavigationService.PushAsync(new PwdGeneratePage((pwd) => 
             {
-                Password = PwdGenerator.GetInstance().Generate(param);
-            }
+                Password = pwd;
+            }));
         }
 
         private async Task ImageTapExcuteAsync()
@@ -265,7 +377,8 @@ namespace MyPassword.ViewModels
             {
                 await NavigationService.PushPopupPageAsync(new IconSelectPage((data) =>
                 {
-                    Icon = data;
+                    Icon = data.ToJson();
+                    UpdateFontIcon(data);
                 }));
             }
             catch(Exception e)

@@ -7,6 +7,9 @@
              x:Class="MyPassword.Pages.InitalPage">
     <ContentPage.Content>
         <StackLayout>
+
+            <Label VerticalOptions="Start" FontFamily="iconfont" Margin="0,0,12,0"
+                   WidthRequest="24" BackgroundColor="Transparent" HeightRequest="24"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,12 +1,13 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MyPassword.Manager;
+using MyPassword.Services;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MyPassword.ViewModels
 {
-    public class SecureKeyViewModel:ViewModelBase
+    public class SecureKeyViewModel:BaseViewModel
     {
 
         private string _SecureKey;
@@ -43,20 +44,27 @@ namespace MyPassword.ViewModels
             }
         }
 
-        readonly Action ActionSave;
-        public SecureKeyViewModel(Action actionSave)
+        Action ActionSave;
+        private ISecureKeyService secureKeyService;
+        public SecureKeyViewModel(ISecureKeyService secureKeyService)
         {
-            ActionSave = actionSave;
             HideSecureKey = true;
-            SecureKey = SecureKeyManager.Instance.SecureKey;
+            this.secureKeyService = secureKeyService;
+            SecureKey = secureKeyService.SecureKey;
             SaveCommand = new RelayCommand(()=>SaveExcute());
+        }
+
+        public override Task InitializeAsync<T>(T parameter)
+        {
+            ActionSave = parameter as Action;
+            return base.InitializeAsync(parameter);
         }
 
         public ICommand SaveCommand { get; private set; }
 
         private void SaveExcute()
         {
-            var oldKey = SecureKeyManager.Instance.SecureKey;
+            var oldKey = secureKeyService.SecureKey;
             if(!string.IsNullOrEmpty(SecureKey) && !oldKey.Equals(SecureKey))
             {
                 SaveSecureKeyAsync();
@@ -70,7 +78,7 @@ namespace MyPassword.ViewModels
 
         private async void SaveSecureKeyAsync()
         {
-            var result = await SecureKeyManager.Instance.SaveAsync(SecureKey);
+            var result = await secureKeyService.SaveAsync(SecureKey);
             if (result)
             {
                 ActionSave?.Invoke();

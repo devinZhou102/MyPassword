@@ -20,19 +20,17 @@ namespace MyPassword.Pages
         {
             InitializeComponent();
             InitViewModel(null);
-            Title = "新增";
         }
 
         public PasswordEditPage(DataItemModel dataItem)
         {
-            Title = "修改";
             InitializeComponent();
             InitViewModel(dataItem);
         }
 
         private void InitViewModel(DataItemModel dataItem)
         {
-            viewModel = new PasswordEditViewModel(dataItem);
+            viewModel = App.Locator.GetViewModel<PasswordEditViewModel, DataItemModel>(dataItem);
             BindingContext = viewModel;
         }
 
@@ -42,11 +40,6 @@ namespace MyPassword.Pages
 
         protected override void OnFirstAppear()
         {
-            ToolbarItems.Add(new ToolbarItem
-            {
-                Text = "保存",
-                Command = viewModel?.SaveCommand
-            });
         }
 
         public override void OnPoppedOut()

@@ -16,7 +16,7 @@ namespace MyPassword.Pages
         public BackUpPage ()
 		{
 			InitializeComponent ();
-            BindingContext = App.Locator.GetViewModel<BackUpViewModel>();
+            BindingContext = App.Locator.GetViewModel<BackUpViewModel,string>("");
         }
 
         protected override void OnAppear()

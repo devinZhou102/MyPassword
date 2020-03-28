@@ -120,10 +120,170 @@
   <data name="About" xml:space="preserve">
     <value>关于</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>新建</value>
+  </data>
   <data name="AppVersion" xml:space="preserve">
     <value>应用版本v{0}</value>
   </data>
+  <data name="ButtonGenerate" xml:space="preserve">
+    <value>生成密码</value>
+  </data>
   <data name="Category" xml:space="preserve">
-    <value>[{"name":"游戏","icon":"IconGame","key":"game"},{"name":"银行","icon":"IconBank","key":"bank"},{"name":"社交","icon":"IconChat","key":"social"},{"name":"邮箱","icon":"IconEmail","key":"email"},{"name":"购物","icon":"IconShop","key":"shop"},{"name":"视频","icon":"IconVideo","key":"video"},{"name":"音乐","icon":"IconMusic","key":"music"},{"name":"网站","icon":"IconWeb","key":"web"},{"name":"其他","icon":"IconAccount","key":"others"}]</value>
+    <value>[
+    {
+        "name": "游戏",
+        "key": "game",
+        "icon": "\ue7b9",
+        "background": "#00A600"
+    },
+    {
+        "name": "银行",
+        "key": "bank",
+        "icon": "\ue6c6",
+        "background": "#C4C400"
+    },
+    {
+        "name": "社交",
+        "key": "social",
+        "icon": "\ue60b",
+        "background": "#FF5151"
+    },
+    {
+        "name": "邮箱",
+        "key": "email",
+        "icon": "\uef79",
+        "background": "#8080C0"
+    },
+    {
+        "name": "购物",
+        "key": "shop",
+        "icon": "\ue60a",
+        "background": "#FF77FF"
+    },
+    {
+        "name": "视频",
+        "key": "video",
+        "icon": "\ue673",
+        "background": "#6A6AFF"
+    },
+    {
+        "name": "音乐",
+        "key": "music",
+        "icon": "\ue714",
+        "background": "#FFD306"
+    },
+    {
+        "name": "网站",
+        "key": "web",
+        "icon": "\ue61f",
+        "background": "#6FB7B7"
+    },
+    {
+        "name": "其他",
+        "key": "others",
+        "icon": "\ue64f",
+        "background": "#BE77FF"
+    }
+]</value>
+  </data>
+  <data name="CommonPlaceHolder" xml:space="preserve">
+    <value>点击输入</value>
+  </data>
+  <data name="ConfirmSecureKey" xml:space="preserve">
+    <value>确认密钥</value>
+  </data>
+  <data name="Ensure" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="ItemAbout" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="ItemAboutDesc" xml:space="preserve">
+    <value>应用相关信息</value>
+  </data>
+  <data name="ItemBackup" xml:space="preserve">
+    <value>数据备份</value>
+  </data>
+  <data name="ItemBackupDesc" xml:space="preserve">
+    <value>备份您的数据</value>
+  </data>
+  <data name="ItemGuesture" xml:space="preserve">
+    <value>手势密码</value>
+  </data>
+  <data name="ItemGuestureDesc" xml:space="preserve">
+    <value>用于保护应用的使用权限</value>
+  </data>
+  <data name="ItemSecureKey" xml:space="preserve">
+    <value>加密密钥</value>
+  </data>
+  <data name="ItemSecureKeyDesc" xml:space="preserve">
+    <value>用于数据加密</value>
+  </data>
+  <data name="NewSecureKey" xml:space="preserve">
+    <value>新密钥</value>
+  </data>
+  <data name="OldSecureKey" xml:space="preserve">
+    <value>原密钥</value>
+  </data>
+  <data name="PwdAccount" xml:space="preserve">
+    <value>账号</value>
+  </data>
+  <data name="PwdLength" xml:space="preserve">
+    <value>密码长度</value>
+  </data>
+  <data name="PwdLowerCase" xml:space="preserve">
+    <value>包含小写字母</value>
+  </data>
+  <data name="PwdNumbers" xml:space="preserve">
+    <value>包含数字</value>
+  </data>
+  <data name="PwdPassword" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="PwdPhone" xml:space="preserve">
+    <value>手机</value>
+  </data>
+  <data name="PwdPlaceHolder" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="PwdRemark" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="PwdSpecialCharacter" xml:space="preserve">
+    <value>包含特殊字符</value>
+  </data>
+  <data name="PwdTitle" xml:space="preserve">
+    <value>标题</value>
+  </data>
+  <data name="PwdUppercase" xml:space="preserve">
+    <value>包含大写字母</value>
+  </data>
+  <data name="PwdWeb" xml:space="preserve">
+    <value>网址</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>搜索</value>
+  </data>
+  <data name="SecureKeyTips" xml:space="preserve">
+    <value>设置您的加密密钥（8位），它将用于加密的数据，这很重要，请妥善保存!</value>
+  </data>
+  <data name="SecureKeyWarning" xml:space="preserve">
+    <value>提示：修改密钥前请先备份数据，以免数据发生损坏后，无法还原。</value>
+  </data>
+  <data name="TitleCategory" xml:space="preserve">
+    <value>分类</value>
+  </data>
+  <data name="TitleCategorySelect" xml:space="preserve">
+    <value>分类选择</value>
+  </data>
+  <data name="TitleGenerate" xml:space="preserve">
+    <value>生成</value>
+  </data>
+  <data name="TitleSetting" xml:space="preserve">
+    <value>设置</value>
   </data>
 </root>

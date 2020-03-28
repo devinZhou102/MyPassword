@@ -1,7 +1,6 @@
-using MyPassword.Helpers;
-using MyPassword.Manager;
 using MyPassword.Pages;
 using MyPassword.Services;
+using MyPassword.Themes;
 using MyPassword.ViewModels;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -13,20 +12,27 @@ namespace MyPassword
     public partial class App : Application
 	{
         private IGuestureLockService GuestureLockService;
+        private ISecureKeyService SecureKeyService;
+        private IAlertService alertService;
+        private IAppIconService appIconService;
 
         public App ()
 		{
-			InitializeComponent();
+            InitializeComponent();
             Initialize();
-            DataBaseHelper.Instance.ConnectDataBase("mypassword");
             MainPage = new InitalPage();
             MainNavi();
         }
 
         private void Initialize()
         {
+            SecureKeyService = Locator.GetService<ISecureKeyService>();
             GuestureLockService = Locator.GetService<IGuestureLockService>();
+            alertService = Locator.GetService<IAlertService>();
+            appIconService = Locator.GetService<IAppIconService>();
+            ThemeHelper.LightTheme();
         }
+
         private static readonly ViewModelLocator _locator = new ViewModelLocator();
         public static ViewModelLocator Locator
         {
@@ -36,9 +42,18 @@ namespace MyPassword
 
         private async void MainNavi()
         {
-            await CheckSecureKeyAsync();
-            await CheckGuestureLockAsync();
-            NaviToMain();
+            var connected = Locator.GetService<IDataBaseService>() != null;
+            if (connected)
+            {
+                await CheckSecureKeyAsync();
+                await CheckGuestureLockAsync();
+                await appIconService.LoadAssets();
+                NaviToMain();
+            }
+            else
+            {
+                await alertService.DisplayAlertAsync("MyPassword","connect database error","exit");
+            }
         }
 
         private Task<bool> CheckSecureKeyAsync()
@@ -46,8 +61,8 @@ namespace MyPassword
             var tcs = new TaskCompletionSource<bool>();
             Task.Factory.StartNew(async () =>
             {
-                await SecureKeyManager.Instance.InitAsync();
-                if (string.IsNullOrEmpty(SecureKeyManager.Instance.SecureKey))
+                await SecureKeyService.LoadSecureKeyAsync();
+                if (string.IsNullOrEmpty(SecureKeyService.SecureKey))
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
@@ -102,10 +117,8 @@ namespace MyPassword
                 {
                     case Device.Android:
                     case Device.iOS:
-                        MainPage = new AppMainShell();
-                        break;
                     case Device.UWP:
-                        MainPage = new MyNavigationPage(new MainTabbedPage());
+                        MainPage = new AppMainShell();
                         break;
                 }
             });

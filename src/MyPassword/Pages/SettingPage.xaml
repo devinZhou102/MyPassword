@@ -1,42 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<local:BaseContentPage 
+<local:BaseContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:res="clr-namespace:MyPassword.Localization"
     xmlns:local="clr-namespace:MyPassword.Pages"
-    Title="设置"
+    Title="{x:Static res:AppResource.TitleSetting}"
     x:Class="MyPassword.Pages.SettingPage">
     <ContentPage.Content>
-        <Grid BackgroundColor="WhiteSmoke">
-            <ListView ItemsSource="{Binding SettingItemList}" 
-                  ItemTapped="ListView_ItemTapped" 
-                  SeparatorVisibility="None"
-                  SeparatorColor="Transparent"
-                  Margin="12" SelectionMode="None"
-                  BackgroundColor="Transparent"
-                  RowHeight="72">
-                <ListView.ItemTemplate>
+        <Grid BackgroundColor="{DynamicResource MainBackgroundColor}">
+
+            <CollectionView ItemsSource="{Binding SettingItemList}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <Grid BackgroundColor="White" Margin="3">
-                                <Grid VerticalOptions="Center" Margin="12,3">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto"/>
-                                        <RowDefinition Height="auto"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Image Source="{Binding Icon}" WidthRequest="30" Margin="0,0,12,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" VerticalOptions="Start"/>
-                                    <Label Text="{Binding Title}" FontSize="16" TextColor="Gray" Grid.Row="0" Grid.Column="1"/>
-                                    <Label Text="{Binding Description}" FontSize="14" TextColor="DarkGray" Grid.Row="1" Grid.Column="1"/>
+                        <StackLayout Orientation="Vertical" Spacing="0">
+                            <Grid VerticalOptions="Center" Padding="12" RowSpacing="0" ColumnSpacing="0"
+                                BackgroundColor="{DynamicResource MainItemBackgroundColor}">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding TappedCommand}" CommandParameter="{Binding .}"/>
+                                </Grid.GestureRecognizers>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.RowSpan="3" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="FillAndExpand" 
+                                      HeightRequest="40" WidthRequest="40" ColumnSpacing="0" RowSpacing="0" Margin="0,0,12,0">
+                                    <BoxView HeightRequest="40" WidthRequest="40" CornerRadius="20" BackgroundColor="{Binding Background}"/>
+                                    <Image VerticalOptions="Center"  WidthRequest="20" Aspect="AspectFit"  
+                                       BackgroundColor="Transparent" HeightRequest="20">
+                                        <Image.Source>
+                                            <FontImageSource Glyph="{Binding Icon}" Color="White" FontFamily="iconfont"/>
+                                        </Image.Source>
+                                    </Image>
                                 </Grid>
+                                <Label Text="{Binding Title}" FontSize="16" TextColor="Gray" Grid.Row="0" Grid.Column="1"/>
+                                <Label Text="{Binding Description}" FontSize="14" TextColor="DarkGray" Grid.Row="1" Grid.Column="1"/>
                             </Grid>
-                        </ViewCell>
+                            <Grid HeightRequest="1" BackgroundColor="{DynamicResource DividerColor}"/>
+                        </StackLayout>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </Grid>
-       
     </ContentPage.Content>
 </local:BaseContentPage >

@@ -23,9 +23,9 @@ namespace MyPassword.Pages
         }
         
 
-        private void InitViewModel(Action KeySaveEvent)
+        private void InitViewModel(Action keySaveEvent)
         {
-            viewModel = new SecureKeyViewModel(KeySaveEvent);
+            viewModel = App.Locator.GetViewModel<SecureKeyViewModel, Action>(keySaveEvent);
             BindingContext = viewModel;
         }
 

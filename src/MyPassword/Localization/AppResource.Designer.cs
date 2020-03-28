@@ -70,6 +70,15 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 新建.
+        /// </summary>
+        internal static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 应用版本v{0}.
         /// </summary>
         internal static string AppVersion {
@@ -79,11 +88,343 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [{&quot;name&quot;:&quot;游戏&quot;,&quot;icon&quot;:&quot;IconGame&quot;,&quot;key&quot;:&quot;game&quot;},{&quot;name&quot;:&quot;银行&quot;,&quot;icon&quot;:&quot;IconBank&quot;,&quot;key&quot;:&quot;bank&quot;},{&quot;name&quot;:&quot;社交&quot;,&quot;icon&quot;:&quot;IconChat&quot;,&quot;key&quot;:&quot;social&quot;},{&quot;name&quot;:&quot;邮箱&quot;,&quot;icon&quot;:&quot;IconEmail&quot;,&quot;key&quot;:&quot;email&quot;},{&quot;name&quot;:&quot;购物&quot;,&quot;icon&quot;:&quot;IconShop&quot;,&quot;key&quot;:&quot;shop&quot;},{&quot;name&quot;:&quot;视频&quot;,&quot;icon&quot;:&quot;IconVideo&quot;,&quot;key&quot;:&quot;video&quot;},{&quot;name&quot;:&quot;音乐&quot;,&quot;icon&quot;:&quot;IconMusic&quot;,&quot;key&quot;:&quot;music&quot;},{&quot;name&quot;:&quot;网站&quot;,&quot;icon&quot;:&quot;IconWeb&quot;,&quot;key&quot;:&quot;web&quot;},{&quot;name&quot;:&quot;其他&quot;,&quot;icon&quot;:&quot;IconAccount&quot;,&quot;key&quot;:&quot;others&quot;}].
+        ///   Looks up a localized string similar to 生成密码.
+        /// </summary>
+        internal static string ButtonGenerate {
+            get {
+                return ResourceManager.GetString("ButtonGenerate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [
+        ///    {
+        ///        &quot;name&quot;: &quot;游戏&quot;,
+        ///        &quot;key&quot;: &quot;game&quot;,
+        ///        &quot;icon&quot;: &quot;\ue7b9&quot;,
+        ///        &quot;background&quot;: &quot;#00A600&quot;
+        ///    },
+        ///    {
+        ///        &quot;name&quot;: &quot;银行&quot;,
+        ///        &quot;key&quot;: &quot;bank&quot;,
+        ///        &quot;icon&quot;: &quot;\ue6c6&quot;,
+        ///        &quot;background&quot;: &quot;#C4C400&quot;
+        ///    },
+        ///    {
+        ///        &quot;name&quot;: &quot;社交&quot;,
+        ///        &quot;key&quot;: &quot;social&quot;,
+        ///        &quot;icon&quot;: &quot;\ue60b&quot;,
+        ///        &quot;background&quot;: &quot;#FF5151&quot;
+        ///    },
+        ///    {
+        ///        &quot;name&quot;: &quot;邮箱&quot;,
+        ///        &quot;key&quot;: &quot;email&quot;,
+        ///        &quot;icon&quot;: &quot;\uef79&quot;,
+        ///        &quot;background&quot;: &quot;#8080C0&quot;
+        ///    },
+        ///    {
+        ///        &quot;na [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Category {
             get {
                 return ResourceManager.GetString("Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 点击输入.
+        /// </summary>
+        internal static string CommonPlaceHolder {
+            get {
+                return ResourceManager.GetString("CommonPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 确认密钥.
+        /// </summary>
+        internal static string ConfirmSecureKey {
+            get {
+                return ResourceManager.GetString("ConfirmSecureKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 确定.
+        /// </summary>
+        internal static string Ensure {
+            get {
+                return ResourceManager.GetString("Ensure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 关于.
+        /// </summary>
+        internal static string ItemAbout {
+            get {
+                return ResourceManager.GetString("ItemAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 应用相关信息.
+        /// </summary>
+        internal static string ItemAboutDesc {
+            get {
+                return ResourceManager.GetString("ItemAboutDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 数据备份.
+        /// </summary>
+        internal static string ItemBackup {
+            get {
+                return ResourceManager.GetString("ItemBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 备份您的数据.
+        /// </summary>
+        internal static string ItemBackupDesc {
+            get {
+                return ResourceManager.GetString("ItemBackupDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 手势密码.
+        /// </summary>
+        internal static string ItemGuesture {
+            get {
+                return ResourceManager.GetString("ItemGuesture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 用于保护应用的使用权限.
+        /// </summary>
+        internal static string ItemGuestureDesc {
+            get {
+                return ResourceManager.GetString("ItemGuestureDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 加密密钥.
+        /// </summary>
+        internal static string ItemSecureKey {
+            get {
+                return ResourceManager.GetString("ItemSecureKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 用于数据加密.
+        /// </summary>
+        internal static string ItemSecureKeyDesc {
+            get {
+                return ResourceManager.GetString("ItemSecureKeyDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 新密钥.
+        /// </summary>
+        internal static string NewSecureKey {
+            get {
+                return ResourceManager.GetString("NewSecureKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 原密钥.
+        /// </summary>
+        internal static string OldSecureKey {
+            get {
+                return ResourceManager.GetString("OldSecureKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 账号.
+        /// </summary>
+        internal static string PwdAccount {
+            get {
+                return ResourceManager.GetString("PwdAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 密码长度.
+        /// </summary>
+        internal static string PwdLength {
+            get {
+                return ResourceManager.GetString("PwdLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 包含小写字母.
+        /// </summary>
+        internal static string PwdLowerCase {
+            get {
+                return ResourceManager.GetString("PwdLowerCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 包含数字.
+        /// </summary>
+        internal static string PwdNumbers {
+            get {
+                return ResourceManager.GetString("PwdNumbers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 密码.
+        /// </summary>
+        internal static string PwdPassword {
+            get {
+                return ResourceManager.GetString("PwdPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 手机.
+        /// </summary>
+        internal static string PwdPhone {
+            get {
+                return ResourceManager.GetString("PwdPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 密码.
+        /// </summary>
+        internal static string PwdPlaceHolder {
+            get {
+                return ResourceManager.GetString("PwdPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 备注.
+        /// </summary>
+        internal static string PwdRemark {
+            get {
+                return ResourceManager.GetString("PwdRemark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 包含特殊字符.
+        /// </summary>
+        internal static string PwdSpecialCharacter {
+            get {
+                return ResourceManager.GetString("PwdSpecialCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 标题.
+        /// </summary>
+        internal static string PwdTitle {
+            get {
+                return ResourceManager.GetString("PwdTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 包含大写字母.
+        /// </summary>
+        internal static string PwdUppercase {
+            get {
+                return ResourceManager.GetString("PwdUppercase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 网址.
+        /// </summary>
+        internal static string PwdWeb {
+            get {
+                return ResourceManager.GetString("PwdWeb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 保存.
+        /// </summary>
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 搜索.
+        /// </summary>
+        internal static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 设置您的加密密钥（8位），它将用于加密的数据，这很重要，请妥善保存!.
+        /// </summary>
+        internal static string SecureKeyTips {
+            get {
+                return ResourceManager.GetString("SecureKeyTips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 提示：修改密钥前请先备份数据，以免数据发生损坏后，无法还原。.
+        /// </summary>
+        internal static string SecureKeyWarning {
+            get {
+                return ResourceManager.GetString("SecureKeyWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 分类.
+        /// </summary>
+        internal static string TitleCategory {
+            get {
+                return ResourceManager.GetString("TitleCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 分类选择.
+        /// </summary>
+        internal static string TitleCategorySelect {
+            get {
+                return ResourceManager.GetString("TitleCategorySelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 生成.
+        /// </summary>
+        internal static string TitleGenerate {
+            get {
+                return ResourceManager.GetString("TitleGenerate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 设置.
+        /// </summary>
+        internal static string TitleSetting {
+            get {
+                return ResourceManager.GetString("TitleSetting", resourceCulture);
             }
         }
     }
