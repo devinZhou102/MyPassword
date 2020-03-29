@@ -294,6 +294,42 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 再次绘制解锁图案.
+        /// </summary>
+        internal static string MsgGuestureAgain {
+            get {
+                return ResourceManager.GetString("MsgGuestureAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 与首次绘制不一致，请再次绘制.
+        /// </summary>
+        internal static string MsgGuestureConfirmFailed {
+            get {
+                return ResourceManager.GetString("MsgGuestureConfirmFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 至少连续绘制4个点.
+        /// </summary>
+        internal static string MsgGuesturePoint {
+            get {
+                return ResourceManager.GetString("MsgGuesturePoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 保存解锁图案失败....
+        /// </summary>
+        internal static string MsgGuestureSaveFailed {
+            get {
+                return ResourceManager.GetString("MsgGuestureSaveFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 密码不能为空.
         /// </summary>
         internal static string MsgPassword {
@@ -330,11 +366,38 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 为了安全，请设置手势密码.
+        /// </summary>
+        internal static string MsgSetGuesture {
+            get {
+                return ResourceManager.GetString("MsgSetGuesture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 设置密钥失败....
+        /// </summary>
+        internal static string MsgSetSecretFailed {
+            get {
+                return ResourceManager.GetString("MsgSetSecretFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 标题不能为空.
         /// </summary>
         internal static string MsgTitle {
             get {
                 return ResourceManager.GetString("MsgTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 手势密码错误.
+        /// </summary>
+        internal static string MsgWrongGuesture {
+            get {
+                return ResourceManager.GetString("MsgWrongGuesture", resourceCulture);
             }
         }
         

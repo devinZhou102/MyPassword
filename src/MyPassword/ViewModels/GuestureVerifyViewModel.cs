@@ -1,4 +1,5 @@
-﻿using MyPassword.Services;
+﻿using MyPassword.Localization;
+using MyPassword.Services;
 using System;
 using System.Threading.Tasks;
 
@@ -27,7 +28,7 @@ namespace MyPassword.ViewModels
             }
             else
             {
-                Message = "手势密码错误";
+                Message = AppResource.MsgWrongGuesture;
                 MessageColor = ColorRed;
             }
             return Task.CompletedTask;

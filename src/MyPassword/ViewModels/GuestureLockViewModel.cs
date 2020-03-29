@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MyPassword.Localization;
 using MyPassword.Services;
 using System;
 using System.Threading.Tasks;
@@ -33,7 +34,7 @@ namespace MyPassword.ViewModels
             {
                 Count++;
                 CacheLock = strLock;
-                Message = "再次绘制解锁图案";
+                Message = AppResource.MsgGuestureAgain;
                 MessageColor = ColorBlue;
             }
             else if(2 == Count)
@@ -48,13 +49,13 @@ namespace MyPassword.ViewModels
                     }
                     else
                     {
-                        Message = "保存解锁图案失败...";
+                        Message = AppResource.MsgGuestureSaveFailed;
                         MessageColor = ColorRed;
                     }
                 }
                 else
                 {
-                    Message = "与首次绘制不一致，请再次绘制";
+                    Message = AppResource.MsgGuestureConfirmFailed;
                     MessageColor = ColorRed;
                 }
             }
@@ -67,7 +68,7 @@ namespace MyPassword.ViewModels
         {
             Count = 1;
             CacheLock = "";
-            Message = "为了安全，请设置手势密码";
+            Message = AppResource.MsgSetGuesture;
             MessageColor = ColorBlue;
         }
 

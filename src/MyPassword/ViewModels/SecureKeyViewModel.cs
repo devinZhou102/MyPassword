@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MyPassword.Localization;
 using MyPassword.Services;
 using System;
 using System.Threading.Tasks;
@@ -76,7 +77,7 @@ namespace MyPassword.ViewModels
         }
 
 
-        private async void SaveSecureKeyAsync()
+        private async Task SaveSecureKeyAsync()
         {
             var result = await secureKeyService.SaveAsync(SecureKey);
             if (result)
@@ -85,7 +86,7 @@ namespace MyPassword.ViewModels
             }
             else
             {
-                await App.Current.MainPage.DisplayAlert("设置密钥", "设置密钥失败...", "取消");
+                alertService.DisplayAlert("", AppResource.MsgSetSecretFailed, AppResource.DialogButtonCancel);
             }
         }
 
