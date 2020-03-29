@@ -13,10 +13,6 @@ namespace MyPassword.Const
         /// </summary>
         public const int TokenUpdateList = Token + 1;
 
-        /// <summary>
-        /// Add or Update Item
-        /// </summary>
-        public const int TokenUpdate = Token + 2;
 
     }
 }

@@ -193,6 +193,15 @@
   <data name="ConfirmSecureKey" xml:space="preserve">
     <value>确认密钥</value>
   </data>
+  <data name="DataAccount" xml:space="preserve">
+    <value>账号{0}</value>
+  </data>
+  <data name="DialogButtonCancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="DialogButtonConfirm" xml:space="preserve">
+    <value>确定</value>
+  </data>
   <data name="Ensure" xml:space="preserve">
     <value>确定</value>
   </data>
@@ -219,6 +228,33 @@
   </data>
   <data name="ItemSecureKeyDesc" xml:space="preserve">
     <value>用于数据加密</value>
+  </data>
+  <data name="LoadingMsg" xml:space="preserve">
+    <value>数据处理中...</value>
+  </data>
+  <data name="MsgAccount" xml:space="preserve">
+    <value>账号不能为空</value>
+  </data>
+  <data name="MsgChangeSecretFailed" xml:space="preserve">
+    <value>修改密钥失败</value>
+  </data>
+  <data name="MsgChangeSecretSuccess" xml:space="preserve">
+    <value>修改密钥成功</value>
+  </data>
+  <data name="MsgPassword" xml:space="preserve">
+    <value>密码不能为空</value>
+  </data>
+  <data name="MsgRestoreData" xml:space="preserve">
+    <value>正在还原数据...</value>
+  </data>
+  <data name="MsgRestoreFailed" xml:space="preserve">
+    <value>还原数据失败，请从备份还原</value>
+  </data>
+  <data name="MsgRestoreSuccess" xml:space="preserve">
+    <value>还原数据成功</value>
+  </data>
+  <data name="MsgTitle" xml:space="preserve">
+    <value>标题不能为空</value>
   </data>
   <data name="NewSecureKey" xml:space="preserve">
     <value>新密钥</value>
@@ -274,6 +310,18 @@
   <data name="SecureKeyWarning" xml:space="preserve">
     <value>提示：修改密钥前请先备份数据，以免数据发生损坏后，无法还原。</value>
   </data>
+  <data name="TipsSecretConfirmFailed" xml:space="preserve">
+    <value>两次密钥输入不一样</value>
+  </data>
+  <data name="TipsSecretLength" xml:space="preserve">
+    <value>请输入8位的密钥</value>
+  </data>
+  <data name="TipsSecretSameAsOld" xml:space="preserve">
+    <value>新密钥不能与旧密钥一致</value>
+  </data>
+  <data name="TipsWrongSecret" xml:space="preserve">
+    <value>原密钥不正确,请重新输入</value>
+  </data>
   <data name="TitleCategory" xml:space="preserve">
     <value>分类</value>
   </data>
@@ -282,6 +330,9 @@
   </data>
   <data name="TitleGenerate" xml:space="preserve">
     <value>生成</value>
+  </data>
+  <data name="TitlePasswordPage" xml:space="preserve">
+    <value>密钥</value>
   </data>
   <data name="TitleSetting" xml:space="preserve">
     <value>设置</value>

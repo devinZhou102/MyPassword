@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using GalaSoft.MvvmLight.Command;
 using MyPassword.Const;
+using MyPassword.Localization;
 using MyPassword.Models;
 using MyPassword.Services;
 using System;
@@ -152,17 +153,17 @@ namespace MyPassword.ViewModels
         {
             if(CheckSecureKey())
             {
-                var dialogProgress = UserDialogs.Instance.Loading("数据处理中...");
+                loadingService.ShowLoading();
                 bool success = await UpdateDatabase(NewSecureKey);
-                dialogProgress.Hide();
+                loadingService.HideLoading();
                 if (!success)
                 {
-                    UserDialogs.Instance.Toast("修改密钥失败");
+                    alertService.Toast(AppResource.MsgChangeSecretFailed);
                     RevertData();
                 }
                 else
                 {
-                    UserDialogs.Instance.Toast("修改密钥成功");
+                    alertService.Toast(AppResource.MsgChangeSecretSuccess);
                     await NavigationService.PopAsync();
                 }
                 MessengerInstance.Send<int>(TokenConst.TokenUpdateList);
@@ -171,16 +172,16 @@ namespace MyPassword.ViewModels
 
         private async void RevertData()
         {
-            var dialogProgress = UserDialogs.Instance.Loading("正在还原数据...");
+            loadingService.ShowLoading(AppResource.MsgRestoreData);
             bool success = await UpdateDatabase(CurrentKey);
-            dialogProgress.Hide();
+            loadingService.HideLoading();
             if(success)
             {
-                UserDialogs.Instance.Toast("还原数据成功");
+                alertService.Toast(AppResource.MsgRestoreSuccess);
             }
             else
             {
-                UserDialogs.Instance.Toast("还原数据失败，请从备份中还原数据");
+                alertService.DisplayAlert("",AppResource.MsgRestoreFailed,AppResource.DialogButtonConfirm);
             }
         }
 
@@ -188,22 +189,22 @@ namespace MyPassword.ViewModels
         {
             if (!CurrentKey.Equals(OldSecureKey))
             {
-                ErrorMsg = "原密钥不正确,请重新输入";
+                ErrorMsg = AppResource.TipsWrongSecret;
                 return false;
             }
             else if(NewSecureKey.Length < 8)
             {
-                ErrorMsg = "请输入不少于8位的密钥";
+                ErrorMsg = AppResource.TipsSecretLength;
                 return false;
             }
             else if(!NewSecureKey.Equals(ConfirmSecureKey))
             {
-                ErrorMsg = "两次密钥输入不一样";
+                ErrorMsg = AppResource.TipsSecretConfirmFailed;
                 return false;
             }
             else if(NewSecureKey.Equals(CurrentKey))
             {
-                ErrorMsg = "新密钥不能与旧密钥一致";
+                ErrorMsg = AppResource.TipsSecretSameAsOld;
                 return false;
             }
             return true;

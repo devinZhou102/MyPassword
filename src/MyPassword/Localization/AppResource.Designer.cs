@@ -150,6 +150,33 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 账号{0}.
+        /// </summary>
+        internal static string DataAccount {
+            get {
+                return ResourceManager.GetString("DataAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 取消.
+        /// </summary>
+        internal static string DialogButtonCancel {
+            get {
+                return ResourceManager.GetString("DialogButtonCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 确定.
+        /// </summary>
+        internal static string DialogButtonConfirm {
+            get {
+                return ResourceManager.GetString("DialogButtonConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 确定.
         /// </summary>
         internal static string Ensure {
@@ -227,6 +254,87 @@ namespace MyPassword.Localization {
         internal static string ItemSecureKeyDesc {
             get {
                 return ResourceManager.GetString("ItemSecureKeyDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 数据处理中....
+        /// </summary>
+        internal static string LoadingMsg {
+            get {
+                return ResourceManager.GetString("LoadingMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 账号不能为空.
+        /// </summary>
+        internal static string MsgAccount {
+            get {
+                return ResourceManager.GetString("MsgAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 修改密钥失败.
+        /// </summary>
+        internal static string MsgChangeSecretFailed {
+            get {
+                return ResourceManager.GetString("MsgChangeSecretFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 修改密钥成功.
+        /// </summary>
+        internal static string MsgChangeSecretSuccess {
+            get {
+                return ResourceManager.GetString("MsgChangeSecretSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 密码不能为空.
+        /// </summary>
+        internal static string MsgPassword {
+            get {
+                return ResourceManager.GetString("MsgPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 正在还原数据....
+        /// </summary>
+        internal static string MsgRestoreData {
+            get {
+                return ResourceManager.GetString("MsgRestoreData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 还原数据失败，请从备份还原.
+        /// </summary>
+        internal static string MsgRestoreFailed {
+            get {
+                return ResourceManager.GetString("MsgRestoreFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 还原数据成功.
+        /// </summary>
+        internal static string MsgRestoreSuccess {
+            get {
+                return ResourceManager.GetString("MsgRestoreSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 标题不能为空.
+        /// </summary>
+        internal static string MsgTitle {
+            get {
+                return ResourceManager.GetString("MsgTitle", resourceCulture);
             }
         }
         
@@ -393,6 +501,42 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 两次密钥输入不一样.
+        /// </summary>
+        internal static string TipsSecretConfirmFailed {
+            get {
+                return ResourceManager.GetString("TipsSecretConfirmFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 请输入8位的密钥.
+        /// </summary>
+        internal static string TipsSecretLength {
+            get {
+                return ResourceManager.GetString("TipsSecretLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 新密钥不能与旧密钥一致.
+        /// </summary>
+        internal static string TipsSecretSameAsOld {
+            get {
+                return ResourceManager.GetString("TipsSecretSameAsOld", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 原密钥不正确,请重新输入.
+        /// </summary>
+        internal static string TipsWrongSecret {
+            get {
+                return ResourceManager.GetString("TipsWrongSecret", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 分类.
         /// </summary>
         internal static string TitleCategory {
@@ -416,6 +560,15 @@ namespace MyPassword.Localization {
         internal static string TitleGenerate {
             get {
                 return ResourceManager.GetString("TitleGenerate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 密钥.
+        /// </summary>
+        internal static string TitlePasswordPage {
+            get {
+                return ResourceManager.GetString("TitlePasswordPage", resourceCulture);
             }
         }
         

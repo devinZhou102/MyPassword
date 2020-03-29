@@ -179,29 +179,6 @@ namespace MyPassword.ViewModels
 
         private void RegisterMessager()
         {
-            MessengerInstance.Register<DataItemModel>(this, TokenConst.TokenUpdate, (data) =>
-              {
-                  Device.BeginInvokeOnMainThread(async ()=>
-                  {
-                      await Task.Delay(300);
-                      if (data != null)
-                      {
-                          var item = PasswordCacheList.Where((v) => v.Id == data.Id);
-                          if (item != null && item.Count() > 0)
-                          {
-                              int index = PasswordCacheList.IndexOf(item.First());
-                              PasswordCacheList.RemoveAt(index);
-                              PasswordCacheList.Insert(index, data);
-                          }
-                          else
-                          {
-                              PasswordCacheList.Add(data);
-                          }
-                          QueryDatas(SearchKey);
-                      }
-                  });
-              });
-
             MessengerInstance.Register<int>(this, (value) =>
              {
                  if (value == TokenConst.TokenUpdateList)
@@ -210,6 +187,7 @@ namespace MyPassword.ViewModels
                      {
                          await Task.Delay(300);
                          LoadPasswordFromDataBase();
+                         QueryDatas("");
                      });
                  }
              });
@@ -260,10 +238,10 @@ namespace MyPassword.ViewModels
         });
 
         public ICommand AddDataCommand => new RelayCommand(async () =>
-            await NavigationService.PushAsync(new PasswordEditPage()));
+            await NavigationService.PushAsync(new PasswordEditPage(new Dtos.PwdDataDto { CategoryKey = CategoryKey})));
 
         public ICommand TappedCommand => new RelayCommand<PwdItemViewModel>(async (item) =>
-            await NavigationService.PushAsync(new PasswordEditPage(Trans2DataItemModel(item))));
+            await NavigationService.PushAsync(new PasswordEditPage(new Dtos.PwdDataDto { Data = Trans2DataItemModel(item) })));
 
         public ICommand DeleteCommand => new RelayCommand<PwdItemViewModel>((data) =>
         {

@@ -1,4 +1,5 @@
-﻿using MyPassword.Models;
+﻿using MyPassword.Dtos;
+using MyPassword.Models;
 using MyPassword.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -22,15 +23,15 @@ namespace MyPassword.Pages
             InitViewModel(null);
         }
 
-        public PasswordEditPage(DataItemModel dataItem)
+        public PasswordEditPage(PwdDataDto data)
         {
             InitializeComponent();
-            InitViewModel(dataItem);
+            InitViewModel(data);
         }
 
-        private void InitViewModel(DataItemModel dataItem)
+        private void InitViewModel(PwdDataDto data)
         {
-            viewModel = App.Locator.GetViewModel<PasswordEditViewModel, DataItemModel>(dataItem);
+            viewModel = App.Locator.GetViewModel<PasswordEditViewModel, PwdDataDto>(data);
             BindingContext = viewModel;
         }
 

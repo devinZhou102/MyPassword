@@ -19,5 +19,10 @@ namespace MyPassword.Services
         {
             await UserDialogs.Instance.AlertAsync(content, title, actionName);
         }
+
+        public void Toast(string content)
+        {
+            UserDialogs.Instance.Toast(content);
+        }
     }
 }
