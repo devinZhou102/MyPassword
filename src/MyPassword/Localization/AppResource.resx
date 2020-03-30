@@ -194,7 +194,7 @@
     <value>确认密钥</value>
   </data>
   <data name="DataAccount" xml:space="preserve">
-    <value>账号{0}</value>
+    <value>账号：{0}</value>
   </data>
   <data name="DialogButtonCancel" xml:space="preserve">
     <value>取消</value>

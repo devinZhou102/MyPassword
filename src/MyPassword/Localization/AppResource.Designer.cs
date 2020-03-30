@@ -150,7 +150,7 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 账号{0}.
+        ///   Looks up a localized string similar to 账号：{0}.
         /// </summary>
         internal static string DataAccount {
             get {
