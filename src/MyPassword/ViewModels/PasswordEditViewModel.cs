@@ -2,6 +2,8 @@
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MyPassword.Const;
+using MyPassword.Dtos;
+using MyPassword.Localization;
 using MyPassword.Models;
 using MyPassword.Pages;
 using MyPassword.Services;
@@ -196,6 +198,17 @@ namespace MyPassword.ViewModels
             }
         }
 
+        private bool _CategoryEditable;
+        public bool CategoryEditable
+        {
+            get => _CategoryEditable;
+            set
+            {
+                _CategoryEditable = value;
+                RaisePropertyChanged(nameof(CategoryEditable));
+            }
+        }
+
         DataItemModel DataItem;
         private readonly ISecureKeyService secureKeyService;
         private readonly ICategoryService categoryService;
@@ -206,18 +219,15 @@ namespace MyPassword.ViewModels
             this.secureDatabase = secureDatabase;
             this.secureKeyService = secureKeyService;
             this.categoryService = categoryService;
-            GenerateCommand = new RelayCommand(async () => await GenerateExcuteAsync());
-            SaveCommand = new RelayCommand(() => SaveExcuteAsync());
-            ImageTapCommand = new RelayCommand(async () => await ImageTapExcuteAsync());
           
         }
 
         public override Task InitializeAsync<T>(T parameter)
         {
 
-            if (parameter is DataItemModel dataItem)
+            if (parameter is PwdDataDto data)
             {
-                InitDatas(dataItem);
+                InitDatas(data);
             }
             else
             {
@@ -226,18 +236,22 @@ namespace MyPassword.ViewModels
             return base.InitializeAsync(parameter);
         }
 
-        private void InitDatas(DataItemModel dataItem)
+        private void InitDataItem(DataItemModel data)
         {
-            DataItem = dataItem;
-            Icon = dataItem?.Icon;
-            Account = dataItem?.Account;
-            Title = dataItem?.Name;
-            Password = dataItem?.Password;
-            Description = dataItem?.Description;
-            CategoryKey = dataItem?.CategoryKey;
-            Phone = dataItem?.Phone;
-            Website = dataItem?.Website;
-            UpdateTime = dataItem == null?DateTimeOffset.UtcNow:dataItem.UpdateTime;
+            DataItem = data;
+            Icon = DataItem?.Icon;
+            Account = DataItem?.Account;
+            Title = DataItem?.Name;
+            Password = DataItem?.Password;
+            Description = DataItem?.Description;
+            Phone = DataItem?.Phone;
+            Website = DataItem?.Website;
+            UpdateTime = DataItem == null ? DateTimeOffset.UtcNow : DataItem.UpdateTime;
+        }
+
+        private void InitCategory(string categoryKey)
+        {
+            CategoryKey = categoryKey;
             if (string.IsNullOrEmpty(CategoryKey))
             {
                 var c = categoryService.GetDefaultCategory();
@@ -252,6 +266,29 @@ namespace MyPassword.ViewModels
             UpdateFontIcon(icon);
         }
 
+        private void InitDatas(PwdDataDto data)
+        {
+            if (data == null || (string.IsNullOrEmpty(data.CategoryKey) && data.Data == null) )// new 
+            {
+                InitCategory("");
+                InitDataItem(null);
+                CategoryEditable = true;
+            }
+            else if (data.Data == null && !string.IsNullOrEmpty(data.CategoryKey))// new with category
+            {
+                InitCategory(data.CategoryKey);
+                InitDataItem(null);
+                CategoryEditable = false;
+            }
+            else if (string.IsNullOrEmpty(data.CategoryKey) && data.Data != null)// edit
+            {
+                InitCategory(data.Data.CategoryKey);
+                InitDataItem(data.Data);
+                CategoryEditable = true;
+            }
+        }
+
+
         private void UpdateCategory(CategoryModel category)
         {
             CategoryName = category.Name;
@@ -260,18 +297,19 @@ namespace MyPassword.ViewModels
             CategoryBackground = category.Background;
         }
 
-        public ICommand SaveCommand { get; private set; }
+        public ICommand SaveCommand => new RelayCommand(async ()=> await SaveExcuteAsync());
 
-        public ICommand GenerateCommand { get; private set; }
+        public ICommand GenerateCommand => new RelayCommand(async () => await GenerateExcuteAsync());
 
-        public ICommand ImageTapCommand { get; private set; }
+        public ICommand ImageTapCommand => new RelayCommand(async () => await ImageTapExcuteAsync());
 
         public ICommand CategoryCommand => new RelayCommand(async () => 
         {
-            await NavigationService.PushAsync(new CategorySelectPage((c) => UpdateCategory(c)));
+            if(CategoryEditable)
+                await NavigationService.PushAsync(new CategorySelectPage((c) => UpdateCategory(c)));
         });
 
-        private async void SaveExcuteAsync()
+        private async Task SaveExcuteAsync()
         {
 
             if (!IsValid())
@@ -284,7 +322,7 @@ namespace MyPassword.ViewModels
             if (success != null)
             {
                 UserDialogs.Instance.Toast("保存数据成功");
-                Messenger.Default.Send(GetDataItemModel(success.Id),TokenConst.TokenUpdate);
+                MessengerInstance.Send<int>(TokenConst.TokenUpdateList);
                 await NavigationService.PopAsync();
             }
             else
@@ -315,15 +353,26 @@ namespace MyPassword.ViewModels
         private bool IsValid()
         {
             bool isValid = true;
-            if (string.IsNullOrEmpty(Account.Trim())) isValid = false;
-            else if (string.IsNullOrEmpty(Password.Trim())) isValid = false;
-            else if (string.IsNullOrEmpty(Title.Trim())) isValid = false;
-            else if (string.IsNullOrEmpty(Description.Trim())) isValid = false;
-            else if (string.IsNullOrEmpty(CategoryKey.Trim())) isValid = false;
-            //todo 待优化
+            string msg = "";
+            if (string.IsNullOrEmpty(Account.Trim()))
+            {
+                isValid = false;
+                msg = AppResource.MsgAccount;
+            }
+            else if (string.IsNullOrEmpty(Password.Trim()))
+            {
+                isValid = false;
+                msg = AppResource.MsgPassword;
+            }
+            else if (string.IsNullOrEmpty(Title.Trim()))
+            {
+                isValid = false;
+                msg = AppResource.MsgTitle;
+            }
+
             if (!isValid)
             {
-                App.Current.MainPage.DisplayAlert("保存","请输入有效数据...","确定");
+                alertService.DisplayAlert("",msg,AppResource.DialogButtonConfirm);
             }
             return isValid;
         }

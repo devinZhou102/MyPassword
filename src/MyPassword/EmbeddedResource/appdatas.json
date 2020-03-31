@@ -6,22 +6,22 @@
   },
   {
     "icon": "\ue612",
-    "background": "#9F35FF",
+    "background": "#66B3FF",
     "comment": "qq"
   },
   {
     "icon": "\ue63f",
-    "background": "#9F35FF",
+    "background": "#00BB00",
     "comment": "wechat"
   },
   {
     "icon": "\ue712",
-    "background": "#9F35FF",
+    "background": "#FF9224",
     "comment": "taobao"
   },
   {
     "icon": "\ue7e4",
-    "background": "#9F35FF",
+    "background": "#FF2D2D",
     "comment": "sina"
   },
   {
@@ -31,72 +31,72 @@
   },
   {
     "icon": "\ueba8",
-    "background": "#9F35FF",
+    "background": "#00BB00",
     "comment": "xbox"
   },
   {
     "icon": "\ue69a",
-    "background": "#9F35FF",
+    "background": "#46A3FF",
     "comment": "zhihu"
   },
   {
     "icon": "\ue622",
-    "background": "#9F35FF",
+    "background": "#FF2D2D",
     "comment": "网易"
   },
   {
     "icon": "\ue621",
-    "background": "#9F35FF",
+    "background": "#0080FF",
     "comment": "baidu"
   },
   {
     "icon": "\ue603",
-    "background": "#9F35FF",
+    "background": "#EA0000",
     "comment": "网易云音乐"
   },
   {
     "icon": "\ue8f0",
-    "background": "#9F35FF",
+    "background": "#2894FF",
     "comment": "google"
   },
   {
     "icon": "\ue601",
-    "background": "#9F35FF",
+    "background": "#FFDC35",
     "comment": "google drive"
   },
   {
     "icon": "\ue606",
-    "background": "#9F35FF",
+    "background": "#2894FF",
     "comment": "迅雷"
   },
   {
     "icon": "\ue602",
-    "background": "#9F35FF",
+    "background": "#FF8000",
     "comment": "虾米音乐"
   },
   {
     "icon": "\ue652",
-    "background": "#9F35FF",
+    "background": "#00BB00",
     "comment": "腾讯视频"
   },
   {
     "icon": "\ue61d",
-    "background": "#9F35FF",
+    "background": "#FF9797",
     "comment": "哔哩哔哩动画"
   },
   {
     "icon": "\ue61e",
-    "background": "#9F35FF",
+    "background": "#CE0000",
     "comment": "Flipboard"
   },
   {
     "icon": "\ue64c",
-    "background": "#9F35FF",
+    "background": "#FF2D2D",
     "comment": "youtube"
   },
   {
     "icon": "\ue608",
-    "background": "#9F35FF",
+    "background": "#FF9D6F",
     "comment": "简书"
   },
   {
@@ -106,12 +106,12 @@
   },
   {
     "icon": "\ue645",
-    "background": "#9F35FF",
+    "background": "#FFAD86",
     "comment": "天涯社区"
   },
   {
     "icon": "\ue64d",
-    "background": "#9F35FF",
+    "background": "#00BB00",
     "comment": "豆瓣"
   },
   {
@@ -121,12 +121,12 @@
   },
   {
     "icon": "\ue695",
-    "background": "#9F35FF",
+    "background": "#00DB00",
     "comment": "映像笔记"
   },
   {
     "icon": "\ue61c",
-    "background": "#9F35FF",
+    "background": "#0072E3",
     "comment": "OneDrive"
   },
   {
@@ -136,7 +136,7 @@
   },
   {
     "icon": "\ue85a",
-    "background": "#9F35FF",
+    "background": "#FF2D2D",
     "comment": "Pocket"
   },
   {
@@ -146,37 +146,37 @@
   },
   {
     "icon": "\ue607",
-    "background": "#9F35FF",
+    "background": "#2894FF",
     "comment": "facebook"
   },
   {
     "icon": "\ue65e",
-    "background": "#9F35FF",
+    "background": "#46A3FF",
     "comment": "twiter"
   },
   {
     "icon": "\ue82c",
-    "background": "#9F35FF",
-    "comment": "Linkin"
+    "background": "#46A3FF",
+    "comment": "Linkedin"
   },
   {
     "icon": "\ue9d4",
-    "background": "#9F35FF",
+    "background": "#66B3FF",
     "comment": "Skype"
   },
   {
     "icon": "\ue9b8",
-    "background": "#9F35FF",
+    "background": "#01B468",
     "comment": "易信"
   },
   {
     "icon": "\ue600",
-    "background": "#9F35FF",
+    "background": "#2894FF",
     "comment": "旺旺"
   },
   {
     "icon": "\ue67a",
-    "background": "#9F35FF",
+    "background": "#0080FF",
     "comment": "陌陌"
   }
 ]

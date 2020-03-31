@@ -69,6 +69,11 @@ namespace MyPassword.ViewModels
             await NavigationService.PopPopupAsync();
         });
 
+        public ICommand CloseCommand => new RelayCommand(async () =>
+        {
+            await NavigationService.PopPopupAsync();
+        });
+
     }
 
 }

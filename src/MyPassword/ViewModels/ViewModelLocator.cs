@@ -52,6 +52,7 @@ namespace MyPassword.ViewModels
             SimpleIoc.Default.Register<ICategoryService, CategoryService>();
             SimpleIoc.Default.Register<IPwdGenerateService, PwdGenerateService>();
             SimpleIoc.Default.Register<IAppIconService, AppIconService>();
+            SimpleIoc.Default.Register<ILoadingService, LoadingService>();
             SimpleIoc.Default.Register<IDataBaseService>(() => DataBaseSerivce.ConnectDataBase(),true);
         }
 

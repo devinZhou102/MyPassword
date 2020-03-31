@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
-             Padding="48"
              x:Class="MyPassword.Pages.IconSelectPage">
     <pages:PopupPage.Resources>
         <ResourceDictionary>
@@ -19,8 +18,13 @@
             DurationIn="300"
             EasingIn="BounceIn"/>
     </pages:PopupPage.Animation>
-    <Grid>
-        <CollectionView ItemsSource="{Binding IconList}"
+    <Grid Padding="24,64,24,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <CollectionView ItemsSource="{Binding IconList}" Grid.Row="0"
                         ItemsUpdatingScrollMode="KeepScrollOffset">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Span="5" Orientation="Vertical"/>
@@ -45,5 +49,11 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <ImageButton BackgroundColor="Transparent" Grid.Row="1" HeightRequest="42" WidthRequest="42" 
+                     HorizontalOptions="Center" Margin="0,24,0,24" Command="{Binding CloseCommand}">
+            <ImageButton.Source>
+                <FontImageSource Glyph="&#xee78;" FontFamily="iconfont" Color="White"/>
+            </ImageButton.Source>
+        </ImageButton>
     </Grid>
 </pages:PopupPage>

@@ -1,4 +1,5 @@
-﻿using MyPassword.Services;
+﻿using MyPassword.Localization;
+using MyPassword.Services;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -78,8 +79,8 @@ namespace MyPassword.ViewModels
         };
 
         
-        protected readonly string ColorRed = "#f72b03";
-        protected readonly string ColorBlue = "#2196F3";
+        protected readonly string ColorRed = "#FF2D2D";
+        protected readonly string ColorBlue = "#2894FF";
 
         private string _TodayDate;
 
@@ -223,7 +224,7 @@ namespace MyPassword.ViewModels
                 var datas = checkList as List<int>;
                 if (!guetureLockSerivce.IsLockValid(datas))
                 {
-                    Message = "至少连续绘制4个点";
+                    Message = AppResource.MsgGuesturePoint;
                     MessageColor = ColorRed;
                 }
                 else

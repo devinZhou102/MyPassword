@@ -8,10 +8,12 @@ namespace MyPassword.ViewModels
     public abstract class BaseViewModel:ViewModelBase
     {
         protected IAlertService alertService;
+        protected ILoadingService loadingService;
 
         public BaseViewModel()
         {
             alertService = App.Locator.GetService<IAlertService>();
+            loadingService = App.Locator.GetService<ILoadingService>();
 
         }
 

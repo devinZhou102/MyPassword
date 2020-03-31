@@ -30,7 +30,7 @@ namespace MyPassword.Droid.Effects
                 //}
                 if (Control is Android.Widget.EditText edit)
                 {
-                    edit.SetPadding(0, 0, 0, 0); //去掉内边距
+                    edit.SetPadding(3, 3, 3, 3); 
                 }
                 this.Control.SetBackground(null);
             }
