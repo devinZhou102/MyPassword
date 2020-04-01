@@ -240,6 +240,24 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 语言.
+        /// </summary>
+        internal static string ItemLanguage {
+            get {
+                return ResourceManager.GetString("ItemLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 语言选择.
+        /// </summary>
+        internal static string ItemLanguageDesc {
+            get {
+                return ResourceManager.GetString("ItemLanguageDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 加密密钥.
         /// </summary>
         internal static string ItemSecureKey {
@@ -254,6 +272,24 @@ namespace MyPassword.Localization {
         internal static string ItemSecureKeyDesc {
             get {
                 return ResourceManager.GetString("ItemSecureKeyDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 主题.
+        /// </summary>
+        internal static string ItemTheme {
+            get {
+                return ResourceManager.GetString("ItemTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 浅色模式/深色模式.
+        /// </summary>
+        internal static string ItemThemeDesc {
+            get {
+                return ResourceManager.GetString("ItemThemeDesc", resourceCulture);
             }
         }
         

@@ -14,6 +14,8 @@ namespace MyPassword.Const
         public const string ArrowRight = "\ue743";
         public const string Category = "\ue747";
         public const string About = "\ue66a";
+        public const string Theme = "\ue6d4";
+        public const string Language = "\ue620";
         public const string DefaultAppIcon = "\ue642";
     }
 }

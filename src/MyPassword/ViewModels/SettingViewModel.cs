@@ -3,14 +3,16 @@ using MyPassword.Const;
 using MyPassword.Localization;
 using MyPassword.Models;
 using MyPassword.Pages;
+using MyPassword.Services;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace MyPassword.ViewModels
 {
-    public class SettingViewModel:BaseViewModel
+    public class SettingViewModel : BaseViewModel
     {
         private ObservableCollection<SettingItemModel> _SettingItemList;
 
@@ -31,12 +33,14 @@ namespace MyPassword.ViewModels
             }
         }
 
-        public SettingViewModel()
+        private IThemeService themeService;
+        public SettingViewModel(IThemeService themeService)
         {
+            this.themeService = themeService;
             InitSettingItemList();
         }
 
-        public ICommand TappedCommand => new RelayCommand<SettingItemModel>(async (item) => 
+        public ICommand TappedCommand => new RelayCommand<SettingItemModel>(async (item) =>
         {
             if (item.SecureProtect)
             {
@@ -101,6 +105,24 @@ namespace MyPassword.ViewModels
             });
             SettingItemList.Add(new SettingItemModel
             {
+                Icon = IconFont.Language,
+                Title = AppResource.ItemLanguage,
+                SecureProtect = false,
+                Description = AppResource.ItemLanguageDesc,
+                Background = "#00DB00",
+                TappedCommand = LanguageCommand
+            }); 
+            SettingItemList.Add(new SettingItemModel
+            {
+                Icon = IconFont.Theme,
+                Title = AppResource.ItemTheme,
+                SecureProtect = false,
+                Description = AppResource.ItemThemeDesc,
+                Background = "#B15BFF",
+                TappedCommand = ThemeCommand
+            });
+            SettingItemList.Add(new SettingItemModel
+            {
                 Icon = IconFont.About,
                 Title = AppResource.ItemAbout,
                 SecureProtect = false,
@@ -110,6 +132,36 @@ namespace MyPassword.ViewModels
                 TappedCommand = TappedCommand
             });
         }
+
+        public ICommand LanguageCommand => new RelayCommand(()=> { });
+        public ICommand ThemeCommand => new RelayCommand(async () => 
+        {
+            var list = new List<SelectItem>
+            {
+                new SelectItem
+                {
+                    Text = "浅色模式",
+                    Data = Theme.Light
+                },
+                new SelectItem
+                {
+                    Text = "深色模式",
+                    Data = Theme.Dark
+                }
+
+            };
+            await NavigationService.PushPopupPageAsync(new PopSelectPage(list, async (data)=> 
+            {
+                if (data is Theme theme)
+                {
+                    var result = await themeService.SaveAsync(theme);
+                    Device.BeginInvokeOnMainThread(()=> {
+                        if (result) //themeService.ApplyTheme();
+                            App.ApplyTheme();
+                    });
+                }
+            }));
+        });
 
     }
 }

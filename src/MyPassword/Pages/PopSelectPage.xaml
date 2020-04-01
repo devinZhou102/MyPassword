@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:res="clr-namespace:MyPassword.Localization"
+                 mc:Ignorable="d"
+                 x:Class="MyPassword.Pages.PopSelectPage">
+    <ContentPage.Content>
+        <Grid>
+            <BoxView HeightRequest="300" WidthRequest="300" VerticalOptions="Center" HorizontalOptions="Center" 
+                 CornerRadius="10" BackgroundColor="{DynamicResource MainBackgroundColor}"/>
+            <Grid  WidthRequest="300" HeightRequest="280" Margin="24,0" VerticalOptions="Center" 
+                   HorizontalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <ListView x:Name="dataListView" Grid.Row="0"
+                      ItemTapped="DataListView_ItemTapped"
+                      SelectionMode="Single"
+                      BackgroundColor="{DynamicResource MainBackgroundColor}"
+                      SeparatorVisibility="Default"
+                      SeparatorColor="{DynamicResource DividerColor}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label Text="{Binding Text}" Margin="12"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Grid.Row="1" Text="{x:Static res:AppResource.DialogButtonCancel}" VerticalOptions="Center" HorizontalOptions="Center"
+                        Clicked="Button_Clicked" BackgroundColor="Transparent"/>
+            </Grid>
+
+        </Grid>
+    </ContentPage.Content>
+</pages:PopupPage>
