@@ -244,6 +244,12 @@
   <data name="ItemThemeDesc" xml:space="preserve">
     <value>浅色模式/深色模式</value>
   </data>
+  <data name="LanguageCN" xml:space="preserve">
+    <value>中文</value>
+  </data>
+  <data name="LanguageEN" xml:space="preserve">
+    <value>English</value>
+  </data>
   <data name="LightTheme" xml:space="preserve">
     <value>浅色模式</value>
   </data>

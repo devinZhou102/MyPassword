@@ -34,9 +34,11 @@ namespace MyPassword.ViewModels
         }
 
         private IThemeService themeService;
-        public SettingViewModel(IThemeService themeService)
+        private ILanguageService languageService;
+        public SettingViewModel(IThemeService themeService, ILanguageService languageService)
         {
             this.themeService = themeService;
+            this.languageService = languageService;
             InitSettingItemList();
         }
 
@@ -133,7 +135,34 @@ namespace MyPassword.ViewModels
             });
         }
 
-        public ICommand LanguageCommand => new RelayCommand(()=> { });
+        public ICommand LanguageCommand => new RelayCommand(async ()=> 
+        {
+            var list = new List<SelectItem>
+            {
+                new SelectItem
+                {
+                    Text = AppResource.LanguageCN,
+                    Data = "zh-cn"
+                },
+                new SelectItem
+                {
+                    Text = AppResource.LanguageEN,
+                    Data = "en-us"
+                }
+
+            };
+
+            await NavigationService.PushPopupPageAsync(new PopSelectPage(AppResource.TitleThemeSelect, list, async (data) =>
+            {
+
+                Device.BeginInvokeOnMainThread(async ()=>
+                {
+                    await languageService.SaveAsync(data.ToString());
+                    languageService.ApplyLanguage();
+                });
+            }));
+        });
+
         public ICommand ThemeCommand => new RelayCommand(async () => 
         {
             var list = new List<SelectItem>

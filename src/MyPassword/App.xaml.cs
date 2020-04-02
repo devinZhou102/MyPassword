@@ -16,7 +16,7 @@ namespace MyPassword
         private IAlertService alertService;
         private IAppIconService appIconService;
         private IThemeService themeService;
-
+        private ILanguageService languageService;
         public App ()
 		{
             InitializeComponent();
@@ -32,6 +32,7 @@ namespace MyPassword
             alertService = Locator.GetService<IAlertService>();
             appIconService = Locator.GetService<IAppIconService>();
             themeService = Locator.GetService<IThemeService>();
+            languageService = Locator.GetService<ILanguageService>();
         }
 
         private static readonly ViewModelLocator _locator = new ViewModelLocator();
@@ -45,6 +46,8 @@ namespace MyPassword
         {
             await themeService.LoadThemeAsync();
             themeService.ApplyTheme();
+            await languageService.LoadLanguageAsync();
+            languageService.ApplyLanguage();
             var connected = Locator.GetService<IDataBaseService>() != null;
             if (connected)
             {

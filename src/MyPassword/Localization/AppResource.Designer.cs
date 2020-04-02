@@ -303,6 +303,24 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 中文.
+        /// </summary>
+        internal static string LanguageCN {
+            get {
+                return ResourceManager.GetString("LanguageCN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        internal static string LanguageEN {
+            get {
+                return ResourceManager.GetString("LanguageEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 浅色模式.
         /// </summary>
         internal static string LightTheme {
