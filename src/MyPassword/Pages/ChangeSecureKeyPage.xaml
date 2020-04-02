@@ -6,11 +6,16 @@
     xmlns:localPage="clr-namespace:MyPassword.Pages"
     xmlns:res="clr-namespace:MyPassword.Localization"
     xmlns:effects="clr-namespace:MyPassword.Effects"
-    Title="修改密钥"
+    Title="{x:Static res:AppResource.TitleChangeSecureKey}"
     x:Class="MyPassword.Pages.ChangeSecureKeyPage">
     <ContentPage.Resources>
         <converter:TipVisibleConverter x:Key="TipConverter"/>
     </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Text="{x:Static res:AppResource.Save}" 
+            Order="Primary" Priority="0" Command="{Binding SaveCommand}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid BackgroundColor="{DynamicResource MainBackgroundColor}">
             <StackLayout Orientation="Vertical" Spacing="0">

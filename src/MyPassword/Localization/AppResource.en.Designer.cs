@@ -22,14 +22,14 @@ namespace MyPassword.Localization {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class AppResource {
+    internal class AppResource_en {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal AppResource() {
+        internal AppResource_en() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace MyPassword.Localization {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyPassword.Localization.AppResource", typeof(AppResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyPassword.Localization.AppResource-en", typeof(AppResource_en).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -474,15 +474,6 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 您的密钥（8位）.
-        /// </summary>
-        internal static string PlaceHolderSecureKey {
-            get {
-                return ResourceManager.GetString("PlaceHolderSecureKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 账号.
         /// </summary>
         internal static string PwdAccount {
@@ -591,15 +582,6 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 重新绘制手势.
-        /// </summary>
-        internal static string ResetGuestureLock {
-            get {
-                return ResourceManager.GetString("ResetGuestureLock", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 保存.
         /// </summary>
         internal static string Save {
@@ -632,15 +614,6 @@ namespace MyPassword.Localization {
         internal static string SecureKeyWarning {
             get {
                 return ResourceManager.GetString("SecureKeyWarning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 隐藏密钥.
-        /// </summary>
-        internal static string SwitchHideTips {
-            get {
-                return ResourceManager.GetString("SwitchHideTips", resourceCulture);
             }
         }
         
@@ -681,15 +654,6 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 备份.
-        /// </summary>
-        internal static string TitleBackup {
-            get {
-                return ResourceManager.GetString("TitleBackup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 分类.
         /// </summary>
         internal static string TitleCategory {
@@ -708,15 +672,6 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 修改密钥.
-        /// </summary>
-        internal static string TitleChangeSecureKey {
-            get {
-                return ResourceManager.GetString("TitleChangeSecureKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 生成.
         /// </summary>
         internal static string TitleGenerate {
@@ -726,38 +681,11 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 手势密码.
-        /// </summary>
-        internal static string TitleGuestureLock {
-            get {
-                return ResourceManager.GetString("TitleGuestureLock", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 密钥.
         /// </summary>
         internal static string TitlePasswordPage {
             get {
                 return ResourceManager.GetString("TitlePasswordPage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 重设手势密码.
-        /// </summary>
-        internal static string TitleResetGuestureLock {
-            get {
-                return ResourceManager.GetString("TitleResetGuestureLock", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 加密密钥.
-        /// </summary>
-        internal static string TitleSecureKey {
-            get {
-                return ResourceManager.GetString("TitleSecureKey", resourceCulture);
             }
         }
         

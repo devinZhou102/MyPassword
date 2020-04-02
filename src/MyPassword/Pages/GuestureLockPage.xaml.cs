@@ -1,4 +1,5 @@
-﻿using MyPassword.ViewModels;
+﻿using MyPassword.Localization;
+using MyPassword.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,14 +21,14 @@ namespace MyPassword.Pages
             InitViewModel(()=> {
                 Navigation.PopAsync();
             });
-            Title = "重设手势密码";
+            Title = AppResource.TitleResetGuestureLock;
         }
 
         public GuestureLockPage(Action ActionSetLockFinish)
         {
             InitializeComponent();
             InitViewModel(ActionSetLockFinish);
-            Title = "手势密码";
+            Title = AppResource.TitleGuestureLock;
         }
 
         private void InitViewModel(Action actionSetLockFinish)

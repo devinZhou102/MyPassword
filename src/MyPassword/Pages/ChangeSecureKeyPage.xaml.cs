@@ -28,11 +28,6 @@ namespace MyPassword.Pages
 
         protected override void OnFirstAppear()
         {
-            ToolbarItems.Add(new ToolbarItem
-            {
-                Text = "保存",
-                Command = viewModel?.SaveCommand
-            });
         }
     }
 }

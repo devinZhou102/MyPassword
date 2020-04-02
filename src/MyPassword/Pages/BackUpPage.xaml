@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MyPassword.Pages"
     xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-    Title="数据备份"
+    xmlns:res="clr-namespace:MyPassword.Localization"
+    Title="{x:Static res:AppResource.TitleBackup}"
     x:Class="MyPassword.Pages.BackUpPage">
     <ContentPage.Content>
         <Grid BackgroundColor="{DynamicResource MainBackgroundColor}">

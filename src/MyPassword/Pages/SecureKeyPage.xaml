@@ -2,17 +2,23 @@
 <local:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MyPassword.Pages"
-             Title="设置加密密钥"
+             xmlns:res="clr-namespace:MyPassword.Localization"
+             Title="{x:Static res:AppResource.TitleSecureKey}"
              x:Class="MyPassword.Pages.SecureKeyPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Text="{x:Static res:AppResource.Save}" 
+            Order="Primary" Priority="0" Command="{Binding SaveCommand}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid BackgroundColor="{DynamicResource MainBackgroundColor}">
             <StackLayout Orientation="Vertical" Margin="12">
-                <Entry Placeholder="您的密钥" Text="{Binding SecureKey}" IsPassword="{Binding HideSecureKey}" PlaceholderColor="DarkGray" Keyboard="Numeric" MaxLength="8"/>
+                <Entry Placeholder="{x:Static res:AppResource.PlaceHolderSecureKey}" Text="{Binding SecureKey}" IsPassword="{Binding HideSecureKey}" PlaceholderColor="DarkGray" Keyboard="Numeric" MaxLength="8"/>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" Margin="12,0">
                     <Switch IsToggled="{Binding HideSecureKey}" VerticalOptions="Center"/>
-                    <Label Text="隐藏密钥" VerticalOptions="Center" />
+                    <Label Text="{x:Static res:AppResource.SwitchHideTips}" VerticalOptions="Center" />
                 </StackLayout>
-                <Label Text="设置您的加密密钥（8位），它将用于加密的数据，这很重要，请妥善保存!" />
+                <Label Text="{x:Static res:AppResource.SecureKeyTips}" />
             </StackLayout>
             <Image Margin="-24,-6,0,0" Grid.RowSpan="2" WidthRequest="200" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="End">
                 <Image.Source>

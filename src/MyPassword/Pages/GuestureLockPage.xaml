@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MyPassword.Pages"
     xmlns:controls="clr-namespace:MyPassword.Controls"
+    xmlns:res="clr-namespace:MyPassword.Localization"
     x:Class="MyPassword.Pages.GuestureLockPage">
     <ContentPage.Content>
         <Grid BackgroundColor="White" HorizontalOptions="Fill">
@@ -12,7 +13,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <controls:GuestureView/>
-            <Label Text="重新绘制手势" Grid.Row="1" TextColor="#2196F3" FontSize="14" HorizontalOptions="Center" VerticalOptions="End" Margin="24">
+            <Label Text="{x:Static res:AppResource.ResetGuestureLock}" Grid.Row="1" TextColor="#2196F3" FontSize="14" HorizontalOptions="Center" VerticalOptions="End" Margin="24">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ResetLockCommand}"/>
                 </Label.GestureRecognizers>
