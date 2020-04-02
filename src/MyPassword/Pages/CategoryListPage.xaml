@@ -26,7 +26,7 @@
     <ContentPage.Content>
 
         <Grid BackgroundColor="{DynamicResource MainBackgroundColor}">
-            <CollectionView ItemsSource="{Binding CategoryItems}" >
+            <CollectionView ItemsSource="{Binding CategoryItems}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Span="1" Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>

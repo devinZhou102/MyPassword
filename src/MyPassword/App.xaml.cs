@@ -15,6 +15,7 @@ namespace MyPassword
         private ISecureKeyService SecureKeyService;
         private IAlertService alertService;
         private IAppIconService appIconService;
+        private IThemeService themeService;
 
         public App ()
 		{
@@ -30,7 +31,7 @@ namespace MyPassword
             GuestureLockService = Locator.GetService<IGuestureLockService>();
             alertService = Locator.GetService<IAlertService>();
             appIconService = Locator.GetService<IAppIconService>();
-            ThemeHelper.LightTheme();
+            themeService = Locator.GetService<IThemeService>();
         }
 
         private static readonly ViewModelLocator _locator = new ViewModelLocator();
@@ -42,6 +43,8 @@ namespace MyPassword
 
         private async void MainNavi()
         {
+            await themeService.LoadThemeAsync();
+            themeService.ApplyTheme();
             var connected = Locator.GetService<IDataBaseService>() != null;
             if (connected)
             {

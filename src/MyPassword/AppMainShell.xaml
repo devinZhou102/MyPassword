@@ -8,8 +8,24 @@
        mc:Ignorable="d"
        x:Class="MyPassword.AppMainShell">
 
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{DynamicResource ShellBackgroundColor}" />
+                <Setter Property="Shell.ForegroundColor" Value="{DynamicResource ShellForegroundColor}" />
+                <Setter Property="Shell.TitleColor" Value="{DynamicResource ShellTitleColor}" />
+                <Setter Property="Shell.DisabledColor" Value="{DynamicResource ShellDisabledColor}" />
+                <Setter Property="Shell.UnselectedColor" Value="{Binding ShellUnselectedColor}" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource ShellTabBarBackgroundColor}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="{DynamicResource ShellTabBarForegroundColor}"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource ShellTabBarUnselectedColor}"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{DynamicResource ShellTabBarTitleColor}"/>
+            </Style>
+            <Style TargetType="TabBar" x:Key="TabBarStyle" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
 
-    <TabBar>
+    <TabBar Style="{StaticResource TabBarStyle}">
         <Tab Title="{x:Static res:AppResource.TitleCategory}" Icon="IconCategory">
             <ShellContent ContentTemplate="{DataTemplate pages:CategoryListPage}" />
         </Tab>
