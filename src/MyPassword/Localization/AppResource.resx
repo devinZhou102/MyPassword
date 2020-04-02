@@ -193,6 +193,9 @@
   <data name="ConfirmSecureKey" xml:space="preserve">
     <value>确认密钥</value>
   </data>
+  <data name="DarkTheme" xml:space="preserve">
+    <value>深色模式</value>
+  </data>
   <data name="DataAccount" xml:space="preserve">
     <value>账号：{0}</value>
   </data>
@@ -240,6 +243,9 @@
   </data>
   <data name="ItemThemeDesc" xml:space="preserve">
     <value>浅色模式/深色模式</value>
+  </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value>浅色模式</value>
   </data>
   <data name="LoadingMsg" xml:space="preserve">
     <value>数据处理中...</value>
@@ -369,5 +375,8 @@
   </data>
   <data name="TitleSetting" xml:space="preserve">
     <value>设置</value>
+  </data>
+  <data name="TitleThemeSelect" xml:space="preserve">
+    <value>选择</value>
   </data>
 </root>

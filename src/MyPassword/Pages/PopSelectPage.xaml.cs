@@ -14,23 +14,27 @@ namespace MyPassword.Pages
     public partial class PopSelectPage : PopupPage
     {
         Action<object> actionSelection;
-        public PopSelectPage(List<SelectItem> datas,Action<object> actionSelection)
+        public PopSelectPage(string title,List<SelectItem> datas,Action<object> actionSelection)
         {
             InitializeComponent();
             this.actionSelection = actionSelection;
+            LabelTitle.Text = title;
             dataListView.ItemsSource = datas;
         }
 
-        private void DataListView_ItemTapped(object sender, ItemTappedEventArgs e)
+
+        private void Button_Clicked(object sender, EventArgs e)
         {
-            actionSelection.Invoke((e.Item as SelectItem).Data);
-            Device.BeginInvokeOnMainThread(async ()=> {
+            Device.BeginInvokeOnMainThread(async () => {
                 await NavigationService.PopPopupAsync();
             });
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
+            var item = (sender as Grid).BindingContext;
+            if (item == null) return;
+            actionSelection.Invoke((item as SelectItem).Data);
             Device.BeginInvokeOnMainThread(async () => {
                 await NavigationService.PopPopupAsync();
             });

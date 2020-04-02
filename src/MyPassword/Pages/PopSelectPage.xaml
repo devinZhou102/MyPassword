@@ -10,28 +10,38 @@
     <ContentPage.Content>
         <Grid>
             <BoxView HeightRequest="300" WidthRequest="300" VerticalOptions="Center" HorizontalOptions="Center" 
-                 CornerRadius="10" BackgroundColor="{DynamicResource MainBackgroundColor}"/>
-            <Grid  WidthRequest="300" HeightRequest="280" Margin="24,0" VerticalOptions="Center" 
+                 CornerRadius="10" BackgroundColor="{DynamicResource MainDialogBackgroundColor}"/>
+            <Grid  WidthRequest="300" HeightRequest="280" Margin="24,0,24,0" VerticalOptions="Center" 
                    HorizontalOptions="Center">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="36"/>
                 </Grid.RowDefinitions>
-                <ListView x:Name="dataListView" Grid.Row="0"
-                      ItemTapped="DataListView_ItemTapped"
-                      SelectionMode="Single"
-                      BackgroundColor="{DynamicResource MainBackgroundColor}"
-                      SeparatorVisibility="Default"
-                      SeparatorColor="{DynamicResource DividerColor}">
-                    <ListView.ItemTemplate>
+                <Label Grid.Row="0" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold" x:Name="LabelTitle" />
+                <CollectionView x:Name="dataListView" Grid.Row="1"
+                      SelectionMode="Single">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <Label Text="{Binding Text}" Margin="12"/>
-                            </ViewCell>
+                            <StackLayout Spacing="0" Orientation="Vertical">
+                                <Grid Padding="12" BackgroundColor="{DynamicResource MainItemBackgroundColor}">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                    </Grid.GestureRecognizers>
+                                    <Label Text="{Binding Text}" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                </Grid>
+                                <Grid HeightRequest="1" BackgroundColor="{DynamicResource DividerColor}"/>
+                            </StackLayout>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <Button Grid.Row="1" Text="{x:Static res:AppResource.DialogButtonCancel}" VerticalOptions="Center" HorizontalOptions="Center"
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Grid Grid.Row="2" HeightRequest="1" BackgroundColor="{DynamicResource DividerColor}"/>
+                <Button Grid.Row="3" Text="{x:Static res:AppResource.DialogButtonCancel}" FontSize="14" FontAttributes="Bold" 
+                        VerticalOptions="Center" HorizontalOptions="Center" TextColor="#8080C0"
                         Clicked="Button_Clicked" BackgroundColor="Transparent"/>
             </Grid>
 

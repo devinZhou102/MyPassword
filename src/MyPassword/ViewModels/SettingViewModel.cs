@@ -140,24 +140,23 @@ namespace MyPassword.ViewModels
             {
                 new SelectItem
                 {
-                    Text = "浅色模式",
+                    Text = AppResource.LightTheme,
                     Data = Theme.Light
                 },
                 new SelectItem
                 {
-                    Text = "深色模式",
+                    Text = AppResource.DarkTheme,
                     Data = Theme.Dark
                 }
 
             };
-            await NavigationService.PushPopupPageAsync(new PopSelectPage(list, async (data)=> 
+            await NavigationService.PushPopupPageAsync(new PopSelectPage(AppResource.TitleThemeSelect, list, async (data)=> 
             {
                 if (data is Theme theme)
                 {
                     var result = await themeService.SaveAsync(theme);
                     Device.BeginInvokeOnMainThread(()=> {
-                        if (result) //themeService.ApplyTheme();
-                            App.ApplyTheme();
+                        if (result) themeService.ApplyTheme();
                     });
                 }
             }));

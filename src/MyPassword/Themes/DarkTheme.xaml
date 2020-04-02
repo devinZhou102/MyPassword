@@ -4,12 +4,12 @@
              x:Class="MyPassword.Themes.DarkTheme">
 
     <!-- #region Color for shell -->
-    <Color x:Key="ShellBackgroundColor">#2196F3</Color>
+    <Color x:Key="ShellBackgroundColor">#3C3C3C</Color>
     <Color x:Key="ShellForegroundColor">White</Color>
     <Color x:Key="ShellTitleColor">White</Color>
     <Color x:Key="ShellDisabledColor">#B4FFFFFF</Color>
     <Color x:Key="ShellUnselectedColor">#95FFFFFF</Color>
-    <Color x:Key="ShellTabBarBackgroundColor">#2196F3</Color>
+    <Color x:Key="ShellTabBarBackgroundColor">#3C3C3C</Color>
     <Color x:Key="ShellTabBarForegroundColor">White</Color>
     <Color x:Key="ShellTabBarUnselectedColor">#95FFFFFF</Color>
     <Color x:Key="ShellTabBarTitleColor">White</Color>
@@ -18,13 +18,17 @@
 
     <!-- #region  Main Color for app -->
     <!--页面背景色-->
-    <Color x:Key="MainBackgroundColor">#4F4F4F</Color>
+    <Color x:Key="MainBackgroundColor">#3C3C3C</Color>
     <!--通用按钮背景色-->
-    <Color x:Key="MainButtonBackgroundColor">#2196F3</Color>
+    <Color x:Key="MainButtonBackgroundColor">#8080C0</Color>
     <!--通用内容背景色 如：列表项-->
-    <Color x:Key="MainItemBackgroundColor">#5B5B5B</Color>
+    <Color x:Key="MainItemBackgroundColor">#4F4F4F</Color>
+    <!--通用对话框背景色 -->
+    <Color x:Key="MainDialogBackgroundColor">#4F4F4F</Color>
     <!-- 分割线-->
-    <Color x:Key="DividerColor">#7B7B7B</Color>
+    <Color x:Key="DividerColor">#5B5B5B</Color>
+    <!-- 编辑器 -->
+    <Color x:Key="EditorColor">#6C6C6C</Color>
 
     <!--color category has values-->
     <Color x:Key="ValueColor">#00BB00</Color>

@@ -150,6 +150,15 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 深色模式.
+        /// </summary>
+        internal static string DarkTheme {
+            get {
+                return ResourceManager.GetString("DarkTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 账号：{0}.
         /// </summary>
         internal static string DataAccount {
@@ -290,6 +299,15 @@ namespace MyPassword.Localization {
         internal static string ItemThemeDesc {
             get {
                 return ResourceManager.GetString("ItemThemeDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 浅色模式.
+        /// </summary>
+        internal static string LightTheme {
+            get {
+                return ResourceManager.GetString("LightTheme", resourceCulture);
             }
         }
         
@@ -677,6 +695,15 @@ namespace MyPassword.Localization {
         internal static string TitleSetting {
             get {
                 return ResourceManager.GetString("TitleSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 选择.
+        /// </summary>
+        internal static string TitleThemeSelect {
+            get {
+                return ResourceManager.GetString("TitleThemeSelect", resourceCulture);
             }
         }
     }

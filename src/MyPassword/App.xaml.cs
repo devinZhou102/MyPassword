@@ -15,12 +15,7 @@ namespace MyPassword
         private ISecureKeyService SecureKeyService;
         private IAlertService alertService;
         private IAppIconService appIconService;
-        private static IThemeService themeService;
-
-        public static void ApplyTheme()
-        {
-            themeService?.ApplyTheme();
-        }
+        private IThemeService themeService;
 
         public App ()
 		{
