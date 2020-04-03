@@ -7,13 +7,8 @@ namespace MyPassword.Themes
 {
     public static class ThemeHelper
     {
-        public static string CurrentTheme;
-
         private static void ChangeTheme(string theme)
         {
-            // don't change to the same theme
-            if (theme == CurrentTheme) return;
-
             //// clear all the resources
             //Application.Current.Resources.MergedDictionaries.Clear();
             //Application.Current.Resources.Clear();
@@ -37,8 +32,6 @@ namespace MyPassword.Themes
             }
 
             ManuallyCopyThemes(newTheme, applicationResourceDictionary);
-
-            CurrentTheme = theme;
             MessagingCenter.Send<ThemeMessage>(new ThemeMessage(), ThemeMessage.ThemeChanged);
 
         }

@@ -29,6 +29,11 @@
     <Color x:Key="DividerColor">WhiteSmoke</Color>
     <!-- 编辑器 -->
     <Color x:Key="EditorColor">#F9F9F9</Color>
+    <!-- 手势页面 -->
+    <Color x:Key="GuestureBackgroundColor">White</Color>
+
+    <!--搜索框背景-->
+    <Color x:Key="SearchBackgroundColor">WhiteSmoke</Color>
 
     <!--color category has values-->
     <Color x:Key="ValueColor">#00BB00</Color>

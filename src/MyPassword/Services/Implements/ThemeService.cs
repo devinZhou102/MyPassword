@@ -41,6 +41,7 @@ namespace MyPassword.Services
 
         public async Task<bool> SaveAsync(Theme theme)
         {
+            if (theme.Equals(CurrentTheme)) return false;
             CurrentTheme = theme;
             await SecureStorage.SetAsync(KEY_THEME_KEY, theme.ToString());
             return true;
