@@ -231,7 +231,7 @@
     <value>Language</value>
   </data>
   <data name="ItemLanguageDesc" xml:space="preserve">
-    <value>Choose Language</value>
+    <value>Choose Language, it works after restart.</value>
   </data>
   <data name="ItemSecureKey" xml:space="preserve">
     <value>Secure Key</value>

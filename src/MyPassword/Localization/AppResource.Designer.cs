@@ -258,7 +258,7 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 语言选择.
+        ///   Looks up a localized string similar to 语言选择,重启生效.
         /// </summary>
         internal static string ItemLanguageDesc {
             get {

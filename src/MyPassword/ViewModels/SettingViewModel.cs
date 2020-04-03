@@ -152,7 +152,7 @@ namespace MyPassword.ViewModels
 
             };
 
-            await NavigationService.PushPopupPageAsync(new PopSelectPage(AppResource.TitleThemeSelect, list, async (data) =>
+            await NavigationService.PushPopupPageAsync(new PopSelectPage(AppResource.TitleThemeSelect, list, (data) =>
             {
 
                 Device.BeginInvokeOnMainThread(async ()=>

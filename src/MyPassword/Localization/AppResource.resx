@@ -230,7 +230,7 @@
     <value>语言</value>
   </data>
   <data name="ItemLanguageDesc" xml:space="preserve">
-    <value>语言选择</value>
+    <value>语言选择,重启生效</value>
   </data>
   <data name="ItemSecureKey" xml:space="preserve">
     <value>加密密钥</value>
