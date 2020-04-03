@@ -118,69 +118,69 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>关于</value>
+    <value>About</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value>新建</value>
+    <value>new</value>
   </data>
   <data name="AppVersion" xml:space="preserve">
-    <value>应用版本v{0}</value>
+    <value>version{0}</value>
   </data>
   <data name="ButtonGenerate" xml:space="preserve">
-    <value>生成密码</value>
+    <value>Generate</value>
   </data>
   <data name="Category" xml:space="preserve">
     <value>[
     {
-        "name": "游戏",
+        "name": "Games",
         "key": "game",
         "icon": "\ue7b9",
         "background": "#00A600"
     },
     {
-        "name": "银行",
+        "name": "Banks",
         "key": "bank",
         "icon": "\ue6c6",
         "background": "#C4C400"
     },
     {
-        "name": "社交",
+        "name": "Social",
         "key": "social",
         "icon": "\ue60b",
         "background": "#FF5151"
     },
     {
-        "name": "邮箱",
+        "name": "Emails",
         "key": "email",
         "icon": "\uef79",
         "background": "#8080C0"
     },
     {
-        "name": "购物",
+        "name": "Shopping",
         "key": "shop",
         "icon": "\ue60a",
         "background": "#FF77FF"
     },
     {
-        "name": "视频",
+        "name": "Videos",
         "key": "video",
         "icon": "\ue673",
         "background": "#6A6AFF"
     },
     {
-        "name": "音乐",
+        "name": "Music",
         "key": "music",
         "icon": "\ue714",
         "background": "#FFD306"
     },
     {
-        "name": "网站",
+        "name": "WebSite",
         "key": "web",
         "icon": "\ue61f",
         "background": "#6FB7B7"
     },
     {
-        "name": "其他",
+        "name": "Others",
         "key": "others",
         "icon": "\ue64f",
         "background": "#BE77FF"
@@ -188,225 +188,234 @@
 ]</value>
   </data>
   <data name="CommonPlaceHolder" xml:space="preserve">
-    <value>点击输入</value>
+    <value>enter to input</value>
   </data>
   <data name="ConfirmSecureKey" xml:space="preserve">
-    <value>确认密钥</value>
+    <value>Confirm</value>
+    <comment>确认密钥</comment>
   </data>
   <data name="DarkTheme" xml:space="preserve">
-    <value>深色模式</value>
+    <value>Dark Mode</value>
   </data>
   <data name="DataAccount" xml:space="preserve">
-    <value>账号：{0}</value>
+    <value>Account：{0}</value>
   </data>
   <data name="DialogButtonCancel" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancel</value>
   </data>
   <data name="DialogButtonConfirm" xml:space="preserve">
-    <value>确定</value>
+    <value>Sure</value>
   </data>
   <data name="Ensure" xml:space="preserve">
-    <value>确定</value>
+    <value>Ensure</value>
   </data>
   <data name="ItemAbout" xml:space="preserve">
-    <value>关于</value>
+    <value>About</value>
   </data>
   <data name="ItemAboutDesc" xml:space="preserve">
-    <value>应用相关信息</value>
+    <value>Application information</value>
   </data>
   <data name="ItemBackup" xml:space="preserve">
-    <value>数据备份</value>
+    <value>Backup</value>
   </data>
   <data name="ItemBackupDesc" xml:space="preserve">
-    <value>备份您的数据</value>
+    <value>Backup datas</value>
   </data>
   <data name="ItemGuesture" xml:space="preserve">
-    <value>手势密码</value>
+    <value>GuestureLock</value>
   </data>
   <data name="ItemGuestureDesc" xml:space="preserve">
-    <value>用于保护应用的使用权限</value>
+    <value>Guesture Lock for safety</value>
   </data>
   <data name="ItemLanguage" xml:space="preserve">
-    <value>语言</value>
+    <value>Language</value>
   </data>
   <data name="ItemLanguageDesc" xml:space="preserve">
-    <value>语言选择,重启生效</value>
+    <value>Choose Language, it works after restart.</value>
   </data>
   <data name="ItemSecureKey" xml:space="preserve">
-    <value>加密密钥</value>
+    <value>Secure Key</value>
   </data>
   <data name="ItemSecureKeyDesc" xml:space="preserve">
-    <value>用于数据加密</value>
+    <value>For data encryption</value>
   </data>
   <data name="ItemTheme" xml:space="preserve">
-    <value>主题</value>
+    <value>Theme</value>
   </data>
   <data name="ItemThemeDesc" xml:space="preserve">
-    <value>浅色模式/深色模式</value>
-  </data>
-  <data name="LanguageCN" xml:space="preserve">
-    <value>中文</value>
-  </data>
-  <data name="LanguageEN" xml:space="preserve">
-    <value>English</value>
+    <value>Light/Dark Mode </value>
   </data>
   <data name="LightTheme" xml:space="preserve">
-    <value>浅色模式</value>
+    <value>Light Mode</value>
   </data>
   <data name="LoadingMsg" xml:space="preserve">
-    <value>数据处理中...</value>
+    <value>Processing...</value>
   </data>
   <data name="MsgAccount" xml:space="preserve">
-    <value>账号不能为空</value>
+    <value>Account must not be empty</value>
   </data>
   <data name="MsgChangeSecretFailed" xml:space="preserve">
-    <value>修改密钥失败</value>
+    <value>Modify Secure Key failed</value>
   </data>
   <data name="MsgChangeSecretSuccess" xml:space="preserve">
-    <value>修改密钥成功</value>
+    <value>Modify Secure Key successfully</value>
   </data>
   <data name="MsgGuestureAgain" xml:space="preserve">
-    <value>再次绘制解锁图案</value>
+    <value>Again</value>
+    <comment>再次绘制解锁图案</comment>
   </data>
   <data name="MsgGuestureConfirmFailed" xml:space="preserve">
-    <value>与首次绘制不一致，请再次绘制</value>
+    <value>Confirm Failed，Please try again</value>
+    <comment>与首次绘制不一致，请再次绘制</comment>
   </data>
   <data name="MsgGuesturePoint" xml:space="preserve">
-    <value>至少连续绘制4个点</value>
+    <value>At least 4 points</value>
+    <comment>至少连续绘制4个点</comment>
   </data>
   <data name="MsgGuestureSaveFailed" xml:space="preserve">
-    <value>保存解锁图案失败...</value>
+    <value>Save failed...</value>
+    <comment>保存解锁图案失败...</comment>
   </data>
   <data name="MsgPassword" xml:space="preserve">
-    <value>密码不能为空</value>
+    <value>Please input your password</value>
   </data>
   <data name="MsgRestoreData" xml:space="preserve">
-    <value>正在还原数据...</value>
+    <value>Restoring data...</value>
   </data>
   <data name="MsgRestoreFailed" xml:space="preserve">
-    <value>还原数据失败，请从备份还原</value>
+    <value>Restore failed，please restore from backup</value>
+    <comment>还原数据失败，请从备份还原</comment>
   </data>
   <data name="MsgRestoreSuccess" xml:space="preserve">
-    <value>还原数据成功</value>
+    <value>Restore datas successfully</value>
   </data>
   <data name="MsgSetGuesture" xml:space="preserve">
-    <value>为了安全，请设置手势密码</value>
+    <value>Please set guesture lock for safety</value>
   </data>
   <data name="MsgSetSecretFailed" xml:space="preserve">
-    <value>设置密钥失败...</value>
+    <value>Set SecureKey Failed...</value>
   </data>
   <data name="MsgTitle" xml:space="preserve">
-    <value>标题不能为空</value>
+    <value>Please input title</value>
   </data>
   <data name="MsgWrongGuesture" xml:space="preserve">
-    <value>手势密码错误</value>
+    <value>Wrong Guesture</value>
   </data>
   <data name="NewSecureKey" xml:space="preserve">
-    <value>新密钥</value>
+    <value>New </value>
   </data>
   <data name="OldSecureKey" xml:space="preserve">
-    <value>原密钥</value>
+    <value>Old</value>
   </data>
   <data name="PlaceHolderSecureKey" xml:space="preserve">
-    <value>您的密钥（8位）</value>
+    <value>Please input secure key(8 digits)</value>
   </data>
   <data name="PwdAccount" xml:space="preserve">
-    <value>账号</value>
+    <value>Account</value>
   </data>
   <data name="PwdLength" xml:space="preserve">
-    <value>密码长度</value>
+    <value>Password Length</value>
   </data>
   <data name="PwdLowerCase" xml:space="preserve">
-    <value>包含小写字母</value>
+    <value>Contain LowerCases</value>
+    <comment>包含小写字母</comment>
   </data>
   <data name="PwdNumbers" xml:space="preserve">
-    <value>包含数字</value>
+    <value>Contain Numbers</value>
+    <comment>包含数字</comment>
   </data>
   <data name="PwdPassword" xml:space="preserve">
-    <value>密码</value>
+    <value>Password</value>
   </data>
   <data name="PwdPhone" xml:space="preserve">
-    <value>手机</value>
+    <value>Mobile</value>
   </data>
   <data name="PwdPlaceHolder" xml:space="preserve">
-    <value>密码</value>
+    <value>password</value>
   </data>
   <data name="PwdRemark" xml:space="preserve">
-    <value>备注</value>
+    <value>Remark</value>
   </data>
   <data name="PwdSpecialCharacter" xml:space="preserve">
-    <value>包含特殊字符</value>
+    <value>Contain Special Characters</value>
   </data>
   <data name="PwdTitle" xml:space="preserve">
-    <value>标题</value>
+    <value>Title</value>
   </data>
   <data name="PwdUppercase" xml:space="preserve">
-    <value>包含大写字母</value>
+    <value>Contain UpperCases</value>
+    <comment>包含大写字母</comment>
   </data>
   <data name="PwdWeb" xml:space="preserve">
-    <value>网址</value>
+    <value>Website</value>
   </data>
   <data name="ResetGuestureLock" xml:space="preserve">
-    <value>重新绘制手势</value>
+    <value>Reset</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>保存</value>
+    <value>Save</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>搜索</value>
+    <value>Search</value>
   </data>
   <data name="SecureKeyTips" xml:space="preserve">
-    <value>设置您的加密密钥（8位），它将用于加密的数据，这很重要，请妥善保存!</value>
+    <value>Please set secure key(8 digits) to encrypt datas, it's very important, you must keep it safely!</value>
+    <comment>设置您的加密密钥（8位），它将用于加密的数据，这很重要，请妥善保存!</comment>
   </data>
   <data name="SecureKeyWarning" xml:space="preserve">
-    <value>提示：修改密钥前请先备份数据，以免数据发生损坏后，无法还原。</value>
+    <value>Tips:Please backup datas before change secure key, in case datas are damaged!</value>
+    <comment>提示：修改密钥前请先备份数据，以免数据发生损坏后，无法还原。</comment>
   </data>
   <data name="SwitchHideTips" xml:space="preserve">
-    <value>隐藏密钥</value>
+    <value>Hide</value>
   </data>
   <data name="TipsSecretConfirmFailed" xml:space="preserve">
-    <value>两次密钥输入不一样</value>
+    <value>Confirm Failed</value>
+    <comment>两次密钥输入不一样</comment>
   </data>
   <data name="TipsSecretLength" xml:space="preserve">
-    <value>请输入8位的密钥</value>
+    <value>Please input secure key(8 digits)</value>
+    <comment>请输入8位的密钥</comment>
   </data>
   <data name="TipsSecretSameAsOld" xml:space="preserve">
-    <value>新密钥不能与旧密钥一致</value>
+    <value>New secure key must not same as old one!</value>
+    <comment>新密钥不能与旧密钥一致</comment>
   </data>
   <data name="TipsWrongSecret" xml:space="preserve">
-    <value>原密钥不正确,请重新输入</value>
+    <value>Wrong secure key, try again!</value>
+    <comment>原密钥不正确,请重新输入</comment>
   </data>
   <data name="TitleBackup" xml:space="preserve">
-    <value>备份</value>
+    <value>Backup</value>
   </data>
   <data name="TitleCategory" xml:space="preserve">
-    <value>分类</value>
+    <value>Category</value>
   </data>
   <data name="TitleCategorySelect" xml:space="preserve">
-    <value>分类选择</value>
+    <value>Category Select</value>
   </data>
   <data name="TitleChangeSecureKey" xml:space="preserve">
-    <value>修改密钥</value>
+    <value>Change Secure Key</value>
   </data>
   <data name="TitleGenerate" xml:space="preserve">
-    <value>生成</value>
+    <value>Password Generate</value>
   </data>
   <data name="TitleGuestureLock" xml:space="preserve">
-    <value>手势密码</value>
+    <value>Guesture Lock</value>
   </data>
   <data name="TitlePasswordPage" xml:space="preserve">
-    <value>密钥</value>
+    <value>Passwords</value>
   </data>
   <data name="TitleResetGuestureLock" xml:space="preserve">
-    <value>重设手势密码</value>
+    <value>Reset Guesture Lock</value>
   </data>
   <data name="TitleSecureKey" xml:space="preserve">
-    <value>加密密钥</value>
+    <value>Secure Key</value>
   </data>
   <data name="TitleSetting" xml:space="preserve">
-    <value>设置</value>
+    <value>Settings</value>
   </data>
   <data name="TitleThemeSelect" xml:space="preserve">
-    <value>选择</value>
+    <value>Select</value>
   </data>
 </root>
