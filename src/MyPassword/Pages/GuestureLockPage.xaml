@@ -7,7 +7,7 @@
     xmlns:res="clr-namespace:MyPassword.Localization"
     x:Class="MyPassword.Pages.GuestureLockPage">
     <ContentPage.Content>
-        <Grid BackgroundColor="White" HorizontalOptions="Fill">
+        <Grid BackgroundColor="{DynamicResource GuestureBackgroundColor}" HorizontalOptions="Fill">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>

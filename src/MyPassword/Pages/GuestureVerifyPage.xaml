@@ -6,7 +6,7 @@
     xmlns:controls="clr-namespace:MyPassword.Controls"
     x:Class="MyPassword.Pages.GuestureVerifyPage">
     <ContentPage.Content>
-        <Grid  BackgroundColor="White" HorizontalOptions="Fill">
+        <Grid  BackgroundColor="{DynamicResource GuestureBackgroundColor}" HorizontalOptions="Fill">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
