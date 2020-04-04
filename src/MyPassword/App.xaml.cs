@@ -62,10 +62,10 @@ namespace MyPassword
             }
         }
 
-        private Task<bool> CheckSecureKeyAsync()
+        private async Task<bool> CheckSecureKeyAsync()
         {
             var tcs = new TaskCompletionSource<bool>();
-            Task.Factory.StartNew(async () =>
+            await Task.Factory.StartNew(async () =>
             {
                 await SecureKeyService.LoadSecureKeyAsync();
                 if (string.IsNullOrEmpty(SecureKeyService.SecureKey))
@@ -82,7 +82,7 @@ namespace MyPassword
                     tcs.SetResult(true);
                 }
             });
-            return tcs.Task;
+            return await tcs.Task;
         }
 
         private Task<bool> CheckGuestureLockAsync()

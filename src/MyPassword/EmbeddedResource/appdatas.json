@@ -178,5 +178,40 @@
     "icon": "\ue67a",
     "background": "#0080FF",
     "comment": "陌陌"
+  },
+  {
+    "icon": "\ue7e7",
+    "background": "#00BB00",
+    "comment": "whatsapp"
+  },
+  {
+    "icon": "\ue609",
+    "background": "#CE0000",
+    "comment": "慕课网"
+  },
+  {
+    "icon": "\ue989",
+    "background": "#FF8000",
+    "comment": "芒果TV"
+  },
+  {
+    "icon": "\ue785",
+    "background": "#FFD306",
+    "comment": "搜狐"
+  },
+  {
+    "icon": "\ue60c",
+    "background": "#00BB00",
+    "comment": "爱奇艺"
+  },
+  {
+    "icon": "\ue64b",
+    "background": "#2894FF",
+    "comment": "支付宝"
+  },
+  {
+    "icon": "\ue624",
+    "background": "#d0d0d0",
+    "comment": "apple"
   }
 ]

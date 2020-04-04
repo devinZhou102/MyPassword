@@ -194,6 +194,9 @@
     <value>Confirm</value>
     <comment>确认密钥</comment>
   </data>
+  <data name="CopySuccess" xml:space="preserve">
+    <value>Copy successfully</value>
+  </data>
   <data name="DarkTheme" xml:space="preserve">
     <value>Dark Mode</value>
   </data>
@@ -209,6 +212,15 @@
   <data name="Ensure" xml:space="preserve">
     <value>Ensure</value>
   </data>
+  <data name="ExportNoDatas" xml:space="preserve">
+    <value>No datas can't be export</value>
+  </data>
+  <data name="ImportErrorData" xml:space="preserve">
+    <value>Error data, can't be imported</value>
+  </data>
+  <data name="ImportSuccess" xml:space="preserve">
+    <value>Import successfully</value>
+  </data>
   <data name="ItemAbout" xml:space="preserve">
     <value>About</value>
   </data>
@@ -219,7 +231,7 @@
     <value>Backup</value>
   </data>
   <data name="ItemBackupDesc" xml:space="preserve">
-    <value>Backup datas</value>
+    <value>Export &amp; Import Datas</value>
   </data>
   <data name="ItemGuesture" xml:space="preserve">
     <value>GuestureLock</value>
@@ -369,6 +381,9 @@
   <data name="SwitchHideTips" xml:space="preserve">
     <value>Hide</value>
   </data>
+  <data name="TipsBackup" xml:space="preserve">
+    <value>Tips: Please keep exported datas carefully, and be careful that import datas will clear local datas.</value>
+  </data>
   <data name="TipsSecretConfirmFailed" xml:space="preserve">
     <value>Confirm Failed</value>
     <comment>两次密钥输入不一样</comment>
@@ -417,5 +432,11 @@
   </data>
   <data name="TitleThemeSelect" xml:space="preserve">
     <value>Select</value>
+  </data>
+  <data name="ToastSaveFailed" xml:space="preserve">
+    <value>Save failed</value>
+  </data>
+  <data name="ToastSaveSuccess" xml:space="preserve">
+    <value>Save successfully</value>
   </data>
 </root>

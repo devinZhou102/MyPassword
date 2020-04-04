@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="gridView_selectedItem">@android:color/transparent</color>
-    <color name="launcher_background">#8080C0</color>
+    <color name="launcher_background">#ffffff</color>
     <color name="colorPrimary">#8080C0</color>
     <color name="colorPrimaryDark">#8080C0</color>
     <color name="colorAccent">#8080C0</color>

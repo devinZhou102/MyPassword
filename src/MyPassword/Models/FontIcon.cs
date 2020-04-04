@@ -31,7 +31,7 @@ namespace MyPassword.Models
             }
         }
 
-        private static FontIcon CreateDefaultFontIcon()
+        public static FontIcon CreateDefaultFontIcon()
         {
             return new FontIcon
             {
