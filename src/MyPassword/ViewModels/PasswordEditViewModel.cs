@@ -317,37 +317,19 @@ namespace MyPassword.ViewModels
                 return;
             }
 
-            var dialog = UserDialogs.Instance.Loading("数据保存中...");
+            loadingService.ShowLoading();
             var success = await SavePassword();
             if (success != null)
             {
-                UserDialogs.Instance.Toast("保存数据成功");
+                alertService.Toast(AppResource.ToastSaveSuccess);
                 MessengerInstance.Send<int>(TokenConst.TokenUpdateList);
                 await NavigationService.PopAsync();
             }
             else
             {
-                UserDialogs.Instance.Toast("保存数据失败");
+                alertService.Toast(AppResource.ToastSaveFailed);
             }
-            dialog.Hide();
-        }
-
-        private DataItemModel GetDataItemModel(int id)
-        {
-            var item = new DataItemModel
-            {
-                Id = id,
-                Icon = Icon,
-                Account = Account,
-                Password = Password,
-                Name = Title,
-                CategoryKey = CategoryKey,
-                Phone = Phone,
-                UpdateTime = DateTimeOffset.UtcNow,
-                Website = Website,
-                Description = Description
-            };
-            return item;
+            loadingService.HideLoading();
         }
 
         private bool IsValid()
@@ -389,7 +371,10 @@ namespace MyPassword.ViewModels
                     Password = Password,
                     Name = Title,
                     Description = Description,
-                    CategoryKey = CategoryKey
+                    CategoryKey = CategoryKey,
+                    Phone = Phone,
+                    UpdateTime = DateTimeOffset.UtcNow,
+                    Website = Website,
                 };
                 int result = 0;
                 if (DataItem != null)

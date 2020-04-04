@@ -5,20 +5,42 @@
     xmlns:local="clr-namespace:MyPassword.Pages"
     xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
     xmlns:res="clr-namespace:MyPassword.Localization"
+    xmlns:effects="clr-namespace:MyPassword.Effects"
     Title="{x:Static res:AppResource.TitleBackup}"
     x:Class="MyPassword.Pages.BackUpPage">
     <ContentPage.Content>
-        <Grid BackgroundColor="{DynamicResource MainBackgroundColor}">
+        <Grid BackgroundColor="{DynamicResource MainBackgroundColor}" Padding="12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Editor Text="{Binding Data}" Grid.Row="0" BackgroundColor="{DynamicResource EditorColor}">
+                <Editor.Effects>
+                    <effects:EntryNoneBorderEffect/>
+                </Editor.Effects>
+            </Editor>
+            <Label Text="{x:Static res:AppResource.TipsBackup}" FontSize="14" TextColor="OrangeRed" Grid.Row="1" Margin="12,6"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start" Margin="12" Grid.Row="2">
 
-            <StackLayout VerticalOptions="Start" Margin="12">
-                <Button Text="导出数据" TextColor="White" Command="{Binding ExportDataCommand}" 
-                    CornerRadius="5" BackgroundColor="#2196F3"
-                    android:Button.UseDefaultShadow="True"
-                    android:Button.UseDefaultPadding="True"/>
-                <Button Text="导入数据" TextColor="White" Command="{Binding InportDataCommand}" 
-                    CornerRadius="5" BackgroundColor="#2196F3" 
-                    Margin="0,12" android:Button.UseDefaultShadow="True"
-                    android:Button.UseDefaultPadding="True"/>
+                <ImageButton WidthRequest="48" HeightRequest="48" CornerRadius="24" Command="{Binding ExportDataCommand}" 
+                             BackgroundColor="{DynamicResource MainButtonBackgroundColor}" Padding="12">
+                    <ImageButton.Source>
+                        <FontImageSource Glyph="&#xe821;" FontFamily="iconfont" Color="White"/>
+                    </ImageButton.Source>
+                </ImageButton>
+                <ImageButton WidthRequest="48" HeightRequest="48" CornerRadius="24"  Margin="24,0" Command="{Binding CopyDataCommand}"
+                             BackgroundColor="{DynamicResource MainButtonBackgroundColor}" Padding="12">
+                    <ImageButton.Source>
+                        <FontImageSource Glyph="&#xe670;" FontFamily="iconfont" Color="White"/>
+                    </ImageButton.Source>
+                </ImageButton>
+                <ImageButton WidthRequest="48" HeightRequest="48" CornerRadius="24" Command="{Binding ImportDataCommand}" 
+                             BackgroundColor="{DynamicResource MainButtonBackgroundColor}" Padding="12"> 
+                    <ImageButton.Source>
+                        <FontImageSource Glyph="&#xe6be;" FontFamily="iconfont" Color="White"/>
+                    </ImageButton.Source>
+                </ImageButton>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

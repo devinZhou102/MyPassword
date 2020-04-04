@@ -65,7 +65,7 @@ namespace MyPassword.ViewModels
 
         public ICommand TappedCommand => new RelayCommand<FontIcon>(async (item) =>
         {
-            SelectIconComplete?.Invoke(item);
+            SelectIconComplete?.Invoke(new FontIcon {Icon = item.Icon,Background = item.Background });
             await NavigationService.PopPopupAsync();
         });
 

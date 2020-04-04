@@ -150,6 +150,15 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 已拷贝数据.
+        /// </summary>
+        internal static string CopySuccess {
+            get {
+                return ResourceManager.GetString("CopySuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 深色模式.
         /// </summary>
         internal static string DarkTheme {
@@ -195,6 +204,33 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 暂无数据可以导出.
+        /// </summary>
+        internal static string ExportNoDatas {
+            get {
+                return ResourceManager.GetString("ExportNoDatas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 异常数据，无法导入.
+        /// </summary>
+        internal static string ImportErrorData {
+            get {
+                return ResourceManager.GetString("ImportErrorData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 数据导入成功.
+        /// </summary>
+        internal static string ImportSuccess {
+            get {
+                return ResourceManager.GetString("ImportSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 关于.
         /// </summary>
         internal static string ItemAbout {
@@ -222,7 +258,7 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 备份您的数据.
+        ///   Looks up a localized string similar to 导出&amp;导入数据.
         /// </summary>
         internal static string ItemBackupDesc {
             get {
@@ -663,6 +699,15 @@ namespace MyPassword.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 注意：请妥善保管导出的数据！导入数据将清除旧数据！.
+        /// </summary>
+        internal static string TipsBackup {
+            get {
+                return ResourceManager.GetString("TipsBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 两次密钥输入不一样.
         /// </summary>
         internal static string TipsSecretConfirmFailed {
@@ -794,6 +839,24 @@ namespace MyPassword.Localization {
         internal static string TitleThemeSelect {
             get {
                 return ResourceManager.GetString("TitleThemeSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 保存失败.
+        /// </summary>
+        internal static string ToastSaveFailed {
+            get {
+                return ResourceManager.GetString("ToastSaveFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 保存成功.
+        /// </summary>
+        internal static string ToastSaveSuccess {
+            get {
+                return ResourceManager.GetString("ToastSaveSuccess", resourceCulture);
             }
         }
     }
