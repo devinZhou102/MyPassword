@@ -17,6 +17,9 @@ namespace MyPassword
         private IAppIconService appIconService;
         private IThemeService themeService;
         private ILanguageService languageService;
+
+        private AppMainShell AppShellCache;
+
         public App ()
 		{
             InitializeComponent();
@@ -119,12 +122,14 @@ namespace MyPassword
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                switch(Device.RuntimePlatform)
+                if (AppShellCache == null)
+                    AppShellCache = new AppMainShell();
+                switch (Device.RuntimePlatform)
                 {
                     case Device.Android:
                     case Device.iOS:
                     case Device.UWP:
-                        MainPage = new AppMainShell();
+                        MainPage = AppShellCache;
                         break;
                 }
             });
@@ -142,7 +147,14 @@ namespace MyPassword
 
 		protected override void OnResume ()
 		{
-			// Handle when your app resumes
-		}
+            // Handle when your app resumes
+            Device.BeginInvokeOnMainThread(async ()=>
+            {
+                await CheckGuestureLockAsync();
+                NaviToMain();
+            });
+        }
+
+
 	}
 }
