@@ -24,6 +24,7 @@ namespace MyPassword
 		{
             InitializeComponent();
             Initialize();
+            IsResumeWorkable = false;
             MainPage = new InitalPage();
             MainNavi();
         }
@@ -43,6 +44,7 @@ namespace MyPassword
         {
             get { return _locator; }
         }
+
 
 
         private async void MainNavi()
@@ -124,15 +126,9 @@ namespace MyPassword
             {
                 if (AppShellCache == null)
                     AppShellCache = new AppMainShell();
-                switch (Device.RuntimePlatform)
-                {
-                    case Device.Android:
-                    case Device.iOS:
-                    case Device.UWP:
-                        MainPage = AppShellCache;
-                        break;
-                }
+                MainPage = AppShellCache;
             });
+            IsResumeWorkable = true;
         }
 
 		protected override void OnStart ()
@@ -147,14 +143,32 @@ namespace MyPassword
 
 		protected override void OnResume ()
 		{
-            // Handle when your app resumes
-            Device.BeginInvokeOnMainThread(async ()=>
-            {
-                await CheckGuestureLockAsync();
-                NaviToMain();
-            });
+            if(IsResumeWorkable) OnResumeProcessAsync();
         }
 
+        bool IsResumeWorkable;
+
+        private async void OnResumeProcessAsync()
+        {
+            IsResumeWorkable = false;
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    await NavigationService.PushModalAsync(new GuestureVerifyPage(async () => {
+                        IsResumeWorkable = true;
+                        await NavigationService.PopModalAsync();
+                    }));
+                    break;
+                default:
+                    MainPage = new GuestureVerifyPage(() =>
+                    {
+                        IsResumeWorkable = true;
+                        MainPage = AppShellCache;
+                    });
+                    break;
+            }
+
+        }
 
 	}
 }
