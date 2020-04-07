@@ -22,9 +22,9 @@ iOS Screen Shots：
 
 <img src="/Images/iOS6.jpg" width=200/>
 
+<img src="/Images/iOS7.jpg" width=200/>
+
 </div>
-
-
 
 Android Screen Shots：
 
