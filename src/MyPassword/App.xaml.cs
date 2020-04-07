@@ -17,10 +17,14 @@ namespace MyPassword
         private IAppIconService appIconService;
         private IThemeService themeService;
         private ILanguageService languageService;
+
+        private AppMainShell AppShellCache;
+
         public App ()
 		{
             InitializeComponent();
             Initialize();
+            IsResumeWorkable = false;
             MainPage = new InitalPage();
             MainNavi();
         }
@@ -40,6 +44,7 @@ namespace MyPassword
         {
             get { return _locator; }
         }
+
 
 
         private async void MainNavi()
@@ -119,15 +124,11 @@ namespace MyPassword
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                switch(Device.RuntimePlatform)
-                {
-                    case Device.Android:
-                    case Device.iOS:
-                    case Device.UWP:
-                        MainPage = new AppMainShell();
-                        break;
-                }
+                if (AppShellCache == null)
+                    AppShellCache = new AppMainShell();
+                MainPage = AppShellCache;
             });
+            IsResumeWorkable = true;
         }
 
 		protected override void OnStart ()
@@ -142,7 +143,32 @@ namespace MyPassword
 
 		protected override void OnResume ()
 		{
-			// Handle when your app resumes
-		}
+            if(IsResumeWorkable) OnResumeProcessAsync();
+        }
+
+        bool IsResumeWorkable;
+
+        private async void OnResumeProcessAsync()
+        {
+            IsResumeWorkable = false;
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    await NavigationService.PushModalAsync(new GuestureVerifyPage(async () => {
+                        IsResumeWorkable = true;
+                        await NavigationService.PopModalAsync();
+                    }));
+                    break;
+                default:
+                    MainPage = new GuestureVerifyPage(() =>
+                    {
+                        IsResumeWorkable = true;
+                        MainPage = AppShellCache;
+                    });
+                    break;
+            }
+
+        }
+
 	}
 }
