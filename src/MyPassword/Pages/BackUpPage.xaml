@@ -15,7 +15,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Editor Text="{Binding Data}" Grid.Row="0" BackgroundColor="{DynamicResource EditorColor}">
+            <Editor Text="{Binding Data}" Grid.Row="0" BackgroundColor="{DynamicResource EditorColor}" TextColor="{DynamicResource EntryTextColor}">
                 <Editor.Effects>
                     <effects:EntryNoneBorderEffect/>
                 </Editor.Effects>

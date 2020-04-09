@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pages:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:pages="clr-namespace:MyPassword.Pages"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:res="clr-namespace:MyPassword.Localization"
-             Title="{x:Static res:AppResource.TitleGenerate}"
-             xmlns:effects="clr-namespace:MyPassword.Effects"
-             x:Class="MyPassword.Pages.PwdGeneratePage">
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:effects="clr-namespace:MyPassword.Effects"
+                       xmlns:res="clr-namespace:MyPassword.Localization"
+                       xmlns:pages="clr-namespace:MyPassword.Pages"
+                       Title="{x:Static res:AppResource.TitleGenerate}"
+                       x:Class="MyPassword.Pages.PwdGeneratePage">
     <ContentPage.ToolbarItems>
         <ToolbarItem 
             Text="{x:Static res:AppResource.Ensure}" 
@@ -17,7 +16,7 @@
             <!-- password -->
             <Grid BackgroundColor="{DynamicResource MainItemBackgroundColor}" Padding="12" Margin="0,12">
                 <Entry Placeholder="{x:Static res:AppResource.PwdPlaceHolder}" HorizontalOptions="Fill" VerticalOptions="Center"
-                   Text="{Binding Password}" >
+                   Text="{Binding Password}" TextColor="{DynamicResource EntryTextColor}">
                     <Entry.Effects>
                         <effects:EntryNoneBorderEffect/>
                     </Entry.Effects>
