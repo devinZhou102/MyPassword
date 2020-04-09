@@ -29,6 +29,8 @@
     <Color x:Key="DividerColor">#5B5B5B</Color>
     <!-- 编辑器 -->
     <Color x:Key="EditorColor">#6C6C6C</Color>
+    <!--输入框颜色-->
+    <Color x:Key="EntryTextColor">white</Color>
     <!-- 手势页面 -->
     <Color x:Key="GuestureBackgroundColor">#3C3C3C</Color>
 

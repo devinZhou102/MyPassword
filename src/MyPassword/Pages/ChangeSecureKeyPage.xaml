@@ -28,7 +28,7 @@
                     <Label Text="{x:Static res:AppResource.OldSecureKey}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start"/>
                     <Entry Placeholder="{x:Static res:AppResource.CommonPlaceHolder}" Margin="12,0" Grid.Column="1" Text="{Binding OldSecureKey}" 
                        VerticalOptions="Center" HorizontalOptions="Fill" HorizontalTextAlignment="Start" IsEnabled="True" MaxLength="8" 
-                        IsPassword="True" FontSize="14">
+                        IsPassword="True" FontSize="14" TextColor="{DynamicResource EntryTextColor}">
                         <Entry.Effects>
                             <effects:EntryNoneBorderEffect/>
                         </Entry.Effects>
@@ -43,7 +43,7 @@
                     <Label Text="{x:Static res:AppResource.NewSecureKey}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start"/>
                     <Entry Placeholder="{x:Static res:AppResource.CommonPlaceHolder}" Margin="12,0" Grid.Column="1" Text="{Binding NewSecureKey}" 
                        VerticalOptions="Center" HorizontalOptions="Fill" HorizontalTextAlignment="Start" IsEnabled="True" MaxLength="8" 
-                           IsPassword="True" FontSize="14">
+                           IsPassword="True" FontSize="14" TextColor="{DynamicResource EntryTextColor}">
                         <Entry.Effects>
                             <effects:EntryNoneBorderEffect/>
                         </Entry.Effects>
@@ -58,7 +58,7 @@
                     <Label Text="{x:Static res:AppResource.ConfirmSecureKey}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start"/>
                     <Entry Placeholder="{x:Static res:AppResource.CommonPlaceHolder}" Margin="12,0" Grid.Column="1" Text="{Binding ConfirmSecureKey}" 
                        VerticalOptions="Center" HorizontalOptions="Fill" HorizontalTextAlignment="Start" IsPassword="True"
-                           IsEnabled="True" MaxLength="8" FontSize="14">
+                           IsEnabled="True" MaxLength="8" FontSize="14" TextColor="{DynamicResource EntryTextColor}">
                         <Entry.Effects>
                             <effects:EntryNoneBorderEffect/>
                         </Entry.Effects>
