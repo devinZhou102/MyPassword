@@ -33,9 +33,26 @@ namespace MyPassword.Pages
         {
         }
 
-        private void ButtonClose_Clicked(object sender, EventArgs e)
+        protected override void OnDisappearing()
         {
-            NavigationService.PopModalAsync();
+            base.OnDisappearing();
+        }
+
+        private async void ButtonClose_ClickedAsync(object sender, EventArgs e)
+        {
+            await NavigationService.PopModalAsync();
+            SetResumeCheckWorkable();
+        }
+
+        private void SetResumeCheckWorkable()
+        {
+            (App.Current as App).IsResumeCheckWorkable = true;
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            SetResumeCheckWorkable();
+            return base.OnBackButtonPressed();
         }
     }
 }
