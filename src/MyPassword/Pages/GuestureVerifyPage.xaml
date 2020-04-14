@@ -19,7 +19,7 @@
                     </OnPlatform>
                 </Image.Source>
             </Image>
-            <ImageButton x:Name="ButtonClose" Clicked="ButtonClose_Clicked" Margin="12" WidthRequest="36" HeightRequest="36"
+            <ImageButton x:Name="ButtonClose" Clicked="ButtonClose_ClickedAsync" Margin="12" WidthRequest="36" HeightRequest="36"
                          VerticalOptions="Start" HorizontalOptions="End" BackgroundColor="Transparent">
                 <ImageButton.Source>
                     <FontImageSource Glyph="&#xe689;" Color="#8080C0" FontFamily="iconfont"/>

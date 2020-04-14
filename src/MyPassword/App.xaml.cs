@@ -24,7 +24,7 @@ namespace MyPassword
 		{
             InitializeComponent();
             Initialize();
-            IsResumeWorkable = false;
+            IsResumeCheckWorkable = false;
             MainPage = new InitalPage();
             MainNavi();
         }
@@ -44,7 +44,6 @@ namespace MyPassword
         {
             get { return _locator; }
         }
-
 
 
         private async void MainNavi()
@@ -128,7 +127,7 @@ namespace MyPassword
                     AppShellCache = new AppMainShell();
                 MainPage = AppShellCache;
             });
-            IsResumeWorkable = true;
+            IsResumeCheckWorkable = true;
         }
 
 		protected override void OnStart ()
@@ -143,26 +142,26 @@ namespace MyPassword
 
 		protected override void OnResume ()
 		{
-            if(IsResumeWorkable) OnResumeProcessAsync();
+            if(IsResumeCheckWorkable) OnResumeProcessAsync();
         }
 
-        bool IsResumeWorkable;
+        public bool IsResumeCheckWorkable { get; set; }
 
         private async void OnResumeProcessAsync()
         {
-            IsResumeWorkable = false;
+            IsResumeCheckWorkable = false;
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
                     await NavigationService.PushModalAsync(new GuestureVerifyPage(async () => {
-                        IsResumeWorkable = true;
+                        IsResumeCheckWorkable = true;
                         await NavigationService.PopModalAsync();
                     }));
                     break;
                 default:
                     MainPage = new GuestureVerifyPage(() =>
                     {
-                        IsResumeWorkable = true;
+                        IsResumeCheckWorkable = true;
                         MainPage = AppShellCache;
                     });
                     break;

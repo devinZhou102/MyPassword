@@ -46,10 +46,12 @@ namespace MyPassword.ViewModels
         {
             if (item.SecureProtect)
             {
+                SetResumeCheckWorkable(false);
                 await NavigationService.PushModalAsync(new GuestureVerifyPage(async () =>
                 {
                     PushPage(item);
                     await NavigationService.PopModalAsync();
+                    SetResumeCheckWorkable(true);
                 }, true));
             }
             else
@@ -58,6 +60,11 @@ namespace MyPassword.ViewModels
             }
 
         });
+
+        private void SetResumeCheckWorkable(bool workable)
+        {
+            (App.Current as App).IsResumeCheckWorkable = workable;
+        }
 
         private void PushPage(SettingItemModel item)
         {
