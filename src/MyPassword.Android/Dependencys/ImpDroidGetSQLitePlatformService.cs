@@ -19,7 +19,7 @@ namespace MyPassword.Droid.Dependencys
     {
         public ISQLitePlatform GetSQLitePlatform()
         {
-            if(Build.VERSION.SdkInt >= Build.VERSION_CODES.N)
+            if(Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.N)
             {
                 return new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroidN();
             }
