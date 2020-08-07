@@ -32,7 +32,7 @@
                                 <BoxView HeightRequest="40" WidthRequest="40" CornerRadius="20" BackgroundColor="{Binding Background}"/>
                                 <Image WidthRequest="20" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="Center">
                                     <Image.Source>
-                                        <FontImageSource Glyph="{Binding Icon}" FontFamily="iconfont"/>
+                                        <FontImageSource Glyph="{Binding Icon}" FontFamily="iconfont" Color="White"/>
                                     </Image.Source>
                                 </Image>
                             </Grid>
